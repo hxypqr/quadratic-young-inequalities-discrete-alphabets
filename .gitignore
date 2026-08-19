@@ -1,0 +1,29 @@
+# LaTeX build products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+_minted-*/
+
+# Proof-assistant build products
+.lake/
+lake-packages/
+formalization/build/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local scratch space
+tmp/
+scratch/

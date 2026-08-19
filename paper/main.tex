@@ -1,0 +1,4583 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{aliascnt}
+\usepackage{tikz}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{fancyhdr}
+
+\geometry{a4paper,margin=3cm}
+\hypersetup{
+  pdftitle={Quadratic Young Inequalities on Discrete Alphabets: Exact Small Models and Multiscale Rigidity},
+  pdfauthor={Xiyu Hu},
+  pdfsubject={Sharp quadratic Young inequalities, additive energy, reflection stability, and multiscale renormalization on discrete alphabets},
+  pdfkeywords={Young inequality, discrete alphabet, binary cube, ternary cube, additive energy, reflection stability, renormalization, Gaussian asymptotics},
+  pdfcreator={pdflatex}
+}
+\allowdisplaybreaks
+\numberwithin{equation}{section}
+\setcounter{tocdepth}{2}
+\setlength{\parskip}{0em}
+\setlist{itemsep=0.15em,topsep=0.35em,parsep=0pt,partopsep=0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{13pt}
+\setlength{\footskip}{15pt}
+\fancyhead[C]{\ifodd\value{page}{\small XIYU HU}\else{\small QUADRATIC YOUNG INEQUALITIES ON DISCRETE ALPHABETS}\fi}
+\fancyfoot[C]{\thepage}
+
+\newtheorem{theorem}{Theorem}[section]
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\newaliascnt{conjecture}{theorem}
+\newtheorem{conjecture}[conjecture]{Conjecture}
+\aliascntresetthe{conjecture}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\crefname{theorem}{Theorem}{Theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{Lemma}{Lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{conjecture}{Conjecture}{Conjectures}
+\Crefname{conjecture}{Conjecture}{Conjectures}
+\crefname{definition}{Definition}{Definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{Remark}{Remarks}
+\Crefname{remark}{Remark}{Remarks}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb T}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Card}{\lvert\,\cdot\,\rvert}
+\newcommand{\Utwo}{\mathrm U^2}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\Qd}{Q_d}
+\newcommand{\Cpqr}{\mathsf C}
+\newcommand{\Kpq}{\mathsf K}
+\newcommand{\Lambdaq}{\Lambda}
+\newcommand{\Mu}{\mathsf M}
+\newcommand{\Ep}{\mathsf E}
+\newcommand{\logtwo}{\log_2}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cQ}{\mathcal Q}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\Ren}{\operatorname{Ren}}
+\newcommand{\rev}{\widetilde}
+\newcommand{\Id}{\mathrm{Id}}
+
+\definecolor{regiongray}{gray}{0.90}
+\definecolor{curvegray}{gray}{0.25}
+
+\title[Quadratic Young inequalities on discrete alphabets]
+{Quadratic Young Inequalities on Discrete Alphabets:\\
+Exact Small Models and Multiscale Rigidity}
+\author{Xiyu Hu}
+\address{School of Mathematical Sciences, University of Chinese Academy of Sciences}
+\email{hxypqr@gmail.com}
+\makeatletter\renewcommand{\emailaddrname}{\itshape E-mail addresses}\makeatother
+\date{}
+
+\subjclass[2020]{Primary 26D15, 05D05; Secondary 42A38, 42A85, 11B30, 94A17}
+\keywords{Young's convolution inequality, discrete alphabets, binary cube, ternary cube, additive energy, reflection stability, extremizers, renormalization, Gaussian asymptotics}
+
+\begin{document}
+
+\begin{abstract}
+For the binary cube $\{0,1\}^d$, we determine the exact best constant in the off-diagonal quadratic Young inequality
+\[
+  \|f*g\|_{\ell^2(\Z^d)}
+  \le C\|f\|_{\ell^p(\Z^d)}\|g\|_{\ell^q(\Z^d)}
+\]
+for every $p,q\in[1,\infty]$ and every dimension $d$, and hence obtain the complete dimension-free exponent region together with sharp cross-energy, sumset, entropy, and Fourier-overlap consequences.  For the ternary cube $\{0,1,2\}^d$, we determine the sharp dimension-free $L^4$ exponent and the complete one-dimensional best-constant curve; every nontrivial nonnegative extremizer is reflection symmetric and center heavy.  For arbitrary finite interval alphabets, we prove arithmetic-progression support rigidity for exact extremizers, a universal one-third law for the reflection-odd Hessian, the universal reflection-stability threshold $p=4/3$, an exact parity-renormalization formula with a nonnegative square defect, an exact multiplicative cascade, and discrete--continuous and entropy identities that isolate the large-alphabet problem.  The predicted Gaussian first-order large-alphabet asymptotic remains conditional on a stated multiscale refinement-rigidity conjecture.  Finally, for output exponents $r>2$ sufficiently close to $2$, we determine sharp biased--biased equality branches for fixed $q\in(1,4/3)$ and the global flat-to-biased transition near the upper endpoint.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Introduction}\label{sec:introduction}
+
+\subsection{The common problem}
+For an integer $m\ge2$, let
+\[
+  I_m:=\{0,1,\ldots,m-1\}\subset\Z.
+\]
+The basic object of this paper is the support-restricted Young quotient
+\begin{equation}\label{eq:general-sharp-constant}
+  \mathsf C_{m,d}(p,q;r)
+  :=\sup_{\substack{f,g\ne0\\
+       \supp f,\supp g\subset I_m^d}}
+  \frac{\|f*g\|_{\ell^r(\Z^d)}}
+       {\|f\|_{\ell^p(\Z^d)}\|g\|_{\ell^q(\Z^d)}}.
+\end{equation}
+Without the support restriction, the classical Young inequality has constant one on
+\[
+  1+\frac1r=\frac1p+\frac1q.
+\]
+A finite product alphabet changes the geometry: in each coordinate only finitely many translates can interact, and one may retain dimension-independent constants beyond the classical Young plane.  The central questions are therefore to determine the exact constant, the constant-one exponent region, and the geometry of extremizers.
+
+The quadratic output $r=2$ has a second interpretation.  For a finitely supported $f\colon\Z^d\to\C$, write
+\[
+  \widehat f(\xi)=\sum_{x\in\Z^d}f(x)e^{-2\pi i x\cdot\xi},
+  \qquad \xi\in\T^d,
+\]
+where Haar measure on $\T^d$ is normalized.  Plancherel gives
+\begin{equation}\label{eq:intro-fourier}
+  \|\widehat f\|_{L^4(\T^d)}^4
+  =\|f*f\|_{\ell^2(\Z^d)}^2.
+\end{equation}
+For $f=\one_A$, this common quantity is the additive energy
+\begin{equation}\label{eq:intro-additive-energy}
+  E(A)
+  :=\#\{(a_1,a_2,a_3,a_4)\in A^4:
+           a_1+a_2=a_3+a_4\}.
+\end{equation}
+Thus the self-convolution problem can be read interchangeably as a sharp $L^4$ Fourier inequality or a dimension-free additive-energy inequality.  The bilinear quotient $\|f*g\|_2$ similarly measures cross-additive energy and, after normalization to probability masses, collision entropy.
+
+The paper follows the increase in alphabet complexity
+\[
+  I_2\longrightarrow I_3\longrightarrow I_m.
+\]
+The binary model is completely solvable even off the diagonal: exact tensorization reduces the problem to two scalar balance variables, and the Hilbert-space structure at $r=2$ forces the extremum to the boundary.  The ternary model is the first one with a genuine non-flat interior profile: the sharp self-convolution extremizer is center heavy.  For a general alphabet, direct finite-dimensional optimization is replaced by variational, reflection, and multiscale structure.  The exact results lead to a two-well picture in which near extremizers are either atomic or broad and approximately Gaussian.
+
+\subsection{Background}
+The sharp Euclidean constants in Hausdorff--Young and Young inequalities were determined by Beckner and by Brascamp--Lieb \cite{Beckner1975,BrascampLieb1976}.  On product sets, the reverse or support-size side of convolution has a long combinatorial history.  Woodall and, independently, Hajela and Seymour proved the sharp binary-cube Brunn--Minkowski inequality
+\[
+  |A+B|\ge (|A||B|)^{\log_2 3/2},
+  \qquad A,B\subset\{0,1\}^d,
+\]
+while dimension-free sumset estimates for more general product sets appeared in work of Bourgain, Dilworth, Ford, Konyagin, and Kutzarova \cite{Woodall1977,HajelaSeymour1985,BourgainEtAl2011}.  Becker, Ivanisvili, Krachun, and Madrid later established the sharp ternary analogue and developed a functional sup-convolution formulation \cite{BeckerIKM2024}.  In the limit $r\downarrow0$, reverse Young inequalities recover this support-size theory; see Leindler and Beltran--Ivanisvili--Madrid--Patil \cite{Leindler1972,BIMP}.
+
+Positive output exponents measure representation multiplicity rather than only support.  On the binary cube, Kane and Tao proved the sharp additive-energy exponent, and de Dios Pont, Greenfeld, Ivanisvili, and Madrid developed higher-energy inequalities \cite{KaneTao2017,DGIM}.  Generalized additive energies in arbitrary abelian groups were developed systematically by Shkredov: \cite{Shkredov2014} studies quantities such as $E_k$ and $T_k$, their relations with Gowers norms, and the additive structure forced by critical relations among these energies.  Related higher-moment convolution estimates appear in work of Schoen and Shkredov \cite{SchoenShkredov2013}.  Beker, Crmari\'c, and Kova\v{c} placed cube inequalities in a broader Gowers-norm framework and proved the dimension-compression principle used in the ternary part of the present paper \cite{BekerCK2024}.  Shao obtained nontrivial upper and lower asymptotic bounds for interval alphabets of growing size \cite{Shao2026}.
+
+The recent works of Beltran, Ivanisvili, Madrid, and Patil and of Crmari\'c, Kova\v{c}, and Shiraki initiated a systematic sharp functional theory on the binary cube \cite{BIMP,CKS}.  In particular, for every $r\ge1$ they determined the diagonal exponent
+\[
+  p_r=\frac{2r}{\log_2(2+2^r)}
+\]
+for which $\|f*g\|_r\le\|f\|_{p_r}\|g\|_{p_r}$ holds in every dimension.  Beltran, Ivanisvili, Madrid, and Patil also obtained necessary conditions and partial off-diagonal results at $r=2$.  A key local obstruction was recorded by Crmari\'c, Kova\v{c}, and Shiraki in \cite[Remark~15]{CKS}: on the full-cube critical line, the flat--flat profile ceases to be a local maximum as soon as $p<4/3$ or $q<4/3$.  They also indicated how the complementary flat segment can be approached through endpoint verification and interpolation.  Thus previous work identified both the full-cube regime and the onset of symmetry breaking, but did not determine the profile replacing the flat point or the complete best constant.  The binary analysis below gives an independent complete solution at quadratic output: a global curvature argument forces an extremizer to an edge, where the missing boundary is described by a flat--biased one-variable curve.  The final sections explain why $r=2$ is a special, Hilbertian point and how the equality geometry changes immediately for $r>2$.
+
+\par\medskip
+\indent\textit{Independent forthcoming work.}\enspace
+Jos\'e Madrid and Paata Ivanisvili informed the author that they and their collaborators had independently solved the full binary $r=2$ problem---the original problem addressed in their forthcoming manuscript---before receiving an earlier draft of the present paper.  Based on these private communications, the author understands that the overlap concerns the binary $r=2$ phase diagram; the ternary, general-alphabet, and transverse $r$-directions developed here are separate.  At the time of writing, no public manuscript is available to cite.  Their preprint is expected to appear on arXiv shortly; when it becomes available, the author will add an appropriate citation and a fuller comparison in a subsequent version.\footnote{Private communications, August 2026.}
+
+\subsection{The binary off-diagonal theorem}
+Put $Q_d:=\{0,1\}^d$.  For $1\le q<\infty$, define
+\begin{equation}\label{eq:Lambda-def-intro}
+  \Lambdaq(q)
+  :=\max_{0\le t\le1}
+  \logtwo\frac{1+t+t^2}{(1+t^q)^{2/q}},
+\end{equation}
+set $\Lambdaq(\infty):=\logtwo3$, and put
+\begin{equation}\label{eq:M-def-intro}
+  \Mu(p,q)
+  :=\max\left\{
+    0,\,
+    1-\frac2p+\Lambdaq(q),\,
+    1-\frac2q+\Lambdaq(p)
+  \right\}.
+\end{equation}
+As usual, $1/\infty=0$.
+
+\begin{theorem}\label{thm:main}
+Let $d\ge1$ and $p,q\in[1,\infty]$.  Then
+\begin{equation}\label{eq:main-sharp}
+  \|f*g\|_2
+  \le 2^{\frac d2\Mu(p,q)}\|f\|_p\|g\|_q
+\end{equation}
+for all $f,g\colon\Z^d\to\C$ supported on $Q_d$.  The constant is optimal.
+\end{theorem}
+
+\begin{corollary}\label{cor:phase-region}
+The estimate
+\begin{equation}\label{eq:constant-one}
+  \|f*g\|_2\le\|f\|_p\|g\|_q
+\end{equation}
+holds in every dimension for all $f,g$ supported on $Q_d$ if and only if
+\begin{equation}\label{eq:region-two-conditions}
+  \frac1p\ge\frac{1+\Lambdaq(q)}2,
+  \qquad
+  \frac1q\ge\frac{1+\Lambdaq(p)}2.
+\end{equation}
+If $p\ge q$, the second inequality follows from the first and the sharp boundary is
+\begin{equation}\label{eq:boundary-pq}
+  \frac1p=\frac{1+\Lambdaq(q)}2.
+\end{equation}
+\end{corollary}
+
+The one-variable maximum has a transition at $q=4/3$:
+\begin{equation}\label{eq:Lambda-explicit-intro}
+  \Lambdaq(1)=0,
+  \qquad
+  \Lambdaq(q)=\logtwo3-\frac2q
+  \quad(q\ge4/3).
+\end{equation}
+For $1<q<4/3$, the unique maximizing parameter $t_q\in(0,1)$ satisfies
+\begin{equation}\label{eq:tq-intro}
+  t_q^{q-1}(2+t_q)=1+2t_q.
+\end{equation}
+The curved boundary joins $(1/2,1)$ to $(\log_2(3)/2-1/4,3/4)$ in the coordinates $(1/p,1/q)$; it then meets the full-cube line and its reflection.  The resulting constant-one region is shown in \cref{fig:phase-diagram}.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=7.2cm,y=7.2cm,font=\small,line cap=round,line join=round]
+  \def\xmin{0.5}\def\xmax{1.0}\def\ymin{0.5}\def\ymax{1.0}
+  \coordinate (D) at (0.646241,0.646241);
+  \fill[regiongray]
+    (0.5,1.0)
+    plot[smooth] coordinates {
+      (0.500000,1.000000)
+      (0.500000,0.956239)
+      (0.500000,0.953377)
+      (0.500000,0.950116)
+      (0.500000,0.946364)
+      (0.500001,0.942003)
+      (0.500002,0.936871)
+      (0.500005,0.930747)
+      (0.500013,0.923319)
+      (0.500039,0.914141)
+      (0.500116,0.902567)
+      (0.500348,0.887674)
+      (0.501049,0.868230)
+      (0.503117,0.842943)
+      (0.512762,0.798393)
+      (0.524048,0.773781)
+      (0.531262,0.762946)
+      (0.535775,0.757279)
+      (0.538569,0.754099)
+      (0.540275,0.752264)
+      (0.541296,0.751201)
+      (0.541887,0.750598)
+      (0.542212,0.750270)
+      (0.542376,0.750105)
+      (0.542449,0.750032)
+      (0.542475,0.750006)
+      (0.542481,0.750000)
+      (0.542481,0.750000)
+    }
+    -- (D)
+    -- plot[smooth] coordinates {
+      (0.750000,0.542481)
+      (0.750000,0.542481)
+      (0.750006,0.542475)
+      (0.750032,0.542449)
+      (0.750105,0.542376)
+      (0.750270,0.542212)
+      (0.750598,0.541887)
+      (0.751201,0.541296)
+      (0.752264,0.540275)
+      (0.754099,0.538569)
+      (0.757279,0.535775)
+      (0.762946,0.531262)
+      (0.773781,0.524048)
+      (0.798393,0.512762)
+      (0.842943,0.503117)
+      (0.868230,0.501049)
+      (0.887674,0.500348)
+      (0.902567,0.500116)
+      (0.914141,0.500039)
+      (0.923319,0.500013)
+      (0.930747,0.500005)
+      (0.936871,0.500002)
+      (0.942003,0.500001)
+      (0.946364,0.500000)
+      (0.950116,0.500000)
+      (0.953377,0.500000)
+      (0.956239,0.500000)
+      (1.000000,0.500000)
+    }
+    -- (1.0,1.0) -- cycle;
+  \draw[curvegray,very thick]
+    (0.5,1.0)
+    plot[smooth] coordinates {
+      (0.500000,1.000000)
+      (0.500000,0.956239)
+      (0.500000,0.953377)
+      (0.500000,0.950116)
+      (0.500000,0.946364)
+      (0.500001,0.942003)
+      (0.500002,0.936871)
+      (0.500005,0.930747)
+      (0.500013,0.923319)
+      (0.500039,0.914141)
+      (0.500116,0.902567)
+      (0.500348,0.887674)
+      (0.501049,0.868230)
+      (0.503117,0.842943)
+      (0.512762,0.798393)
+      (0.524048,0.773781)
+      (0.531262,0.762946)
+      (0.535775,0.757279)
+      (0.538569,0.754099)
+      (0.540275,0.752264)
+      (0.541296,0.751201)
+      (0.541887,0.750598)
+      (0.542212,0.750270)
+      (0.542376,0.750105)
+      (0.542449,0.750032)
+      (0.542475,0.750006)
+      (0.542481,0.750000)
+      (0.542481,0.750000)
+    }
+    -- (D)
+    -- plot[smooth] coordinates {
+      (0.750000,0.542481)
+      (0.750000,0.542481)
+      (0.750006,0.542475)
+      (0.750032,0.542449)
+      (0.750105,0.542376)
+      (0.750270,0.542212)
+      (0.750598,0.541887)
+      (0.751201,0.541296)
+      (0.752264,0.540275)
+      (0.754099,0.538569)
+      (0.757279,0.535775)
+      (0.762946,0.531262)
+      (0.773781,0.524048)
+      (0.798393,0.512762)
+      (0.842943,0.503117)
+      (0.868230,0.501049)
+      (0.887674,0.500348)
+      (0.902567,0.500116)
+      (0.914141,0.500039)
+      (0.923319,0.500013)
+      (0.930747,0.500005)
+      (0.936871,0.500002)
+      (0.942003,0.500001)
+      (0.946364,0.500000)
+      (0.950116,0.500000)
+      (0.953377,0.500000)
+      (0.956239,0.500000)
+      (1.000000,0.500000)
+    };
+  \draw[black] (0.5,0.5) rectangle (1,1);
+  \draw[dashed] (0.5,0.5)--(1,1);
+  \node[below] at (0.5,0.5) {$\frac12$};
+  \node[below] at (0.75,0.5) {$\frac34$};
+  \node[below] at (1,0.5) {$1$};
+  \node[left] at (0.5,0.5) {$\frac12$};
+  \node[left] at (0.5,0.75) {$\frac34$};
+  \node[left] at (0.5,1) {$1$};
+  \node[below=17pt] at (0.75,0.5) {$1/p$};
+  \node[rotate=90,above=18pt] at (0.5,0.75) {$1/q$};
+  \node at (0.82,0.88) {constant-one region};
+  \fill (0.5,1) circle (0.5pt);
+  \fill (1,0.5) circle (0.5pt);
+  \fill (D) circle (0.5pt);
+\end{tikzpicture}
+\caption{The exact constant-one region for quadratic output on the binary cube.  The curved pieces correspond to flat--biased one-dimensional extremizers; the central straight pieces lie on the full-cube line.}
+\label{fig:phase-diagram}
+\end{figure}
+
+\begin{remark}\label{rem:cks-flat-obstruction}
+The full-cube portion of \cref{fig:phase-diagram} was anticipated by the calculation in \cite[Remark~15]{CKS}.  On the critical line
+\[
+  \frac1p+\frac1q=\frac12\logtwo 6,
+\]
+Crmari\'c, Kova\v{c}, and Shiraki computed the Hessian at the flat--flat profile and observed that it cannot be a local maximum when $p<4/3$ or $q<4/3$; they also indicated an endpoint-and-interpolation route for the complementary flat regime.  The curved boundary in \cref{cor:phase-region} is the further phenomenon forced by this instability: below the flat threshold, the sharp finite profile moves to a flat--biased edge.  The global edge reduction in \cref{prop:edge-reduction} proves this displacement and determines the exact profile and best constant.
+\end{remark}
+
+For indicators, \cref{thm:main} gives the complete asymmetric cross-energy region.  Cauchy--Schwarz then yields an asymmetric family of sumset estimates.  The same theorem is equivalently a sharp collision-entropy inequality and a bilinear Fourier-overlap inequality; these consequences are recorded after the analytic proof.
+
+\subsection{The ternary model}
+For a one-dimensional profile supported on $I_n$, set
+\begin{equation}\label{eq:intro-Q}
+  Q(f):=\|f*f\|_{\ell^2(\Z)}^2,
+\end{equation}
+and
+\begin{equation}\label{eq:intro-Cn}
+  \cC_n(p)
+  :=\sup_{0\ne f\colon I_n\to\C}
+  \frac{Q(f)^{1/4}}{\|f\|_{\ell^p(I_n)}}.
+\end{equation}
+For the ternary alphabet, let $x_*$ be the unique zero in $(3,31/10)$ of the function $\Psi$ defined in \eqref{eq:Psi}; define $q_*,p_*,t_*$ by \eqref{eq:pstar-def}.
+
+\begin{theorem}[Sharp ternary constant-one threshold]\label{thm:intro-threshold}
+One has
+\[
+  p_*=1.470203929717889502\ldots,
+  \qquad
+  t_*:=\frac4{p_*}=2.720710997397171381\ldots.
+\]
+Every $f\colon\Z^d\to\C$ supported in $\{0,1,2\}^d$ satisfies
+\[
+  \|\widehat f\|_{L^4(\T^d)}\le\|f\|_{\ell^p(\Z^d)}
+\]
+for every $d$ if and only if $p\le p_*$.  At $p=p_*$ a nonconstant one-dimensional equality profile is proportional to
+\[
+  (1,\sqrt{x_*},1),
+  \qquad x_*=3.066892946956241896\ldots.
+\]
+Consequently,
+\[
+  E(A)\le |A|^{t_*}
+  \qquad(A\subset\{0,1,2\}^d),
+\]
+and $t_*$ is best possible uniformly in $d$.
+\end{theorem}
+
+The uniform profile is not extremal: the first genuinely interior small-alphabet optimizer is reflection symmetric but center heavy.  The complete one-dimensional curve is as follows.
+
+\begin{theorem}[Complete ternary best-constant curve]\label{thm:intro-allp}
+For every $p>0$,
+\begin{equation}\label{eq:intro-allp}
+  \cC_3(p)^4
+  =\sup_{x\ge0}
+  \frac{x^2+12x+6}{(x^{p/2}+2)^{4/p}}.
+\end{equation}
+For $0<p\le p_*$ the value is $1$.  For $p>p_*$ there is a unique $x_p\in(1,x_*)$ satisfying
+\begin{equation}\label{eq:intro-xp}
+  x_p^{1-p/2}(x_p+6)=3(x_p+1),
+\end{equation}
+and, up to scalar multiplication and reflection, the unique nonnegative maximizer is $(1,\sqrt{x_p},1)$.  Moreover,
+\begin{equation}\label{eq:intro-closed-value}
+  \cC_3(p)^4
+  =\frac{[3(x_p+1)]^{4/p}}
+  {(x_p^2+12x_p+6)^{4/p-1}}
+  \qquad(p>p_*).
+\end{equation}
+In particular,
+\[
+  \cC_3(2)^4=\frac{15}{7},
+  \qquad
+  \cC_3(4)^4=2+\sqrt{19},
+  \qquad
+  \lim_{p\to\infty}\cC_3(p)^4=19.
+\]
+\end{theorem}
+
+For $0<p\le4$, the one-coordinate ternary constant tensorizes exactly.  Thus the one-variable formula also determines the sharp $d$-dimensional norm in the range relevant to the $L^4$ problem.
+
+\subsection{General alphabets: reflection and renormalization}
+Let $N=n-1$ and let $J$ be reflection on $I_n$,
+\[
+  (Jf)_j=f_{N-j}.
+\]
+For a positive symmetric profile $s=Js$, define
+\[
+  R_s(k):=\sum_j s_js_{j+k},
+  \qquad
+  C_s(i):=(s*s*\rev s)(i),
+\]
+and
+\begin{equation}\label{eq:intro-P}
+  P_s(i,j):=\frac{R_s(i-j)s_j}{C_s(i)},
+  \qquad
+  \pi_i:=\frac{s_iC_s(i)}{Q(s)}.
+\end{equation}
+The kernel $P_s$ is positive and reversible on $L^2(\pi)$.
+
+\begin{theorem}[Universal one-third law]\label{thm:intro-third}
+For every reflection-odd function $\phi$, meaning $\phi_{N-j}=-\phi_j$,
+\begin{equation}\label{eq:intro-third}
+  0\le\langle\phi,P_s\phi\rangle_{L^2(\pi)}
+  \le\frac13\|\phi\|_{L^2(\pi)}^2.
+\end{equation}
+The upper endpoint is attained by $\phi_j=j-N/2$.  If $s$ has full positive support, this is the only odd eigenfunction at eigenvalue $1/3$, up to a scalar.
+\end{theorem}
+
+At a positive symmetric critical point of
+\[
+  \Phi_p(f):=\frac{Q(f)}{\|f\|_p^4},
+\]
+the stationary measure is normalized $p$-mass, and the exact second variation yields
+\begin{equation}\label{eq:intro-Hessian}
+  \frac{\Phi_p''(s)[s\phi,s\phi]}{4\Phi_p(s)}
+  \le-\left(p-\frac43\right)\|\phi\|_{L^2(\pi)}^2.
+\end{equation}
+Hence $p=4/3$ is the universal reflection-stability threshold.  The same variational framework proves that the support of every nontrivial exact extremizer is an arithmetic progression; after translation and integer dilation, boundary extremizers are therefore full-support extremizers on smaller alphabets.
+
+For the multiscale analysis, split a sequence into parity children
+\[
+  e_j=f_{2j},
+  \qquad
+  o_j=f_{2j+1},
+\]
+and set $x=Q(e)^{1/4}$, $y=Q(o)^{1/4}$.
+
+\begin{theorem}[Exact one-step renormalization]\label{thm:intro-renorm}
+There is an explicitly defined defect $\Delta_{\rm ren}(e,o)\ge0$ such that
+\begin{equation}\label{eq:intro-renorm}
+  Q(f)=x^4+y^4+\bigl(6-\Delta_{\rm ren}(e,o)\bigr)x^2y^2.
+\end{equation}
+If $E=\widehat e$, $O=\widehat o$, and $O_{1/2}(\xi)=e^{-\pi i\xi}O(\xi)$, then
+\begin{equation}\label{eq:intro-renorm-squares}
+\begin{aligned}
+  \Delta_{\rm ren}(e,o)
+  ={}&3\left\|
+  \frac{|E|^2}{x^2}-\frac{|O|^2}{y^2}
+  \right\|_{L^2(\T)}^2\\
+  &+\frac{\|E\overline{O_{1/2}}-\overline E\,O_{1/2}\|_{L^2(\T)}^2}
+  {x^2y^2}.
+\end{aligned}
+\end{equation}
+Iterating the identity gives an exact multiplicative cascade for $Q(f)^{p/4}$.
+\end{theorem}
+
+The square representation says that a nearly lossless balanced split has both magnitude and half-lattice phase compatibility.  At the Euclidean exponent $p=4/3$, a one-scale inverse statement forces every nearly lossless split to be either almost atomic or almost balanced with small defect.  A separate interpolation identity writes the discrete energy as a continuous convolution term plus a positive lattice-roughness correction.  Combining it with the sharp Euclidean Young inequality isolates the Gaussian constant
+\[
+  \Gamma=\frac{3\sqrt3}{4}.
+\]
+These facts lead to the conjectural first-order asymptotic
+\[
+  t_n=3-(1+o(1))\frac{\log\Gamma}{\log n}
+\]
+for the optimal dimension-free additive-energy exponent on $I_n^d$.  The present paper does not prove this asymptotic.  Its missing input is the refinement-rigidity statement formulated in \cref{conj:rigidity}: small defect on most active scales must produce compactness of a rescaled profile and hence a Gaussian continuum limit.
+
+\subsection{The transverse epilogue}
+Exact tensorization survives for every output exponent $r\ge1$, but the binary boundary reduction is special to $r=2$.  For $r>2$, the two orientations of two biased binary profiles are no longer degenerate, and the flat--biased equality point on the quadratic curved boundary has a strictly improving transverse direction.  For each fixed $q\in(1,4/3)$, \cref{thm:fixed-q-global} constructs and globalizes a real-analytic biased--biased equality branch for $2\le r<2+\varepsilon_q$.  The first bias is linear in $r-2$, whereas the correction to the sharp reciprocal exponent begins at order $(r-2)^2$.  Near the upper endpoint, a quartic normal form produces a supercritical pitchfork, and \cref{thm:upper-global-transition} closes the corresponding flat-to-biased transition globally.  At $q=1$ the exact threshold is $p=r$, but no uniform bridge from $q>1$ to this endpoint and no single $r$-radius valid over the entire $q$-range are asserted.
+
+\subsection{Proof architecture}
+The proofs are organized around six structural reductions.
+
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.2em]
+\item \emph{Product reduction.}  On the binary cube, coordinate induction gives exact tensorization of the best constant.  The $d$-dimensional problem is therefore exactly a two-vector problem, not merely bounded by one.
+\item \emph{Hilbertian boundary geometry.}  At $r=2$, normalization by the two input $\ell^2$ norms leaves an interaction depending only on the product of two balance parameters.  In logarithmic coordinates every interior critical point has indefinite Hessian, so an extremum lies on a boundary where one input is flat or a point mass.
+\item \emph{The ternary two-envelope mechanism.}  A ternary profile is described by center mass and endpoint imbalance.  Highly unbalanced endpoints are controlled by the sharp binary envelope; the complementary range is dominated coefficientwise by the reflection-symmetric ternary branch.  The two estimates overlap and reduce the sharp problem to a one-variable phase portrait.
+\item \emph{Variational reflection theory.}  The cubic correlation field is the gradient of the quartic energy.  Endpoint peeling closes in a finite Laurent-polynomial jet.  For symmetric profiles, additive quadruples define a reversible Markov kernel; exchangeability and one nonnegative square give the exact odd spectral radius $1/3$.
+\item \emph{Renormalization.}  Parity splitting produces an exact scalar local gain and a nonnegative square defect.  Iteration turns the global quotient into a pathwise multiplicative cascade.  The one-scale atomic--smooth dichotomy identifies the only nearly lossless local configurations.
+\item \emph{Continuum identification and transverse bifurcation.}  Hat interpolation separates continuous Young deficit from lattice roughness.  This identifies the Gaussian candidate for large alphabets.  In the independent $r$-direction, implicit-function, compact-gap, and tail arguments globalize the symmetry-broken branches born at the Hilbertian point.
+\end{enumerate}
+
+Numerical values are never used as definitions.  The ternary constants are characterized analytically; the finite interval computations needed for strict overlap and uniqueness are collected in the appendix.
+
+\subsection{Organization}
+Sections 3--7 solve the binary quadratic problem and record its combinatorial, entropic, and Fourier consequences.  Sections 8 and 9 treat the ternary threshold and complete norm curve.  Sections 10--12 develop the cubic variational field, support rigidity, and reflection spectral theory for general alphabets.  Sections 13--16 develop parity renormalization, the multiplicative cascade, the discrete--continuous bridge, and the remaining rigidity conjecture.  Sections 17 and 18 form the transverse epilogue devoted to $r$ near $2$.  The appendix contains the certified numerical enclosures used in the ternary overlap argument.
+
+\par\medskip
+\noindent\textbf{Acknowledgements.}\enspace
+The author is grateful to Vjekoslav Kova\v{c} for helpful comments on earlier drafts.
+
+\section{Notation and elementary reductions}\label{sec:notation}
+All discrete norms are taken with counting measure.  A finite sequence is extended by zero outside its indicated support.  Convolution on $\Z^d$ is
+\[
+  (f*g)(z)=\sum_{x+y=z}f(x)g(y),
+\]
+and reflection is $\rev f(x)=f(-x)$.  We use the usual continuous interpretations when an exponent equals $\infty$.
+
+The coefficientwise inequality
+\begin{equation}\label{eq:nonnegative-reduction}
+  |f*g|\le |f|*|g|
+\end{equation}
+shows that every sharp norm problem considered below may first be reduced to nonnegative inputs.  Complex phases re-enter only in the classification of equality.  If $f_i$ and $g_i$ live on separate coordinates, then tensor products satisfy
+\begin{equation}\label{eq:tensor-factorization-common}
+  \left\|\bigotimes_i f_i * \bigotimes_i g_i\right\|_r
+  =\prod_i\|f_i*g_i\|_r,
+  \qquad
+  \left\|\bigotimes_i f_i\right\|_p=\prod_i\|f_i\|_p.
+\end{equation}
+This gives the lower half of every exact tensorization statement; the upper half comes from slicing and Minkowski's inequality.
+
+For self-convolution we write
+\[
+  Q(f):=\|f*f\|_2^2.
+\]
+Translation and integer dilation preserve all additive relations and hence preserve the quotient $Q(f)/\|f\|_p^4$.  This elementary invariance is used repeatedly when classifying supports.  We distinguish carefully between the full bilinear problem, which is solved exactly on the binary alphabet, and the diagonal self-convolution problem, which is solved exactly on the ternary alphabet and studied structurally for larger alphabets.
+\section{Exact tensorisation and reduction to two points}\label{sec:tensorisation}
+
+For $p,q,r\in[1,\infty]$, define
+\begin{equation}\label{eq:C-d-general}
+  \Cpqr_d(p,q;r)
+  :=\sup_{\substack{f,g\ne0\\ \supp f,\supp g\subseteq Q_d}}
+  \frac{\|f*g\|_r}{\|f\|_p\|g\|_q}.
+\end{equation}
+The following is a best-constant version of the tensorisation argument used in \cite{BIMP}.
+
+\begin{proposition}\label{prop:tensorisation}
+For every $d\ge1$ and $p,q,r\in[1,\infty]$,
+\begin{equation}\label{eq:exact-tensorisation}
+  \Cpqr_d(p,q;r)=\Cpqr_1(p,q;r)^d.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:two-point-general}
+  \Cpqr_1(p,q;r)
+  =\sup_{x,y\ge0}
+  \frac{\bigl(1+(x+y)^r+(xy)^r\bigr)^{1/r}}
+  {(1+x^p)^{1/p}(1+y^q)^{1/q}},
+\end{equation}
+with the usual modifications when an exponent is infinity.
+\end{proposition}
+
+\begin{proof}
+It is enough to consider nonnegative functions, since $|f*g|\le |f|*|g|$.  Split the last coordinate and write
+\[
+  f=(f_0,f_1),\qquad g=(g_0,g_1),
+\]
+where the four slices are supported on $Q_{d-1}$.  The three output slices are
+\[
+  f_0*g_0,\qquad f_0*g_1+f_1*g_0,\qquad f_1*g_1.
+\]
+For $r<\infty$, Minkowski's inequality and the definition of $\Cpqr_{d-1}$ give
+\begin{align*}
+  \|f*g\|_r^r
+  &\le \Cpqr_{d-1}(p,q;r)^r
+  \sum_{k=0}^2
+  \left(
+    \sum_{i+j=k}\|f_i\|_p\|g_j\|_q
+  \right)^r.
+\end{align*}
+Applying the one-dimensional inequality to the two vectors
+\[
+  (\|f_0\|_p,\|f_1\|_p),
+  \qquad
+  (\|g_0\|_q,\|g_1\|_q)
+\]
+shows that
+\[
+  \Cpqr_d(p,q;r)
+  \le \Cpqr_{d-1}(p,q;r)\Cpqr_1(p,q;r).
+\]
+The same proof, with maxima in place of sums, applies when $r=\infty$.  Iteration yields the upper bound in \eqref{eq:exact-tensorisation}.
+
+For the reverse inequality, take tensor powers of one-dimensional near-extremisers.  Convolution and all three norms factor under tensor products, so the ratio is the $d$th power of the one-dimensional ratio.  This proves \eqref{eq:exact-tensorisation}.
+
+Finally, a nonzero nonnegative function on $Q_1$ is a two-vector.  By homogeneity, two such vectors can be written as scalar multiples of $(1,x)$ and $(1,y)$, with zero coordinates covered by limits.  Their convolution is $(1,x+y,xy)$, which gives \eqref{eq:two-point-general}.
+\end{proof}
+
+For the remainder of the proof of \cref{thm:main}, write
+\[
+  \Cpqr_d(p,q):=\Cpqr_d(p,q;2).
+\]
+By \cref{prop:tensorisation}, it remains to determine $\Cpqr_1(p,q)$.
+
+\section{The Hilbertian two-point problem}\label{sec:boundary-reduction}
+
+Let $f=(a,b)$ and $g=(c,e)$ be nonnegative two-vectors.  Direct expansion gives
+\begin{equation}\label{eq:hilbert-identity}
+  \|f*g\|_2^2
+  =(a^2+b^2)(c^2+e^2)+2abce.
+\end{equation}
+Introduce the balance parameters
+\begin{equation}\label{eq:balance-parameters}
+  u:=\frac{2ab}{a^2+b^2},
+  \qquad
+  v:=\frac{2ce}{c^2+e^2}.
+\end{equation}
+They belong to $[0,1]$, with $u=0$ for a point mass and $u=1$ for a constant vector.  Equation \eqref{eq:hilbert-identity} becomes
+\begin{equation}\label{eq:numerator-balance}
+  \frac{\|f*g\|_2}{\|f\|_2\|g\|_2}
+  =\left(1+\frac{uv}{2}\right)^{1/2}.
+\end{equation}
+For fixed $u$, the ratio $\|f\|_p/\|f\|_2$ is also determined by $u$.  Parametrise
+\begin{equation}\label{eq:hyperbolic-param}
+  u=\operatorname{sech}z,
+  \qquad z\ge0,
+\end{equation}
+and normalise $\|f\|_2=1$.  Up to interchanging the two coordinates,
+\[
+  a^2=\frac{e^z}{2\cosh z},
+  \qquad
+  b^2=\frac{e^{-z}}{2\cosh z}.
+\]
+Thus
+\begin{equation}\label{eq:Psi-def}
+  \Psi_p(u)
+  :=\frac{\|f\|_p}{\|f\|_2}
+  =\frac{\bigl(2\cosh(pz/2)\bigr)^{1/p}}
+  {(2\cosh z)^{1/2}}.
+\end{equation}
+The main point of this section is that the maximum of the two-variable quotient occurs on an edge of the square $[0,1]^2$.
+
+\begin{proposition}\label{prop:edge-reduction}
+For all $p,q\in[1,\infty]$,
+\begin{align}\label{eq:C1-edge}
+  \Cpqr_1(p,q)^2
+  =\max\Bigg\{1,
+  &\ 2^{1-2/p}
+  \max_{0\le t\le1}
+  \frac{1+t+t^2}{(1+t^q)^{2/q}},\notag\\
+  &\ 2^{1-2/q}
+  \max_{0\le t\le1}
+  \frac{1+t+t^2}{(1+t^p)^{2/p}}
+  \Bigg\}.
+\end{align}
+In particular, apart from the point-mass alternative represented by the first term, one of the two inputs can be taken proportional to $(1,1)$.
+\end{proposition}
+
+\begin{proof}
+We first assume $p,q<\infty$.  Put
+\[
+  u=e^{-s},\qquad v=e^{-t},\qquad s,t\ge0,
+\]
+and define
+\begin{equation}\label{eq:A-H-def}
+  A_p(s):=\log\Psi_p(e^{-s}),
+  \qquad
+  H(w):=\frac12\log\left(1+\frac{e^{-w}}2\right).
+\end{equation}
+By \eqref{eq:numerator-balance}, the logarithm of the reciprocal of the quotient to be maximised is
+\begin{equation}\label{eq:D-def}
+  D(s,t):=A_p(s)+A_q(t)-H(s+t).
+\end{equation}
+We show that $D$ has no interior local minimum.
+
+Write
+\[
+  s=\log\cosh z,
+  \qquad
+  \alpha:=\frac p2.
+\]
+Differentiating \eqref{eq:Psi-def} gives
+\begin{equation}\label{eq:A-prime}
+  A_p'(s)
+  =\frac12\left(
+    \frac{\tanh(\alpha z)}{\tanh z}-1
+  \right).
+\end{equation}
+Suppose first that $1\le p<2$, so $0<\alpha<1$.  Set
+\[
+  c_p(z):=\frac{\tanh(\alpha z)}{\tanh z}.
+\]
+Then
+\begin{equation}\label{eq:A-second}
+  A_p''(s)=\frac{c_p'(z)}{2\tanh z}>0.
+\end{equation}
+Indeed,
+\[
+  \frac{c_p'(z)}{c_p(z)}
+  =\frac{2\alpha}{\sinh(2\alpha z)}
+   -\frac2{\sinh(2z)}>0,
+\]
+because $x\mapsto\sinh x/x$ is strictly increasing on $(0,\infty)$.
+
+We shall also need the upper bound
+\begin{equation}\label{eq:curvature-upper}
+  A_p''(s)<c_p(z)(1-c_p(z)).
+\end{equation}
+Using \eqref{eq:A-second}, this is equivalent to
+\begin{equation}\label{eq:curvature-equivalent}
+  \frac{\alpha}{\sinh(2\alpha z)}
+  -\frac1{\sinh(2z)}
+  <\tanh z-\tanh(\alpha z).
+\end{equation}
+To verify it, define
+\[
+  G(r):=\tanh(rz)+\frac{r}{\sinh(2rz)}.
+\]
+For $\alpha\le r\le1$, writing $w=rz$ and using $z\ge w$, we obtain
+\begin{align*}
+  G'(r)
+  &=z\operatorname{sech}^2(rz)
+    +\frac1{\sinh(2rz)}
+    -\frac{2rz\cosh(2rz)}{\sinh^2(2rz)}\\
+  &\ge
+    w\operatorname{sech}^2w
+    +\frac1{\sinh(2w)}
+    -\frac{2w\cosh(2w)}{\sinh^2(2w)}\\
+  &=\frac{\sinh(2w)-2w}{\sinh^2(2w)}>0.
+\end{align*}
+Thus $G(1)>G(\alpha)$, which is exactly \eqref{eq:curvature-equivalent}.
+
+Assume now that $p,q<2$ and that $(s,t)$ is an interior critical point of $D$.  Put
+\[
+  R:=e^{-(s+t)}.
+\]
+Since
+\begin{equation}\label{eq:H-derivatives}
+  H'(s+t)=-\frac{R}{2(2+R)},
+  \qquad
+  H''(s+t)=\frac{R}{(2+R)^2},
+\end{equation}
+the critical-point equations and \eqref{eq:A-prime} imply
+\begin{equation}\label{eq:c-critical}
+  c_p(z)=c_q(\zeta)=\frac2{2+R},
+\end{equation}
+where $t=\log\cosh\zeta$.  Consequently,
+\[
+  c_p(1-c_p)=c_q(1-c_q)=2H''(s+t).
+\]
+By \eqref{eq:curvature-upper},
+\begin{equation}\label{eq:curvature-ratios}
+  0<A_p''(s)<2H''(s+t),
+  \qquad
+  0<A_q''(t)<2H''(s+t).
+\end{equation}
+The Hessian of $D$ is
+\[
+  \begin{pmatrix}
+    A_p''-H'' & -H''\\
+    -H'' & A_q''-H''
+  \end{pmatrix}.
+\]
+Writing $X=A_p''/H''$ and $Y=A_q''/H''$, its determinant divided by $(H'')^2$ is
+\[
+  XY-X-Y=(X-1)(Y-1)-1<0
+\]
+by \eqref{eq:curvature-ratios}.  Thus every interior critical point is a saddle.
+
+When $p,q<2$, the functions $A_p,A_q$ are nonnegative and tend to zero at infinity.  Hence
+\[
+  \liminf_{s+t\to\infty}D(s,t)\ge0.
+\]
+If the infimum of $D$ were smaller than the minimum of its two finite boundary infima and zero, that lower value would be attained at an interior local minimum, a contradiction.  Therefore the infimum occurs on $s=0$, on $t=0$, or at infinity.
+
+If $p\ge2$, then \eqref{eq:A-prime} gives $A_p'(s)\ge0$, whereas $H'<0$.  Thus $\partial_sD>0$, and the minimum in the $s$ variable is at $s=0$.  The same argument applies to $q\ge2$.  We have therefore proved the boundary reduction for all finite $p,q$.  The cases involving infinity follow by passage to the limit.
+
+It remains to compute the two finite edges.  On $s=0$, the first vector is proportional to $(1,1)$.  After scaling and interchanging the coordinates of the other vector, write it as $(1,t)$ with $0\le t\le1$.  Then
+\[
+  \|(1,1)*(1,t)\|_2^2=2(1+t+t^2),
+\]
+and
+\[
+  \|(1,1)\|_p^2\|(1,t)\|_q^2
+  =2^{2/p}(1+t^q)^{2/q}.
+\]
+This gives the second term in \eqref{eq:C1-edge}; the other edge is symmetric.  At infinity one input is a point mass, giving the term $1$.
+\end{proof}
+
+\section{The one-variable phase diagram}\label{sec:one-variable}
+
+We now analyse the maximum in \eqref{eq:Lambda-def-intro}.
+
+\begin{lemma}\label{lem:Lambda-analysis}
+The function $\Lambdaq$ has the following form.
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item $\Lambdaq(1)=0$.
+  \item If $q\ge4/3$, then
+  \[
+    \Lambdaq(q)=\logtwo3-\frac2q,
+  \]
+  and the maximum is attained at $t=1$.
+  \item If $1<q<4/3$, then the maximum is attained at a unique $t_q\in(0,1)$, determined by
+  \[
+    t_q^{q-1}(2+t_q)=1+2t_q.
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The case $q=\infty$ is immediate from the definition.  For $q<\infty$, set
+\[
+  F_q(t)
+  :=\log(1+t+t^2)-\frac2q\log(1+t^q),
+  \qquad 0\le t\le1.
+\]
+A direct calculation gives
+\begin{equation}\label{eq:F-derivative}
+  F_q'(t)
+  =\frac{1+2t-t^{q-1}(2+t)}
+  {(1+t+t^2)(1+t^q)}.
+\end{equation}
+For $q=1$, one has $F_1(t)\le0=F_1(0)$, proving (i).
+
+Suppose $q\ge4/3$.  Since $0\le t\le1$,
+\[
+  t^{q-1}\le t^{1/3}.
+\]
+Writing $u=t^{1/3}$,
+\[
+  1+2t-t^{1/3}(2+t)
+  =1+2u^3-2u-u^4
+  =(1-u)^3(1+u)\ge0.
+\]
+Thus $F_q$ is increasing and its maximum is $F_q(1)=\log3-(2/q)\log2$.  This proves (ii).
+
+Now let $1<q<4/3$ and put
+\[
+  K_q(t):=t^{q-1}(2+t)-(1+2t).
+\]
+Then
+\begin{equation}\label{eq:K-second}
+  K_q''(t)
+  =(q-1)t^{q-3}\bigl(2(q-2)+qt\bigr)<0
+\end{equation}
+for $0<t<1$.  Also,
+\[
+  K_q(0+)=-1,
+  \qquad
+  K_q(1)=0,
+  \qquad
+  K_q'(1)=3q-4<0.
+\]
+Strict concavity therefore gives a unique zero $t_q\in(0,1)$.  By \eqref{eq:F-derivative}, $F_q$ increases before $t_q$ and decreases afterwards.  This proves (iii).
+\end{proof}
+
+The two inequalities in \eqref{eq:region-two-conditions} simplify in either half of the phase diagram.
+
+\begin{lemma}\label{lem:J-monotone}
+The function
+\[
+  q\longmapsto \Lambdaq(q)+\frac2q
+\]
+is nonincreasing on $[1,\infty]$.
+\end{lemma}
+
+\begin{proof}
+For fixed $t\in[0,1]$, consider
+\[
+  \logtwo(1+t+t^2)
+  +\frac2q\logtwo\frac2{1+t^q}.
+\]
+It is enough to show that the second term is nonincreasing in $q$.  For $0<t<1$, write $a=-\log t$ and
+\[
+  h(x):=\log\frac2{1+e^{-x}}.
+\]
+Then $h$ is concave, increasing, and $h(0)=0$, while
+\[
+  \frac1q\log\frac2{1+t^q}
+  =a\frac{h(aq)}{aq}.
+\]
+The quotient $h(x)/x$ is nonincreasing for a concave function vanishing at zero.  The endpoint cases $t=0,1$ are immediate.  Taking the supremum over $t$ proves the claim.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:main,cor:phase-region}]
+Combining \cref{prop:edge-reduction} with the definition of $\Lambdaq$ gives
+\begin{equation}\label{eq:C1-final}
+  \Cpqr_1(p,q)
+  =2^{\frac12\Mu(p,q)}.
+\end{equation}
+The exact tensorisation \eqref{eq:exact-tensorisation} now proves \eqref{eq:main-sharp} and its sharpness.
+
+Since point masses show that the best constant is always at least one, the constant-one inequality holds exactly when $\Mu(p,q)=0$, which is equivalent to \eqref{eq:region-two-conditions}.  If $p\ge q$, then \cref{lem:J-monotone} gives
+\[
+  \Lambdaq(q)+\frac2q
+  \ge
+  \Lambdaq(p)+\frac2p.
+\]
+Equivalently,
+\[
+  1-\frac2p+\Lambdaq(q)
+  \ge
+  1-\frac2q+\Lambdaq(p),
+\]
+so only the first nontrivial term in \eqref{eq:M-def-intro} needs to be checked.  This proves \eqref{eq:boundary-pq}.
+\end{proof}
+
+For completeness, the curved part of the boundary admits a direct parametrisation.  Solving \eqref{eq:tq-intro} for $q$ gives
+\begin{equation}\label{eq:q-param}
+  q(t)
+  =1+
+  \frac{\log\frac{1+2t}{2+t}}{\log t},
+  \qquad 0<t<1.
+\end{equation}
+The corresponding boundary point is
+\begin{equation}\label{eq:p-param}
+  \frac1{p(t)}
+  =\frac12+\frac12\left[
+    \logtwo(1+t+t^2)
+    -\frac2{q(t)}\logtwo(1+t^{q(t)})
+  \right],
+  \qquad
+  \frac1q=\frac1{q(t)}.
+\end{equation}
+As $t\downarrow0$, the point tends to $(1/2,1)$; as $t\uparrow1$, it tends to
+\[
+  \left(\frac{\logtwo3}{2}-\frac14,\frac34\right).
+\]
+On the curved boundary, equality in the one-dimensional inequality is attained by a constant vector and a biased vector $(1,t_q)$.  Their tensor powers give equality in every dimension.  On the linear part $p,q\ge4/3$, both inputs may be taken constant.  At the endpoint $(p,q)=(2,1)$ one input is constant and the other is a point mass.
+
+\section{Cross-additive energy and sumsets}\label{sec:additive}
+
+For nonempty sets $A,B\subseteq Q_d$, define
+\begin{equation}\label{eq:cross-energy}
+  E_+(A,B)
+  :=\sum_{x\in\Z^d}(\one_A*\one_B)(x)^2.
+\end{equation}
+Equivalently, $E_+(A,B)$ counts solutions to
+\[
+  a_1+b_1=a_2+b_2,
+  \qquad a_1,a_2\in A,
+  \quad b_1,b_2\in B.
+\]
+The usual difference energy is covered as well.  If $\boldsymbol 1=(1,\dots,1)$ and
+$\widetilde B:=\{\boldsymbol 1-b:b\in B\}$, then
+\[
+  a_1+(\boldsymbol 1-b_1)=a_2+(\boldsymbol 1-b_2)
+  \quad\Longleftrightarrow\quad
+  a_1-b_1=a_2-b_2,
+\]
+and $|\widetilde B|=|B|$.
+
+Let
+\begin{equation}\label{eq:K-set-def}
+  \Kpq_d(p,q)
+  :=\sup_{\varnothing\ne A,B\subseteq Q_d}
+  \frac{E_+(A,B)^{1/2}}
+  {|A|^{1/p}|B|^{1/q}}.
+\end{equation}
+The functional and set constants need not agree in a fixed dimension, because the one-dimensional extremiser on the curved boundary is weighted.  They nevertheless have the same exact exponential rate.  The diagonal estimate $E_+(A,A)\le |A|^{\logtwo6}$ goes back to Kane and Tao \cite{KaneTao2017}; higher-energy extensions and related cube inequalities appear in \cite{DGIM,BIMP}.
+
+\begin{theorem}\label{thm:set-rate}
+For all $d\ge1$ and $p,q\in[1,\infty]$,
+\begin{equation}\label{eq:set-rate-bounds}
+  \frac{\Cpqr_1(p,q)^d}{d+1}
+  \le \Kpq_d(p,q)
+  \le \Cpqr_1(p,q)^d.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:set-rate-limit}
+  \lim_{d\to\infty}\Kpq_d(p,q)^{1/d}
+  =\Cpqr_1(p,q)
+  =2^{\Mu(p,q)/2}.
+\end{equation}
+In particular,
+\begin{equation}\label{eq:set-energy-region}
+  E_+(A,B)\le |A|^{2/p}|B|^{2/q}
+\end{equation}
+holds for every $d$ and all $A,B\subseteq Q_d$ if and only if $\Mu(p,q)=0$.
+\end{theorem}
+
+\begin{proof}
+The upper bound in \eqref{eq:set-rate-bounds} is \cref{thm:main} applied to indicator functions.
+
+For the lower bound, the case $\Cpqr_1(p,q)=1$ follows from singletons.  Suppose $\Cpqr_1(p,q)>1$.  Since $\Kpq_d(p,q)=\Kpq_d(q,p)$, \cref{prop:edge-reduction} allows us, after possibly interchanging $p$ and $q$, to choose $t\in[0,1]$ such that the one-dimensional extremal pair can be taken as
+\[
+  f_1=(1,1),
+  \qquad
+  g_1=(1,t).
+\]
+Let
+\[
+  F=f_1^{\otimes d}=\one_{Q_d},
+  \qquad
+  G=g_1^{\otimes d}.
+\]
+Then $G(x)=t^{|x|}$, where $|x|$ is the Hamming weight, and
+\begin{equation}\label{eq:weighted-ratio}
+  \|F*G\|_2
+  =\Cpqr_1(p,q)^d\|F\|_p\|G\|_q.
+\end{equation}
+Decompose $G$ into Hamming layers:
+\[
+  G=\sum_{m=0}^d t^m\one_{S_m},
+  \qquad
+  S_m:=\{x\in Q_d:|x|=m\}.
+\]
+By the triangle inequality and the definition of $\Kpq_d(p,q)$,
+\begin{align*}
+  \|F*G\|_2
+  &\le \sum_{m=0}^d t^m\|\one_{Q_d}*\one_{S_m}\|_2\\
+  &\le \Kpq_d(p,q)\|F\|_p
+  \sum_{m=0}^d t^m|S_m|^{1/q}.
+\end{align*}
+For $q<\infty$, H\"older's inequality in the index $m$ gives
+\[
+  \sum_{m=0}^d t^m|S_m|^{1/q}
+  \le(d+1)^{1-1/q}
+  \left(\sum_{m=0}^d t^{mq}|S_m|\right)^{1/q}
+  \le(d+1)\|G\|_q.
+\]
+The same final bound is immediate for $q=\infty$.  Comparing with \eqref{eq:weighted-ratio} proves the lower bound in \eqref{eq:set-rate-bounds}.  The limit follows.
+
+If $\Mu(p,q)=0$, \eqref{eq:set-energy-region} follows from \cref{thm:main}.  If $\Mu(p,q)>0$, then \eqref{eq:set-rate-limit} shows that $\Kpq_d(p,q)>1$ for all sufficiently large $d$, so \eqref{eq:set-energy-region} cannot hold in every dimension.
+\end{proof}
+
+The sumset consequence is immediate but useful in asymmetric situations.
+
+\begin{corollary}\label{cor:sumset}
+Let $A,B\subseteq Q_d$ be nonempty.  For every $(p,q)$ satisfying \eqref{eq:region-two-conditions},
+\begin{equation}\label{eq:sumset-bound}
+  |A+B|
+  \ge
+  |A|^{2-2/p}|B|^{2-2/q}.
+\end{equation}
+Equivalently,
+\begin{equation}\label{eq:sumset-optimised}
+  |A+B|
+  \ge
+  \sup_{\Mu(p,q)=0}
+  |A|^{2-2/p}|B|^{2-2/q}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Writing $r_{A+B}=\one_A*\one_B$, Cauchy--Schwarz gives
+\[
+  |A|^2|B|^2
+  =\left(\sum_x r_{A+B}(x)\right)^2
+  \le |A+B|\sum_xr_{A+B}(x)^2.
+\]
+Apply \eqref{eq:set-energy-region} and rearrange.
+\end{proof}
+
+\begin{remark}
+For $A=B$, the diagonal point recovers the usual energy-based estimate
+\[
+  |A+A|\ge |A|^{4-\logtwo6}.
+\]
+The sharp binary Brunn--Minkowski estimate
+\[
+  |A+B|\ge(|A||B|)^{\logtwo3/2}
+\]
+is stronger in the balanced case and comes from a reverse/sup-convolution inequality rather than from $L^2$ multiplicity control.  The advantage of \eqref{eq:sumset-optimised} is its asymmetric dependence on $|A|$ and $|B|$.
+\end{remark}
+
+\section{Entropy and Fourier formulations}\label{sec:entropy-fourier}
+
+For a finitely supported probability mass function $P$ and $s\in(0,\infty)\setminus\{1\}$, write
+\[
+  H_s(P):=\frac1{1-s}\logtwo\sum_xP(x)^s.
+\]
+We use the standard continuous extensions at $s=1$ and $s=\infty$.  If $X$ is a random variable with law $P_X$, write $H_s(X):=H_s(P_X)$.
+
+\begin{corollary}\label{cor:entropy}
+Let $X,Y$ be independent random variables taking values in $Q_d$.  Then, for all $p,q\in[1,\infty]$,
+\begin{equation}\label{eq:entropy}
+  H_2(X+Y)
+  \ge
+  2\left(1-\frac1p\right)H_p(X)
+  +2\left(1-\frac1q\right)H_q(Y)
+  -d\Mu(p,q).
+\end{equation}
+The dimension penalty $d\Mu(p,q)$ is optimal.  In the region \eqref{eq:region-two-conditions}, it vanishes.
+\end{corollary}
+
+\begin{proof}
+Apply \cref{thm:main} to $P_X$ and $P_Y$.  Since
+\[
+  \logtwo\|P\|_s
+  =-\left(1-\frac1s\right)H_s(P),
+\]
+taking logarithms of \eqref{eq:main-sharp} gives \eqref{eq:entropy}.  Conversely, every nonnegative pair of functions can be normalised to probability mass functions without changing the ratio in \eqref{eq:main-sharp}.  Thus optimality is equivalent to the optimality in \cref{thm:main}.
+\end{proof}
+
+Let
+\[
+  \widehat f(\xi)
+  :=\sum_{x\in\Z^d}f(x)e^{-2\pi i x\cdot\xi},
+  \qquad \xi\in\T^d.
+\]
+Plancherel gives the following exact reformulation.
+
+\begin{corollary}\label{cor:fourier}
+For $p,q\in[1,\infty]$ and $f,g$ supported on $Q_d$,
+\begin{equation}\label{eq:fourier-overlap}
+  \left(
+    \int_{\T^d}|\widehat f(\xi)|^2|\widehat g(\xi)|^2\dd\xi
+  \right)^{1/2}
+  \le
+  2^{\frac d2\Mu(p,q)}\|f\|_p\|g\|_q.
+\end{equation}
+The constant is optimal.
+\end{corollary}
+
+\begin{proof}
+Since $\widehat{f*g}=\widehat f\,\widehat g$,
+\[
+  \|f*g\|_2^2
+  =\int_{\T^d}|\widehat f|^2|\widehat g|^2.
+\]
+The result is therefore identical to \cref{thm:main}.
+\end{proof}
+
+\section{The ternary threshold and the two-envelope mechanism}
+
+We first give a self-contained account of the exact ternary calculation.
+The classical Hausdorff--Young inequality gives
+$\norm{\widehat f}_{L^4}\le\norm f_{\ell^{4/3}}$; the sharp Euclidean
+forms of Hausdorff--Young and Young's convolution inequality go back to
+Beckner and Brascamp--Lieb \cite{Beckner1975,BrascampLieb1976}.
+For the binary cube, Kane and Tao proved the sharp additive-energy estimate
+$E(A)\le |A|^{\log_2 6}$ \cite{KaneTao2017}.  Larger alphabets were studied
+in \cite{DGIM,Shao2026,BekerCK2024}.
+
+The dimension-compression theorem of Beker, Crmari\'c, and Kova\v{c} implies
+that the ternary constant-one problem is equivalent to a single-coordinate
+three-variable inequality.
+
+\begin{proposition}[Beker--Crmari\'c--Kova\v{c}]\label{prop:compression}
+Let $p,t>0$ satisfy $pt=4$.  The following are equivalent.
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item Every nonnegative $f\colon\Z\to\R$ supported in $\{0,1,2\}$ satisfies
+  $\norm f_{\Utwo}\le\norm f_{\ell^p}$.
+  \item The same inequality holds in every dimension for every complex-valued
+  function supported in $\{0,1,2\}^d$.
+  \item Every $A\subseteq\{0,1,2\}^d$ satisfies $E(A)\le |A|^t$ in every dimension.
+  \item There is a dimension-independent constant in the corresponding
+  additive-energy bound with exponent $t$.
+\end{enumerate}
+\end{proposition}
+
+For $f=(a,b,c)$ with $a,b,c\ge0$,
+\[
+  f*f=(a^2,2ab,b^2+2ac,2bc,c^2),
+\]
+so
+\begin{equation}\label{eq:Q-ternary}
+\begin{aligned}
+  Q(a,b,c)
+  ={}&a^4+b^4+c^4+4a^2b^2+4b^2c^2
+      +4a^2c^2+4ab^2c.
+\end{aligned}
+\end{equation}
+Equivalently, with
+\[
+  C_0=a^2+b^2+c^2,
+  \qquad C_1=ab+bc,
+  \qquad C_2=ac,
+\]
+one has
+\begin{equation}\label{eq:ternary-autocorr}
+  Q(a,b,c)=C_0^2+2C_1^2+2C_2^2.
+\end{equation}
+The two terms $C_1,C_2$ are the two nontrivial autocorrelation lags.
+
+\subsection{The symmetric critical branch}
+
+Write $p=2q$ and $t=2/q=4/p$.  For the symmetric profile
+$(1,\sqrt x,1)$, define
+\begin{equation}\label{eq:Rq}
+  R_q(x):=\frac{x^2+12x+6}{(x^q+2)^{2/q}},
+  \qquad x\ge0.
+\end{equation}
+For $x>1$, put
+\begin{align}
+  s(x)&:=1-\frac{\log(3(x+1)/(x+6))}{\log x},\label{eq:sx}\\
+  e(x)&:=2-\frac{2\log(3(x+1))}{\log(x^2+12x+6)},\label{eq:ex}\\
+  \Psi(x)&:=s(x)-e(x).\label{eq:Psi}
+\end{align}
+
+\begin{lemma}\label{lem:critical-pair}
+The function $\Psi$ has a unique zero $x_*$ in $(3,31/10)$.  If
+\begin{equation}\label{eq:pstar-def}
+  q_*:=s(x_*),
+  \qquad p_*:=2q_*,
+  \qquad t_*:=\frac2{q_*},
+\end{equation}
+then
+\begin{equation}\label{eq:critical-system}
+  x_*^{1-q_*}(x_*+6)=3(x_*+1),
+  \qquad R_{q_*}(x_*)=1.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:coarse-pstar}
+  1.467<p_*<1.477,
+  \qquad t_*>\log_2 6.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Differentiating \eqref{eq:sx}--\eqref{eq:ex}, with
+$M=x^2+12x+6$, gives
+\begin{align*}
+  s'(x)
+  &=-\frac5{(x+1)(x+6)\log x}
+    +\frac{\log(3(x+1)/(x+6))}{x(\log x)^2},\\
+  e'(x)
+  &=-\frac2{(x+1)\log M}
+    +\frac{4(x+6)\log(3(x+1))}{M(\log M)^2}.
+\end{align*}
+The elementary interval bounds recorded in \cref{app:intervals} imply
+$\Psi'(x)<-0.0105$ on $[3,3.1]$, while
+\[
+  \Psi(3)>0.00213,
+  \qquad
+  \Psi(3.1)<-0.00099.
+\]
+Hence there is a unique zero $x_*$.  The identity $q_*=s(x_*)$ is the
+first equation in \eqref{eq:critical-system}; it also yields
+\begin{equation}\label{eq:xq}
+  x_*^{q_*}+2
+  =\frac{x_*^2+12x_*+6}{3(x_*+1)}.
+\end{equation}
+The equation $s(x_*)=e(x_*)$, together with \eqref{eq:xq}, gives
+$R_{q_*}(x_*)=1$.  The numerical inequalities in
+\eqref{eq:coarse-pstar} follow from the same certified interval calculation.
+\end{proof}
+
+\begin{lemma}\label{lem:centered-envelope}
+For every $x\ge0$,
+\begin{equation}\label{eq:Rstar-envelope}
+  R_{q_*}(x)\le1.
+\end{equation}
+Equivalently, for every $u\in[0,1]$,
+\begin{equation}\label{eq:centered-u}
+  u^{t_*}
+  +\frac{12}{2^{t_*/2}}[u(1-u)]^{t_*/2}
+  +\frac6{2^{t_*}}(1-u)^{t_*}\le1.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The sign of $R_q'(x)$ is the sign of $G_q(x)-3$, where
+\begin{equation}\label{eq:Gq}
+  G_q(x):=x^{1-q}\frac{x+6}{x+1}.
+\end{equation}
+Furthermore,
+\begin{equation}\label{eq:Gqprime}
+  \frac{G_q'(x)}{G_q(x)}
+  =\frac{1-q}{x}-\frac5{(x+6)(x+1)},
+\end{equation}
+whose sign is controlled by the quadratic
+\[
+  P_q(x):=(1-q)(x+6)(x+1)-5x.
+\]
+At $q=q_*$ the equation $G_{q_*}(x)=3$ has exactly three positive roots,
+with $x_*$ the middle root.  Consequently $R_{q_*}$ has a unique finite
+local maximum at $x_*$.  Since
+\[
+  R_{q_*}(x_*)=1,
+  \qquad
+  R_{q_*}(0)=\frac6{2^{t_*}}<1,
+  \qquad
+  \lim_{x\to\infty}R_{q_*}(x)=1,
+\]
+we obtain \eqref{eq:Rstar-envelope}.  The substitution
+$u/(1-u)=x^{q_*}/2$ gives \eqref{eq:centered-u}.
+\end{proof}
+
+\subsection{The binary envelope and coefficient geometry}
+
+\begin{lemma}\label{lem:boolean}
+For every $t\ge2$ and $u\in[0,1]$,
+\begin{equation}\label{eq:boolean}
+  u^t+(1-u)^t+(2^t-2)[u(1-u)]^{t/2}\le1.
+\end{equation}
+The coefficient $2^t-2$ is optimal.
+\end{lemma}
+
+\begin{proof}
+Optimality follows at $u=1/2$.  Put $u=v/(1+v)$ and reduce by symmetry to
+$0\le v\le1$.  Writing $v=e^{-2r}$, inequality \eqref{eq:boolean} becomes
+\[
+  (2\cosh r)^t-2\cosh(tr)\ge2^t-2.
+\]
+After differentiating, it is enough to prove
+\[
+  \frac{1-x^t}{1-x}\le(1+x)^{t-1},
+  \qquad 0\le x\le1.
+\]
+With $y=(1-x)/(1+x)$ this is
+\[
+  (1+y)^t-(1-y)^t\le2^t y.
+\]
+The left side is convex, vanishes at $0$, and equals $2^t$ at $1$, so it
+lies below its endpoint chord.
+\end{proof}
+
+For an arbitrary profile, assume by reflection that $a\ge c$, and set
+\begin{equation}\label{eq:theta-u}
+  \theta:=\frac ca\in[0,1],
+  \qquad
+  u:=\frac{b^p}{a^p+b^p+c^p}.
+\end{equation}
+Define
+\begin{equation}\label{eq:alpha-beta}
+  \alpha_p(\theta)
+  :=\frac{4(1+\theta+\theta^2)}{(1+\theta^p)^{2/p}},
+  \qquad
+  \beta_p(\theta)
+  :=\frac{1+4\theta^2+\theta^4}{(1+\theta^p)^{4/p}}.
+\end{equation}
+Then the exact identity
+\begin{equation}\label{eq:profile-decomposition}
+  \frac{Q(a,b,c)}{(a^p+b^p+c^p)^{4/p}}
+  =u^t+\alpha_p(\theta)[u(1-u)]^{t/2}
+  +\beta_p(\theta)(1-u)^t,
+  \qquad t=\frac4p,
+\end{equation}
+holds.
+
+\begin{lemma}\label{lem:coefficient-geometry}
+Let $4/3\le p<2$.  The function $\alpha_p$ is increasing on $[0,1]$.
+The function $\beta_p$ has no interior local maximum: it first decreases
+and then increases for $p>4/3$, and is decreasing for $p=4/3$.
+\end{lemma}
+
+\begin{proof}
+For $0<\theta<1$, the sign of $(\log\alpha_p)'$ is the sign of
+\[
+  1+2\theta-\theta^{p-1}(2+\theta),
+\]
+which is nonnegative because
+\[
+  \theta^{p-1}(2+\theta)
+  \le\theta^{1/3}(2+\theta)\le1+2\theta.
+\]
+For $\beta_p$, after differentiating and clearing positive factors, the
+sign is that of
+\[
+  h(s):=s^\delta(2+s)-(1+2s),
+  \qquad s=\theta^2,
+  \qquad \delta=\frac{2-p}{2}.
+\]
+For $p>4/3$, strict concavity of $h$ on $(0,1)$ and its endpoint behavior
+show that it has exactly one zero; for $p=4/3$ one has
+$h(r^3)=(r-1)^3(r+1)\le0$.
+\end{proof}
+
+\begin{lemma}\label{lem:critical-overlap}
+At $p=p_*$,
+\begin{equation}\label{eq:critical-overlap-alpha}
+  \alpha_{p_*}(1/3)<2^{t_*}-2,
+\end{equation}
+and
+\begin{equation}\label{eq:critical-overlap-beta}
+  \beta_{p_*}(1/3)<\beta_{p_*}(1)=\frac6{2^{t_*}}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The first inequality follows from $p_*<1.477$ and the certified bounds
+\[
+  \alpha_{1.477}(1/3)<4.528<4.535<2^{4/1.477}-2.
+\]
+For the second, one has
+\[
+  \frac{\beta_p(1/3)}{\beta_p(1)}
+  =\frac{59}{243}
+  \left(\frac2{1+3^{-p}}\right)^{4/p}.
+\]
+The last factor is strictly decreasing in $p$, and evaluation at
+$p=1.467<p_*$ gives a value below $0.979$.
+\end{proof}
+
+\subsection{Completion of the sharp threshold}
+
+\begin{proof}[Proof of \cref{thm:intro-threshold}]
+It is enough, by \cref{prop:compression}, to prove the one-dimensional
+inequality at $p=p_*$.  If $0\le\theta\le1/3$, then
+\[
+  \alpha_{p_*}(\theta)<2^{t_*}-2,
+  \qquad
+  \beta_{p_*}(\theta)\le1,
+\]
+and \cref{lem:boolean} controls \eqref{eq:profile-decomposition}.
+If $1/3\le\theta\le1$, then
+\[
+  \alpha_{p_*}(\theta)\le\alpha_{p_*}(1),
+  \qquad
+  \beta_{p_*}(\theta)\le\beta_{p_*}(1),
+\]
+by \cref{lem:coefficient-geometry,lem:critical-overlap}.  The resulting
+expression is bounded by the centered envelope
+\eqref{eq:centered-u}.  Equality occurs for the symmetric profile
+$(1,\sqrt{x_*},1)$ and for point masses.  Monotonicity of finite-dimensional
+$\ell^p$ quasi-norms gives all $p<p_*$.  The profile
+$(1,\sqrt{x_*},1)$ rules out every $p>p_*$.  The additive-energy statement
+then follows from \cref{prop:compression}.
+\end{proof}
+
+\section{The complete ternary best-constant curve}
+
+We now upgrade the constant-one threshold to the exact one-dimensional operator
+norm for every $p>0$.
+
+\subsection{A target-constant envelope}
+
+\begin{lemma}\label{lem:boolean-target}
+Let $t\ge2$ and $M\ge1$.  Then for every $u\in[0,1]$,
+\begin{equation}\label{eq:boolean-target}
+  u^t+(1-u)^t+(2^tM-2)[u(1-u)]^{t/2}\le M.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $w=[u(1-u)]^{t/2}\le2^{-t}$.  By \cref{lem:boolean},
+\begin{align*}
+ &u^t+(1-u)^t+(2^tM-2)w\\
+ &\quad=\bigl[u^t+(1-u)^t+(2^t-2)w\bigr]
+       +2^t(M-1)w\\
+ &\quad\le1+(M-1)=M.
+\end{align*}
+\end{proof}
+
+Set
+\begin{equation}\label{eq:pbin}
+  p_{\rm bin}:=\frac4{\log_2 6}=1.5474112289\ldots.
+\end{equation}
+For $p\ge p_*$ define
+\begin{equation}\label{eq:Mp}
+  M_p:=\sup_{0\le u\le1}
+  \left\{
+  u^t+\alpha_p(1)[u(1-u)]^{t/2}
+  +\beta_p(1)(1-u)^t
+  \right\},
+  \qquad t=\frac4p.
+\end{equation}
+This is the sharp quotient restricted to reflection-symmetric profiles.
+
+\begin{lemma}\label{lem:uniform-overlap}
+For every $p\in[p_*,p_{\rm bin}]$,
+\begin{equation}\label{eq:uniform-overlap-alpha}
+  \alpha_p(1/3)
+  \le \alpha_p(1)+\beta_p(1)-1,
+\end{equation}
+and for every $p\ge p_*$,
+\begin{equation}\label{eq:uniform-overlap-beta}
+  \beta_p(1/3)\le\beta_p(1).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The ratio in the proof of \cref{lem:critical-overlap} is decreasing in $p$,
+so \eqref{eq:uniform-overlap-beta} follows from its strict inequality at $p_*$.
+
+For \eqref{eq:uniform-overlap-alpha}, put
+\[
+  \Delta(p):=\alpha_p(1)+\beta_p(1)-1-\alpha_p(1/3).
+\]
+Since $p_*>1.467$ and $p_*<1.477$, monotonicity in $p$ and the certified
+bounds in \cref{app:intervals} give
+\[
+  \Delta(p_*)
+  >4.5706-4.5273>0.0433.
+\]
+Let $r=3^{-p}$.  Direct differentiation yields
+\begin{equation}\label{eq:Delta-derivative}
+\begin{aligned}
+  \frac{p^2}{2}\Delta'(p)
+  ={}&(\log2)\alpha_p(1)+2(\log2)\beta_p(1)\\
+  &-\alpha_p(1/3)
+  \left(\log(1+r)+\frac{p(\log3)r}{1+r}\right).
+\end{aligned}
+\end{equation}
+On $[p_*,p_{\rm bin}]$ one has
+\[
+  r<\frac15,
+  \quad p<1.55,
+  \quad \alpha_p(1)>4.2,
+  \quad \beta_p(1)>0.75,
+  \quad \alpha_p(1/3)<\frac{52}{9}.
+\]
+Using $\log2>0.69$ and $\log3<1.1$, the right side of
+\eqref{eq:Delta-derivative} is larger than
+\[
+  0.69(4.2+1.5)
+  -\frac{52}{9}\bigl(0.2+1.55\cdot1.1\cdot0.2\bigr)>0.
+\]
+Thus $\Delta$ is increasing and remains positive throughout the interval.
+\end{proof}
+
+\subsection{Global reduction to the symmetric branch}
+
+\begin{proposition}[Global reduction to symmetric profiles]\label{prop:global-symmetric-ternary}
+For every $p\ge p_*$ and every $a,b,c\ge0$,
+\begin{equation}\label{eq:global-symmetric-ternary}
+  \frac{Q(a,b,c)}{(a^p+b^p+c^p)^{4/p}}\le M_p.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Use the variables $\theta,u$ in \eqref{eq:theta-u}.
+
+First suppose $p_*\le p\le p_{\rm bin}$.  Then $t\ge\log_2 6$, so the
+binary constant-one inequality gives
+\[
+  \beta_p(\theta)\le1
+  \qquad(0\le\theta\le1).
+\]
+If $0\le\theta\le1/3$, then
+\[
+  \alpha_p(\theta)\le\alpha_p(1/3).
+\]
+Since $M_p$ dominates its value at $u=1/2$,
+\[
+  2^tM_p-2
+  \ge\alpha_p(1)+\beta_p(1)-1
+  \ge\alpha_p(1/3).
+\]
+The target envelope \cref{lem:boolean-target} now proves
+\eqref{eq:global-symmetric-ternary}.
+
+If $1/3\le\theta\le1$, then
+\[
+  \alpha_p(\theta)\le\alpha_p(1),
+  \qquad
+  \beta_p(\theta)\le\beta_p(1)
+\]
+by \cref{lem:coefficient-geometry,lem:uniform-overlap}.  Hence the quotient
+is bounded coefficientwise by the symmetric expression defining $M_p$.
+
+Next suppose $p_{\rm bin}\le p<2$.  Here
+$\beta_p(1)\ge\beta_p(0)=1$.  Since $\beta_p$ has no interior local maximum,
+\[
+  \beta_p(\theta)\le\beta_p(1),
+\]
+and the same coefficientwise comparison applies.
+
+Finally let $p\ge2$.  The proof of monotonicity for $\alpha_p$ remains valid.
+For $\beta_p$, the derivative has the sign of
+\[
+  h(s)=s^\delta(2+s)-(1+2s),
+  \qquad \delta=\frac{2-p}{2}\le0.
+\]
+Since $s^\delta\ge1$ on $(0,1]$,
+\[
+  h(s)\ge(2+s)-(1+2s)=1-s\ge0.
+\]
+Thus both coefficients are increasing, and the symmetric profile again
+dominates coefficientwise.
+\end{proof}
+
+\subsection{The symmetric phase portrait}
+
+We next solve the symmetric one-variable problem completely.
+
+\begin{lemma}\label{lem:symmetric-phase}
+Let $q>q_*$ and set $p=2q$.  The function $R_q$ has a unique global
+maximizer $x_q\in(1,x_*)$, characterized by
+\begin{equation}\label{eq:xq-critical}
+  x_q^{1-q}(x_q+6)=3(x_q+1).
+\end{equation}
+The map $q\mapsto x_q$ is strictly decreasing,
+\[
+  x_{q_*}=x_*,
+  \qquad x_1=\frac32,
+  \qquad \lim_{q\to\infty}x_q=1.
+\]
+\end{lemma}
+
+\begin{proof}
+The sign of $R_q'$ is the sign of $G_q-3$, with $G_q$ as in
+\eqref{eq:Gq}.
+
+If $q\ge1$, then \eqref{eq:Gqprime} is strictly negative, so $G_q$ is
+strictly decreasing.  It crosses $3$ exactly once, at a point larger than
+$1$ because $G_q(1)=7/2$.  This crossing is the unique global maximum of
+$R_q$.
+
+Suppose $q_*<q<1$.  The quadratic $P_q$ controlling $G_q'$ satisfies
+$P_q(0)>0$, $P_q(1)=9-14q<0$, and $P_q(x)\to\infty$.  Thus $G_q$ has one
+local maximum and one local minimum.  Furthermore,
+\[
+  G_q(0)=0,
+  \qquad G_q(1)=\frac72>3,
+  \qquad G_q(x_*)<G_{q_*}(x_*)=3,
+  \qquad G_q(x)\to\infty.
+\]
+Hence $G_q=3$ has exactly three roots, and its middle root $x_q$ lies in
+$(1,x_*)$.  It is the unique finite local maximum of $R_q$.
+
+To see that this maximum is global, note first that
+\[
+  R_q(x_*)>R_{q_*}(x_*)=1,
+\]
+because for a fixed nonzero vector its $\ell^q$ norm decreases as $q$
+increases.  Also
+\[
+  \frac{R_q(1)}{R_q(0)}
+  =\frac{19}{6}\left(\frac23\right)^{2/q}>1.
+\]
+Indeed, the ratio is increasing in $q$, and at $q=q_*$ the inequality follows
+from $t_*=2/q_*<4/1.467<\log_{3/2}(19/6)$.
+Since $R_q(x_q)>R_q(1)$ and $\lim_{x\to\infty}R_q(x)=1$, the point $x_q$
+is the global maximizer.
+
+For fixed $x>1$, $G_q(x)$ is strictly decreasing in $q$.  At the relevant
+crossing $G_q$ decreases in $x$, so the implicit root $x_q$ decreases in
+$q$.  The remaining identities follow directly from
+\eqref{eq:xq-critical}.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:intro-allp}]
+For $p\le p_*$, \cref{thm:intro-threshold} gives
+$\cC_3(p)\le1$, while point masses give equality.  The right side of
+\eqref{eq:intro-allp} also has supremum $1$.
+
+For $p>p_*$, \cref{prop:global-symmetric-ternary} reduces the global
+quotient to symmetric profiles, and \cref{lem:symmetric-phase} gives the
+unique maximizing parameter $x_p=x_{p/2}$.  At a critical point,
+\eqref{eq:intro-xp} implies
+\begin{equation}\label{eq:xp-denom}
+  x_p^{p/2}+2
+  =\frac{x_p^2+12x_p+6}{3(x_p+1)}.
+\end{equation}
+Substitution into $R_{p/2}(x_p)$ gives
+\eqref{eq:intro-closed-value}.
+
+At $p=2$, \eqref{eq:intro-xp} gives $x_p=3/2$, and direct substitution
+yields $15/7$.  At $p=4$ one obtains
+$x_p=(-1+\sqrt{19})/3$ and $\cC_3(4)^4=2+\sqrt{19}$.  As $p\to\infty$,
+$x_p\to1$ and the quotient tends to $19$.
+
+The strict coefficient comparisons in the proof of
+\cref{prop:global-symmetric-ternary}, together with uniqueness in
+\cref{lem:symmetric-phase}, give the stated uniqueness of the nonnegative
+maximizer for $p>p_*$.
+\end{proof}
+
+\subsection{Tensorization}
+
+The one-coordinate constant tensorizes through the range relevant to the
+$L^4$ problem.
+
+\begin{proposition}[Exact tensorization for $p\le4$]\label{prop:tensorization}
+For $0<p\le4$, let
+\[
+  \cC_{3,d}(p):=
+  \sup_{0\ne f,\,\supp f\subseteq\{0,1,2\}^d}
+  \frac{\norm{\widehat f}_{L^4(\T^d)}}{\norm f_{\ell^p}}.
+\]
+Then
+\begin{equation}\label{eq:tensorization}
+  \cC_{3,d}(p)=\cC_3(p)^d.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The lower bound follows from tensor powers of a one-dimensional extremizer.
+For the upper bound, write $f_j$ for the slices in the final coordinate.
+Applying the one-dimensional inequality pointwise in the remaining Fourier
+variables gives
+\[
+  \norm{\widehat f(\xi',\cdot)}_{L^4}
+  \le\cC_3(p)
+  \left(\sum_j|\widehat{f_j}(\xi')|^p\right)^{1/p}.
+\]
+Since $4/p\ge1$, Minkowski's inequality yields
+\[
+  \left\|
+  \left(\sum_j|\widehat{f_j}|^p\right)^{1/p}
+  \right\|_{L^4}
+  \le
+  \left(\sum_j\norm{\widehat{f_j}}_{L^4}^p\right)^{1/p}.
+\]
+Induction on $d$ proves the upper bound.
+\end{proof}
+
+\section{The cubic correlation field and endpoint algebra}
+
+For a finite real sequence $f$, extended by zero outside its support, define
+\begin{equation}\label{eq:cubic-field}
+  \cC_f(k):=(f*f*\rev f)(k),
+  \qquad \rev f(j):=f(-j).
+\end{equation}
+This is exactly the gradient of the quartic energy.
+
+\begin{lemma}\label{lem:gradient}
+For every index $k$,
+\begin{equation}\label{eq:gradient}
+  \frac{\partial Q}{\partial f_k}=4\cC_f(k).
+\end{equation}
+Consequently, a positive critical point of $Q(f)/\norm f_p^4$ satisfies
+\begin{equation}\label{eq:EL}
+  \cC_f(k)=\lambda f_k^{p-1}
+\end{equation}
+for a constant $\lambda>0$.
+\end{lemma}
+
+\begin{proof}
+Differentiate
+$Q(f)=\sum_m(f*f)(m)^2$ and use commutativity of convolution.  The
+Euler--Lagrange equation follows by a Lagrange multiplier under the
+normalization $\sum_k f_k^p=1$.
+\end{proof}
+
+Let $N=n-1$ and peel off the endpoints:
+\begin{equation}\label{eq:endpoint-peel}
+  f=a\delta_0+g+c\delta_N,
+  \qquad \supp g\subseteq\{1,\ldots,N-1\}.
+\end{equation}
+Put
+\begin{equation}\label{eq:endpoint-data}
+  M_2:=\norm g_2^2,
+  \qquad
+  D:=(g*g)(N),
+  \qquad
+  T_L:=\cC_g(0),
+  \qquad
+  T_R:=\cC_g(N).
+\end{equation}
+
+\begin{proposition}[Exact endpoint expansion]\label{prop:endpoint-expansion}
+With the notation above,
+\begin{equation}\label{eq:endpoint-expansion}
+\begin{aligned}
+  Q(f)={}&Q(g)+a^4+c^4+4(a^2+c^2)M_2+4a^2c^2\\
+        &+4acD+4aT_L+4cT_R.
+\end{aligned}
+\end{equation}
+In particular,
+\begin{equation}\label{eq:orientation-defect}
+  Q(a,g,c)-Q(c,g,a)=4(a-c)(T_L-T_R).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Expand
+\[
+  f*f=g*g+2(a\delta_0+c\delta_N)*g
+      +(a\delta_0+c\delta_N)^2
+\]
+and use the disjointness of the relevant shifted interior supports.  The
+terms $\ip{g*g}{g}$ and $\ip{g*g}{\tau_Ng}$ are precisely $T_L$ and
+$T_R$, while $\ip{g*g}{\delta_N}=D$.
+\end{proof}
+
+Thus $T_L-T_R$ is the first intrinsic reflection-odd covariant of the
+interior profile.  For $n=3$ it vanishes identically.  For the first two
+larger alphabets one obtains
+\begin{equation}\label{eq:defect-n4n5}
+\begin{aligned}
+  n=4,\quad g=(u,v):&\qquad T_L-T_R=uv(u-v),\\
+  n=5,\quad g=(g_1,g_2,g_3):&\qquad
+  T_L-T_R=g_2(g_1-g_3)(g_1+g_3).
+\end{aligned}
+\end{equation}
+
+There is also a finite algebraic closure under repeated endpoint insertion.
+For a Laurent polynomial $X$, write $X^\#(z):=X(z^{-1})$.  If
+\[
+  F=G+U,
+  \qquad
+  U=a+cz^N,
+\]
+define the degree-$1$, degree-$2$, and degree-$3$ fields
+\begin{equation}\label{eq:jet}
+  G,
+  \qquad A_G:=GG^\#,
+  \qquad B_G:=G^2,
+  \qquad C_G:=G^2G^\#.
+\end{equation}
+
+\begin{proposition}[Closed Laurent jet]\label{prop:closed-jet}
+Endpoint insertion preserves the finite triangular family
+$(G,A_G,B_G,C_G)$.  Explicitly,
+\begin{align}
+  A_F&=A_G+UG^\#+GU^\#+UU^\#,\label{eq:AF}\\
+  B_F&=B_G+2UG+U^2,\label{eq:BF}\\
+  C_F&=C_G+2UA_G+B_GU^\#+U^2G^\#
+        +2UGU^\#+U^2U^\#.
+        \label{eq:CF}
+\end{align}
+Thus repeated peeling creates new boundary evaluations but no new
+polynomial field of degree at most three.
+\end{proposition}
+
+\begin{proof}
+The identities are the direct expansions of $FF^\#$, $F^2$, and
+$F^2F^\#$.
+\end{proof}
+
+Differentiating \eqref{eq:endpoint-expansion} with respect to $a$ and $c$
+gives an exact recursion for the endpoint cubic imbalance.
+
+\begin{proposition}[Recursive orientation equation]\label{prop:orientation-recursion}
+One has
+\begin{equation}\label{eq:Cf0}
+  \cC_f(0)=a^3+2aM_2+2ac^2+cD+T_L,
+\end{equation}
+\begin{equation}\label{eq:CfN}
+  \cC_f(N)=c^3+2cM_2+2a^2c+aD+T_R,
+\end{equation}
+and therefore
+\begin{equation}\label{eq:orientation-recursion}
+\begin{aligned}
+  \cC_f(0)-\cC_f(N)
+  ={}&(a-c)\bigl(a^2-ac+c^2+2M_2-D\bigr)\\
+     &+(T_L-T_R).
+\end{aligned}
+\end{equation}
+The local coefficient is strictly positive unless $f=0$, since
+$D\le M_2$.
+\end{proposition}
+
+\begin{remark}
+At a critical point, \eqref{eq:EL} and
+\eqref{eq:orientation-recursion} give
+\[
+  \lambda(a^{p-1}-c^{p-1})
+  =(a-c)\bigl(a^2-ac+c^2+2M_2-D\bigr)+(T_L-T_R).
+\]
+Thus the sole inhomogeneous source of endpoint orientation is the same
+cubic boundary defect of the interior.  This is the recursive object that
+must be estimated in a global reflection argument.
+\end{remark}
+
+\section{Support rigidity of exact extremizers}
+
+The positivity of the cubic field yields a strong classification of the
+support of an exact maximizer.
+
+\begin{proposition}[Support closure]\label{prop:support-closure}
+Let $p>1$ and let $f\ge0$ be a global maximizer of $\Phi_p$ among profiles
+supported on $I_n$.  If $f_k=0$, then
+\begin{equation}\label{eq:C-zero}
+  \cC_f(k)=0.
+\end{equation}
+Consequently, with $A=\supp f$,
+\begin{equation}\label{eq:AAA-closure}
+  (A+A-A)\cap I_n\subseteq A.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+If $f_k=0$, perturb by $f+\varepsilon\delta_k$.  The numerator has expansion
+\[
+  Q(f+\varepsilon\delta_k)
+  =Q(f)+4\varepsilon\cC_f(k)+O(\varepsilon^2),
+\]
+whereas the denominator changes by $O(\varepsilon^p)$.  Since $p>1$,
+maximality forces \eqref{eq:C-zero}.  All terms in $\cC_f(k)$ are
+nonnegative, so no relation $a+b-c=k$ with $a,b,c\in A$ can occur outside
+$A$, proving \eqref{eq:AAA-closure}.
+\end{proof}
+
+\begin{theorem}[Arithmetic-progression support]\label{thm:AP-support}
+Under the hypotheses of \cref{prop:support-closure}, the support of $f$ is
+an arithmetic progression:
+\begin{equation}\label{eq:AP-support}
+  \supp f=\{a,a+d,\ldots,a+md\}
+\end{equation}
+for some integers $a,d,m$ with $d\ge1$, unless $f$ is a point mass.
+\end{theorem}
+
+\begin{proof}
+Translate the support so that its minimum is $0$, and let $d$ be its least
+positive element.  If $x$ belongs to the support and $x+d$ does not exceed
+the maximum $M$, then closure gives $x+d=x+d-0$ in the support.  Hence all
+multiples of $d$ up to $M$ occur.  If some support element $y$ were not a
+multiple of $d$, write $y=qd+r$ with $0<r<d$.  Since $qd$ is already in the
+support, closure gives $r=y+0-qd$ in the support, contradicting the
+minimality of $d$.
+\end{proof}
+
+\begin{remark}
+Translation and integer dilation preserve all additive relations.  Hence
+every nontrivial exact extremizer compresses to a positive full-support
+extremizer on a smaller alphabet.  Arbitrary separated multi-packet
+supports cannot occur at exact equality; any boundary branch is a smaller
+alphabet branch in disguise.
+\end{remark}
+
+\section{Reflection geometry and the universal one-third law}
+
+Let $Jf(j)=f(N-j)$, and decompose
+\begin{equation}\label{eq:reflection-decomp}
+  f=s+h,
+  \qquad Js=s,
+  \qquad Jh=-h.
+\end{equation}
+The reflection invariance of $Q$ forces an even polynomial in the odd
+component.  In fact there is a stronger Fourier orthogonality.
+
+\begin{proposition}[Exact even--odd Fourier decomposition]\label{prop:exact-reflection}
+For every real $s,h$ satisfying \eqref{eq:reflection-decomp} and every
+$\lambda\in\R$,
+\begin{equation}\label{eq:exact-reflection}
+  \boxed{
+  Q(s+\lambda h)
+  =Q(s)+2\lambda^2\norm{s*h}_2^2+\lambda^4Q(h).}
+\end{equation}
+Equivalently,
+\begin{equation}\label{eq:cross-cancellation}
+  \ip{s*s}{h*h}=-\norm{s*h}_2^2.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+After multiplying by the common phase $e^{\pi iN\xi}$, the Fourier
+transform of $s$ is real-valued and that of $h$ is purely imaginary.
+Consequently,
+\[
+  |\widehat{s+\lambda h}|^2
+  =|\widehat s|^2+\lambda^2|\widehat h|^2.
+\]
+Square and integrate.  Comparison with the direct quartic expansion gives
+\eqref{eq:cross-cancellation}.
+\end{proof}
+
+This identity yields a global symmetrization principle in the Hilbert and
+super-Hilbert ranges.
+
+\begin{proposition}[Root-mean-square reflection symmetrization]\label{prop:rms-symmetry}
+Let $f\ge0$ on $I_n$, and define the symmetric profile
+\begin{equation}\label{eq:rms}
+  r_j:=\left(\frac{f_j^2+f_{N-j}^2}{2}\right)^{1/2}.
+\end{equation}
+Then
+\begin{equation}\label{eq:rms-Q}
+  Q(r)\ge Q(f).
+\end{equation}
+For every $p\ge2$,
+\begin{equation}\label{eq:rms-p}
+  \norm r_p\le\norm f_p,
+\end{equation}
+and hence
+\begin{equation}\label{eq:rms-Phi}
+  \Phi_p(f)\le\Phi_p(r).
+\end{equation}
+If $f$ is positive on the full interval, equality forces $f=Jf$.
+\end{proposition}
+
+\begin{proof}
+Write $s=(f+Jf)/2$, $h=(f-Jf)/2$, and $v_j=(s_j,h_j)\in\R^2$.
+For each lag $k$, the mixed symmetric--antisymmetric correlations cancel,
+so
+\[
+  R_f(k)=\sum_j\ip{v_j}{v_{j+k}}.
+\]
+Since $R_f(k)\ge0$ and $r_j=|v_j|$, Cauchy--Schwarz gives
+\[
+  0\le R_f(k)\le\sum_j|v_j||v_{j+k}|=R_r(k).
+\]
+The autocorrelation formula
+$Q(f)=R_f(0)^2+2\sum_{k\ge1}R_f(k)^2$ proves \eqref{eq:rms-Q}.
+The power-mean inequality on each reflection pair gives
+\[
+  f_j^p+f_{N-j}^p
+  \ge2\left(\frac{f_j^2+f_{N-j}^2}{2}\right)^{p/2},
+\]
+which is \eqref{eq:rms-p}.  The equality statement follows from the strict
+cases of these inequalities.
+\end{proof}
+
+The range $4/3<p<2$ requires a different mechanism.  We now prove the
+universal spectral theorem stated in the introduction.
+
+Let $s_j>0$ on $I_n$ and assume $Js=s$.  Define
+\begin{equation}\label{eq:RsCs}
+  R_s(k):=\sum_j s_js_{j+k},
+  \qquad
+  C_s(i):=\sum_j R_s(i-j)s_j=(s*s*\rev s)(i).
+\end{equation}
+The quantities in \eqref{eq:intro-P} satisfy
+\[
+  \sum_jP_s(i,j)=1,
+  \qquad
+  \sum_i\pi_i=1.
+\]
+
+\begin{lemma}\label{lem:Ps-positive}
+The kernel $P_s$ is reversible with respect to $\pi$:
+\begin{equation}\label{eq:detailed-balance}
+  \pi_iP_s(i,j)=\pi_jP_s(j,i).
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:Ps-quadratic}
+  \ip{\phi}{P_s\phi}_{L^2(\pi)}
+  =\frac{\norm{s*(s\phi)}_2^2}{Q(s)}\ge0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Since $R_s$ is even,
+\[
+  \pi_iP_s(i,j)
+  =\frac{s_is_jR_s(i-j)}{Q(s)}
+  =\pi_jP_s(j,i).
+\]
+Expanding the convolution norm gives
+\[
+  \norm{s*(s\phi)}_2^2
+  =\sum_{i,j}R_s(i-j)s_i\phi_i s_j\phi_j,
+\]
+which proves \eqref{eq:Ps-quadratic}.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:intro-third}]
+Put a probability distribution on additive quadruples by
+\begin{equation}\label{eq:quadruple-measure}
+  \Pp(a,b,c,d)
+  :=\frac{s_as_bs_cs_d}{Q(s)}\one_{\{a+b=c+d\}}.
+\end{equation}
+Its $(d,b)$ marginal is
+\[
+  \Pp(d,b)=\frac{s_ds_bR_s(d-b)}{Q(s)},
+\]
+so the conditional law of $b$ given $d$ is $P_s(d,\cdot)$, and
+\begin{equation}\label{eq:P-expectation}
+  \ip{\phi}{P_s\phi}_{L^2(\pi)}=\E[\phi(d)\phi(b)].
+\end{equation}
+
+Let $m=N/2$ and set
+\[
+  Y_1=a-m,
+  \quad Y_2=b-m,
+  \quad Y_3=m-c,
+  \quad Y_4=m-d.
+\]
+Then $Y_1+Y_2+Y_3+Y_4=0$.  Reflection symmetry of $s$ makes the joint law
+of the four $Y_i$ exchangeable.  If
+\[
+  \psi(y):=\phi(m+y),
+\]
+then $\psi$ is odd and
+\[
+  \phi(b)=\psi(Y_2),
+  \qquad
+  \phi(d)=-\psi(Y_4).
+\]
+Write
+\[
+  A:=\E\psi(Y_1)^2,
+  \qquad
+  B:=\E[\psi(Y_1)\psi(Y_2)].
+\]
+Exchangeability and \eqref{eq:P-expectation} give
+\[
+  \norm\phi_{L^2(\pi)}^2=A,
+  \qquad
+  \ip{\phi}{P_s\phi}_{L^2(\pi)}=-B.
+\]
+Since a square is nonnegative,
+\[
+  0\le\E\left(\sum_{r=1}^4\psi(Y_r)\right)^2
+  =4A+12B.
+\]
+Thus $-B\le A/3$.  The lower bound follows from
+\cref{lem:Ps-positive}.
+
+For $\psi(y)=y$, the sum in the preceding display vanishes identically,
+so equality holds.  If $s$ has full positive support and equality holds for
+a general odd $\psi$, then
+\[
+  \phi(a)+\phi(b)=\phi(c)+\phi(d)
+  \qquad\text{whenever }a+b=c+d.
+\]
+Hence $\phi(a)+\phi(b)$ depends only on $a+b$.  Taking neighboring sums
+shows that $\phi_{j+1}-\phi_j$ is independent of $j$, so $\phi$ is affine.
+Oddness about $N/2$ leaves only scalar multiples of $j-N/2$.
+\end{proof}
+
+\subsection{The reflection Hessian}
+
+Suppose now that $s$ is a positive symmetric critical point of $\Phi_p$.
+Normalize
+\[
+  S_p:=\sum_i s_i^p.
+\]
+The Euler--Lagrange equation gives $C_s(i)=\lambda s_i^{p-1}$, and Euler's
+identity gives $Q(s)=\lambda S_p$.  Consequently,
+\begin{equation}\label{eq:pi-pmass}
+  \pi_i=\frac{s_i^p}{S_p}.
+\end{equation}
+
+Let $h_i=s_i\phi_i$ with $\phi$ reflection odd.  The first variation
+vanishes.  Expanding the numerator by \cref{prop:exact-reflection} and the
+denominator by the binomial theorem yields the exact second-variation
+formula
+\begin{equation}\label{eq:Hessian-formula}
+  \frac{\Phi_p''(s)[h,h]}{4\Phi_p(s)}
+  =\ip{\phi}{P_s\phi}_{L^2(\pi)}
+  -(p-1)\norm\phi_{L^2(\pi)}^2.
+\end{equation}
+Combining this with \cref{thm:intro-third} gives the following.
+
+\begin{corollary}[Universal reflection stability]\label{cor:reflection-stability}
+At every positive symmetric critical point,
+\begin{equation}\label{eq:reflection-gap}
+  \frac{\Phi_p''(s)[s\phi,s\phi]}{4\Phi_p(s)}
+  \le-\left(p-\frac43\right)\norm\phi_{L^2(\pi)}^2
+\end{equation}
+for every reflection-odd $\phi$.  Thus:
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item if $p>4/3$, all nonzero odd directions are strictly decreasing;
+  \item if $p=4/3$, the only second-order neutral odd direction is
+  $h_j=(j-N/2)s_j$;
+  \item if $1<p<4/3$, this linear-tilt direction is increasing.
+\end{enumerate}
+\end{corollary}
+
+The local spectral law can be made finite-radius around a symmetric global
+maximizer.
+
+\begin{proposition}[A quantitative reflection basin]\label{prop:reflection-basin}
+Let $4/3<p<2$, and let $s>0$ be a symmetric global maximizer of $\Phi_p$,
+normalized by $\sum_i s_i^p=1$.  Let
+\[
+  h_i=s_i\phi_i,
+  \qquad J\phi=-\phi,
+  \qquad |\phi_i|\le1,
+\]
+and set
+\begin{equation}\label{eq:W}
+  W:=\sum_i s_i^p\phi_i^2.
+\end{equation}
+If
+\begin{equation}\label{eq:basin-radius}
+  W\le2\left(p-\frac43\right),
+\end{equation}
+then
+\begin{equation}\label{eq:basin-conclusion}
+  \Phi_p(s+h)\le\Phi_p(s).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By \cref{thm:intro-third,prop:exact-reflection},
+\[
+  \frac{Q(s+h)}{Q(s)}
+  \le1+\frac23W+\frac{Q(h)}{Q(s)}.
+\]
+Global maximality of $s$ gives
+$Q(h)\le Q(s)\norm h_p^4$.  Since $p<2$ and the weights $s_i^p$ form a
+probability measure,
+\[
+  \norm h_p^4
+  =\left(\sum_i s_i^p|\phi_i|^p\right)^{4/p}\le W^2.
+\]
+Therefore
+\begin{equation}\label{eq:basin-num}
+  \frac{Q(s+h)}{Q(s)}\le1+\frac23W+W^2.
+\end{equation}
+For $|x|\le1$ and $1<p<2$,
+\[
+  \frac{(1+x)^p+(1-x)^p}{2}
+  \ge1+\frac{p(p-1)}2x^2.
+\]
+Pairing reflected coordinates and using Bernoulli's inequality gives
+\begin{equation}\label{eq:basin-den}
+  \norm{s+h}_p^4\ge1+2(p-1)W.
+\end{equation}
+The condition \eqref{eq:basin-radius} makes the right side of
+\eqref{eq:basin-num} no larger than that of \eqref{eq:basin-den}.
+\end{proof}
+
+\begin{remark}
+In the conjectural large-alphabet critical window
+$p-4/3\asymp1/\log n$, the basin has weighted squared radius of order
+$1/\log n$.  Thus a broad inverse theorem need only bring a near-extremizer
+into this neighborhood; local reflection stability would then finish the
+symmetry step.
+\end{remark}
+
+\section{Exact parity renormalization}
+
+Let
+\begin{equation}\label{eq:evenodd-children}
+  e_j:=f_{2j},
+  \qquad
+  o_j:=f_{2j+1}.
+\end{equation}
+Then
+\begin{equation}\label{eq:evenodd-conv}
+  (f*f)_{2m}=(e*e)_m+(o*o)_{m-1},
+  \qquad
+  (f*f)_{2m+1}=2(e*o)_m.
+\end{equation}
+Let $\tau v(m)=v(m-1)$ and put
+\begin{equation}\label{eq:MH}
+  M:=\norm{e*o}_2^2,
+  \qquad
+  H:=\ip{e*e}{\tau(o*o)}.
+\end{equation}
+The coefficients are nonnegative, and Fourier Cauchy--Schwarz gives
+\begin{equation}\label{eq:MH-bounds}
+  0\le H\le M\le\sqrt{Q(e)Q(o)}.
+\end{equation}
+Set
+\begin{equation}\label{eq:xy-rhokappa}
+  x:=Q(e)^{1/4},
+  \qquad y:=Q(o)^{1/4},
+  \qquad
+  \rho:=\frac{M}{x^2y^2},
+  \qquad
+  \kappa:=\frac HM
+\end{equation}
+when $xyM>0$, with the evident continuous conventions otherwise.
+Define
+\begin{equation}\label{eq:Delta-ren}
+  \Delta_{\rm ren}(e,o)
+  :=6(1-\rho)+2\rho(1-\kappa).
+\end{equation}
+
+\begin{proof}[Proof of \cref{thm:intro-renorm}]
+By \eqref{eq:evenodd-conv},
+\begin{equation}\label{eq:Q-evenodd}
+  Q(f)=Q(e)+Q(o)+4M+2H.
+\end{equation}
+Substituting \eqref{eq:xy-rhokappa} gives
+\eqref{eq:intro-renorm}.
+
+For the square representation, let $E=\widehat e$, $O=\widehat o$, and
+$O_{1/2}=e^{-\pi i\xi}O$.  First,
+\[
+  3\left\|
+  \frac{|E|^2}{x^2}-\frac{|O|^2}{y^2}
+  \right\|_2^2
+  =6(1-\rho).
+\]
+Next, with $z=E\overline{O_{1/2}}$,
+\[
+  \norm{z-\overline z}_2^2
+  =2M-2\operatorname{Re}\int_{\T}e^{2\pi i\xi}E(\xi)^2
+       \overline{O(\xi)^2}\dd\xi
+  =2(M-H).
+\]
+Dividing by $x^2y^2$ gives $2\rho(1-\kappa)$ and proves
+\eqref{eq:intro-renorm-squares}.
+\end{proof}
+
+The square formula gives a concrete interpretation of small defect:
+$|E|^2/x^2$ and $|O|^2/y^2$ must be close, and the two polyphase components
+must have nearly compatible half-lattice phase.
+
+\subsection{The local gain function}
+
+Let
+\[
+  t:=\frac4p,
+  \qquad
+  u:=\frac{x^p}{x^p+y^p}.
+\]
+From \eqref{eq:intro-renorm},
+\begin{equation}\label{eq:Bt-def}
+  \frac{Q(f)}{(x^p+y^p)^{4/p}}
+  =B_t(u,\Delta),
+\end{equation}
+where
+\begin{equation}\label{eq:Bt}
+  B_t(u,\Delta)
+  :=u^t+(1-u)^t+(6-\Delta)[u(1-u)]^{t/2}.
+\end{equation}
+When $t\ge 2$ (equivalently, $p\le 2$), combining this with the sharp two-point envelope gives
+\begin{equation}\label{eq:Bt-envelope}
+  B_t(u,\Delta)
+  \le1+\bigl(8-2^t-\Delta\bigr)[u(1-u)]^{t/2}.
+\end{equation}
+Thus a sufficient one-step closure condition is
+\begin{equation}\label{eq:one-step-budget}
+  \Delta_{\rm ren}(e,o)\ge8-2^{4/p}.
+\end{equation}
+Near $p=4/3$,
+\begin{equation}\label{eq:defect-budget-expansion}
+  8-2^{4/p}
+  =18(\log2)\left(p-\frac43\right)
+   +O\left(\left(p-\frac43\right)^2\right).
+\end{equation}
+This identifies the required defect budget per active scale in the critical
+window.
+
+\subsection{The exact multiplicative cascade}
+
+Define
+\begin{equation}\label{eq:Zp}
+  \cZ_p(f):=Q(f)^{p/4}=Q(f)^{1/t}.
+\end{equation}
+Since $x^p=\cZ_p(e)$ and $y^p=\cZ_p(o)$,
+\eqref{eq:Bt-def} is equivalent to
+\begin{equation}\label{eq:Z-recursion}
+  \cZ_p(f)
+  =\bigl(\cZ_p(e)+\cZ_p(o)\bigr)
+   B_t(u,\Delta)^{1/t}.
+\end{equation}
+Build the dyadic parity tree by repeatedly taking even and odd children.
+At a node $v$, let
+\begin{equation}\label{eq:beta-v}
+  \beta_v:=B_t(u_v,\Delta_v)^{1/t}.
+\end{equation}
+After sufficiently many generations, the leaves are individual coefficients
+of $f$.  Expanding \eqref{eq:Z-recursion} gives the following exact identity.
+
+\begin{theorem}[Multiplicative cascade]\label{thm:cascade}
+For every finitely supported $f$ and every $p>0$,
+\begin{equation}\label{eq:cascade}
+  \boxed{
+  \cZ_p(f)
+  =\sum_j|f_j|^p\prod_{v\prec j}\beta_v,}
+\end{equation}
+where the product is over the internal nodes on the path from the root to
+the leaf containing $j$.  Equivalently,
+\begin{equation}\label{eq:cascade-normalized}
+  \Phi_p(f)^{p/4}
+  =\sum_j\frac{|f_j|^p}{\norm f_p^p}
+    \prod_{v\prec j}\beta_v.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{eq:Z-recursion} writes the value at each node as a local
+gain times the sum of its two children.  Iterating this identity to the
+singleton leaves gives \eqref{eq:cascade}; division by $\norm f_p^p$ gives
+\eqref{eq:cascade-normalized}.
+\end{proof}
+
+Thus the global sharp inequality becomes a pathwise multiscale question:
+with a leaf chosen according to normalized $p$-mass, the expected product
+of the local gains must not exceed $1$.
+
+\subsection{A one-scale atomic--smooth dichotomy}
+
+At the Euclidean exponent $t=3$ and zero defect,
+\begin{equation}\label{eq:B3}
+  B_3(u,0)
+  =1-G(u),
+\end{equation}
+where
+\begin{equation}\label{eq:Gu}
+  G(u):=3u(1-u)\bigl(1-2\sqrt{u(1-u)}\bigr)\ge0.
+\end{equation}
+The zero set is exactly $\{0,1/2,1\}$.  Moreover,
+\begin{equation}\label{eq:G-asymptotics}
+  G(u)\asymp
+  \begin{cases}
+    u,&u\to0,\\
+    1-u,&u\to1,\\
+    (u-1/2)^2,&u\to1/2.
+  \end{cases}
+\end{equation}
+Uniform boundedness of the $t$-derivatives on a compact neighborhood of
+$t=3$ gives the following quantitative statement.
+
+\begin{proposition}[One-scale dichotomy]\label{prop:one-scale-dichotomy}
+There are absolute constants $C,c>0$ such that, whenever
+$|t-3|\le c$, $0\le\Delta\le6$, and
+\begin{equation}\label{eq:near-gain}
+  B_t(u,\Delta)\ge1-\eta,
+\end{equation}
+one has
+\begin{equation}\label{eq:dichotomy-master}
+  G(u)+\Delta[u(1-u)]^{t/2}
+  \le C(|3-t|+\eta).
+\end{equation}
+Consequently, one of the following holds:
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item \emph{atomic split:}
+  $u\le C(|3-t|+\eta)$ or
+  $1-u\le C(|3-t|+\eta)$;
+  \item \emph{balanced smooth split:}
+  \[
+    \left|u-\frac12\right|
+    \le C\sqrt{|3-t|+\eta},
+    \qquad
+    \Delta\le C(|3-t|+\eta).
+  \]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The functions $u^t$, $(1-u)^t$, and
+$[u(1-u)]^{t/2}$ have uniformly bounded $t$-derivatives for $t$ in a fixed
+compact subinterval of $(2,\infty)$, including at $u=0,1$ by continuity.
+Hence
+\[
+  B_t(u,\Delta)
+  \le1-G(u)+C|3-t|-\Delta[u(1-u)]^{t/2}.
+\]
+This proves \eqref{eq:dichotomy-master}.  The alternatives then follow
+from \eqref{eq:G-asymptotics}; in the balanced regime,
+$u(1-u)$ is bounded below by an absolute positive constant, so the defect
+term also controls $\Delta$.
+\end{proof}
+
+In the predicted window $3-t\asymp1/\log n$, every non-atomic near-lossless
+node must therefore satisfy
+\[
+  \left|u-\frac12\right|\lesssim\frac1{\sqrt{\log n}},
+  \qquad
+  \Delta_{\rm ren}\lesssim\frac1{\log n}.
+\]
+This is a rigorous one-scale form of the atomic/Gaussian dichotomy.  What
+remains is to propagate it along most active paths and most active scales.
+
+\section{The discrete--continuous bridge}
+
+There is a second, complementary route to the large-alphabet problem.
+For a finite sequence $b$, define its hat-function interpolation by
+\begin{equation}\label{eq:I-definition}
+  Ib(x):=\sum_{k\in\Z}b_k(1-|x-k|)_+.
+\end{equation}
+Thus $Ib(k)=b_k$, the function is affine on each unit interval, and it
+vanishes one unit beyond the extreme nonzero knots.
+
+\begin{lemma}\label{lem:interpolation}
+For every finitely supported sequence $b$,
+\begin{equation}\label{eq:interpolation}
+  \boxed{
+  \norm b_{\ell^2}^2
+  =\norm{Ib}_{L^2(\R)}^2
+   +\frac16\norm{\Delta b}_{\ell^2}^2,}
+\end{equation}
+where $\Delta b(k)=b(k+1)-b(k)$.
+\end{lemma}
+
+\begin{proof}
+On each unit interval, integrate the square of the affine function joining
+$b_k$ and $b_{k+1}$.  Summing gives
+\[
+  \norm{Ib}_2^2
+  =\frac23\sum_k b_k^2+\frac13\sum_kb_kb_{k+1}.
+\]
+The difference from $\sum_kb_k^2$ is
+$\frac16\sum_k(b_{k+1}-b_k)^2$.
+\end{proof}
+
+Iterating \eqref{eq:interpolation} gives a positive square hierarchy.
+
+\begin{corollary}[Difference hierarchy]\label{cor:difference-hierarchy}
+For every integer $M\ge1$,
+\begin{equation}\label{eq:difference-hierarchy}
+  \norm b_2^2
+  =\sum_{j=0}^{M-1}6^{-j}\norm{I\Delta^j b}_2^2
+   +6^{-M}\norm{\Delta^M b}_2^2.
+\end{equation}
+The remainder tends to zero as $M\to\infty$.  For $b=f*f$,
+\begin{align}
+  \Delta^{2m}(f*f)&=(\Delta^m f)*(\Delta^m f),\label{eq:even-diff-conv}\\
+  \Delta^{2m+1}(f*f)&=(\Delta^{m+1}f)*(\Delta^m f).
+  \label{eq:odd-diff-conv}
+\end{align}
+\end{corollary}
+
+\begin{proof}
+Iterate \cref{lem:interpolation}.  Since
+$\norm\Delta_{\ell^2\to\ell^2}\le2$, the remainder is at most
+$(4/6)^M\norm b_2^2$.  The convolution identities follow from the Fourier
+multiplier of $\Delta$.
+\end{proof}
+
+\subsection{A scale-dependent embedding}
+
+Let $f=(f_0,\ldots,f_{n-1})$, and for $p>0$ define the step function
+\begin{equation}\label{eq:Gnp}
+  G_{n,p}(x):=n^{1/p}f_j,
+  \qquad x\in[j/n,(j+1)/n).
+\end{equation}
+Then
+\begin{equation}\label{eq:Gnp-pnorm}
+  \norm{G_{n,p}}_{L^p(\R)}=\norm f_{\ell^p}.
+\end{equation}
+If $b=f*f$, the convolution $G_{n,p}*G_{n,p}$ is, up to scaling and a
+translation, the piecewise-linear interpolation of $b$.  Therefore
+\cref{lem:interpolation} gives an exact discrete--continuous bridge.
+
+\begin{proposition}[Exact scale-$n$ bridge]\label{prop:scale-n-bridge}
+For every finite profile $f$ supported in $I_n$,
+\begin{equation}\label{eq:scale-n-bridge}
+  \boxed{
+  Q(f)
+  =n^{3-4/p}\norm{G_{n,p}*G_{n,p}}_{L^2(\R)}^2
+   +\frac16\norm{\Delta(f*f)}_{\ell^2}^2.}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Let $T=\one_{[0,1]}*\one_{[0,1]}$.  If $b=f*f$, then
+\[
+  (G_{n,p}*G_{n,p})(x)
+  =n^{2/p-1}\sum_s b_sT(nx-s).
+\]
+The sum on the right is a translate of the hat-function interpolation
+$Ib$.  Hence
+\[
+  \norm{G_{n,p}*G_{n,p}}_2^2
+  =n^{4/p-3}\norm{Ib}_2^2.
+\]
+Substitute this identity into \cref{lem:interpolation}.
+\end{proof}
+
+Let
+\begin{equation}\label{eq:GammaY}
+  \Gamma:=\frac{3\sqrt3}{4},
+  \qquad
+  Y^2:=\Gamma^{-1}=\frac4{3\sqrt3}.
+\end{equation}
+The sharp continuous Young inequality at exponent $4/3$ is
+\begin{equation}\label{eq:continuous-young}
+  \norm{g*g}_2^2\le Y^2\norm g_{4/3}^4,
+\end{equation}
+with Gaussian extremizers \cite{Beckner1975,BrascampLieb1976}.  Define the
+continuous deficit
+\begin{equation}\label{eq:young-deficit}
+  \Def_Y(g):=Y^2\norm g_{4/3}^4-\norm{g*g}_2^2\ge0.
+\end{equation}
+Since
+\[
+  \norm f_{4/3}^4
+  =n^{3-4/p}\norm{G_{n,p}}_{4/3}^4,
+\]
+\eqref{eq:scale-n-bridge} becomes
+\begin{equation}\label{eq:compensated-identity}
+  \boxed{
+  Q(f)
+  =Y^2\norm f_{4/3}^4
+   -n^{3-4/p}\Def_Y(G_{n,p})
+   +\frac16\norm{\Delta(f*f)}_2^2.}
+\end{equation}
+Thus the desired inequality $Q(f)\le\norm f_p^4$ is exactly equivalent to
+\begin{equation}\label{eq:compensated-deficit}
+  \frac16\norm{\Delta(f*f)}_2^2
+  -n^{3-4/p}\Def_Y(G_{n,p})
+  \le \norm f_p^4-Y^2\norm f_{4/3}^4.
+\end{equation}
+The positive lattice roughness and the positive Euclidean Young deficit
+appear with opposite signs.  Atomic profiles have large contributions of
+both types; broad Gaussian profiles have both contributions small.
+
+\section{Entropy formulation and the two-well picture}
+
+For $p>4/3$, put
+\begin{equation}\label{eq:rho-delta}
+  \rho:=\frac{3p}{4}>1,
+  \qquad
+  \delta:=3-\frac4p=\frac{3(\rho-1)}{\rho}.
+\end{equation}
+For $f\ne0$, define a probability distribution
+\begin{equation}\label{eq:mu-f}
+  \mu_j:=\frac{f_j^{4/3}}{\sum_kf_k^{4/3}}
+\end{equation}
+and its R\'enyi entropy
+\begin{equation}\label{eq:Renyi}
+  H_\rho(\mu):=\frac1{1-\rho}\log\sum_j\mu_j^\rho.
+\end{equation}
+A direct calculation gives the exact identity
+\begin{equation}\label{eq:entropy-norm}
+  \boxed{
+  \frac{\norm f_p^4}{\norm f_{4/3}^4}
+  =\exp\bigl(-\delta H_\rho(\mu_f)\bigr).}
+\end{equation}
+Define the normalized additive energy
+\begin{equation}\label{eq:normalized-energy}
+  \mathscr E(f):=\frac{Q(f)}{\norm f_{4/3}^4}.
+\end{equation}
+Then $Q(f)\le\norm f_p^4$ is equivalent to
+\begin{equation}\label{eq:entropy-energy}
+  -\log\mathscr E(f)\ge\delta H_\rho(\mu_f).
+\end{equation}
+Accordingly, set
+\begin{equation}\label{eq:Lambda}
+  \Lambda_n(\rho):=
+  \inf_{\substack{0\ne f\colon I_n\to[0,\infty)\\H_\rho(\mu_f)>0}}
+  \frac{-\log\mathscr E(f)}{H_\rho(\mu_f)}.
+\end{equation}
+The exponent $p$ is admissible exactly when
+\begin{equation}\label{eq:Lambda-admissible}
+  \delta\le\Lambda_n(\rho).
+\end{equation}
+
+This formulation makes the large-alphabet constant transparent.  A broad
+Gaussian profile has
+\[
+  -\log\mathscr E(f)\sim\log\Gamma,
+  \qquad
+  H_\rho(\mu_f)\sim\log n,
+\]
+whereas a point mass has both entropy and energy loss equal to zero.  Thus
+the predicted first-order asymptotic is equivalent to
+\begin{equation}\label{eq:Lambda-target}
+  \Lambda_n(\rho)
+  =(1+o(1))\frac{\log\Gamma}{\log n}
+\end{equation}
+in the window $\rho=1+O(1/\log n)$.
+
+The correct inverse statement therefore has two wells rather than one:
+\begin{equation}\label{eq:two-well}
+  \boxed{
+  \begin{gathered}
+  \text{near extremizer}\Longrightarrow\\
+  \text{atomic profile}
+  \quad\text{or}\quad
+  \text{broad approximately Gaussian profile}
+  \end{gathered}}
+\end{equation}
+The support theorem rules out arbitrary exact multi-packets, while the
+one-scale renormalization theorem rules out a near-lossless intermediate
+split unless it is either highly atomic or balanced with small phase and
+magnitude defect.
+
+\section{The remaining multiscale rigidity problem}
+
+Let $t_n$ denote the optimal dimension-free additive-energy exponent on
+$\{0,1,\ldots,n-1\}^d$.  Shao proved nontrivial upper and lower bounds and
+the Gaussian lower side predicts
+\begin{equation}\label{eq:tn-conj}
+  t_n
+  =3-(1+o(1))\log_n\Gamma,
+  \qquad
+  \Gamma=\frac{3\sqrt3}{4}.
+\end{equation}
+Equivalently,
+\begin{equation}\label{eq:tn-conj2}
+  \lim_{n\to\infty}(3-t_n)\log_2 n
+  =\log_2\Gamma
+  =0.3774437510\ldots.
+\end{equation}
+This paper does not prove \eqref{eq:tn-conj}.  The preceding exact results
+reduce the missing argument to the following multiscale rigidity problem.
+
+\begin{conjecture}[Refinement rigidity]\label{conj:rigidity}
+Let $p_n=4/3+O(1/\log n)$ and let $f^{(n)}$ be normalized profiles whose
+sharp quotients are asymptotically critical.  Outside paths carrying
+asymptotically atomic mass, the parity cascade satisfies, on all but
+$o(\log n)$ active scales,
+\[
+  \left|u_v-\frac12\right|=o(1),
+  \qquad
+  \Delta_v=o(1).
+\]
+After translation and rescaling, the non-atomic component is precompact in
+a continuum topology strong enough to pass to Young's inequality.
+Every nonzero limit is a Gaussian extremizer.
+\end{conjecture}
+
+A proof should naturally divide into three stages.
+
+\begin{enumerate}[label=\textup{\arabic*.},leftmargin=2.2em]
+  \item \emph{Cascade concentration.}  Use
+  \eqref{eq:cascade-normalized} and \cref{prop:one-scale-dichotomy} to show
+  that a near-critical average path has only atomic or balanced-small-defect
+  nodes on most active scales.
+  \item \emph{Refinement compactness.}  Convert the square defect
+  \eqref{eq:intro-renorm-squares} into quantitative compatibility of
+  neighboring dyadic polyphase components and hence into regularity of a
+  rescaled interpolation.
+  \item \emph{Gaussian identification.}  Combine the compactness with the
+  compensated identity \eqref{eq:compensated-identity}, the
+  Euler--Lagrange equation, and stability of the sharp continuous Young
+  inequality to identify the limit.
+\end{enumerate}
+
+The reflection theorem is now local rather than global: once the broad
+profile enters the $O(1/\log n)$ basin of a symmetric branch,
+\cref{prop:reflection-basin} closes the odd directions automatically.  The
+remaining task is therefore not an $n$-variable symmetrization, but a
+multiscale compactness and rigidity theorem.
+
+\section{Beyond the Hilbertian point}\label{sec:general-r}
+
+The exact tensorisation in \cref{prop:tensorisation} is valid for every $r\ge1$, even though the one-dimensional optimisation is explicitly solved here only for $r=2$.  It is useful to isolate the obstruction obtained by taking one input constant.  For $1\le r<\infty$ and $q\in[1,\infty]$, define
+\begin{equation}\label{eq:Gamma-r}
+  \Gamma_r(q)
+  :=\sup_{0\le t\le1}
+  \left[
+    \frac1r\logtwo\bigl(1+(1+t)^r+t^r\bigr)
+    -\frac1q\logtwo(1+t^q)
+  \right],
+\end{equation}
+where the second term is interpreted as zero for $q=\infty$.
+
+\begin{proposition}\label{prop:general-edge}
+Let $p,q\in[1,\infty]$ and $1\le r<\infty$.  If
+\begin{equation}\label{eq:general-constant-one}
+  \|f*g\|_r\le\|f\|_p\|g\|_q
+\end{equation}
+holds for every dimension and all functions supported on $Q_d$, then
+\begin{equation}\label{eq:general-edge-conditions}
+  \frac1p\ge\Gamma_r(q),
+  \qquad
+  \frac1q\ge\Gamma_r(p).
+\end{equation}
+For $r=2$, these conditions are also sufficient.
+\end{proposition}
+
+\begin{proof}
+By exact tensorisation, \eqref{eq:general-constant-one} is equivalent to the two-point constant being at most one.  Taking the first input to be $(1,1)$ and the second to be $(1,t)$ gives
+\[
+  \bigl(1+(1+t)^r+t^r\bigr)^{1/r}
+  \le2^{1/p}(1+t^q)^{1/q},
+\]
+which is equivalent to the first condition in \eqref{eq:general-edge-conditions}.  Interchanging the inputs gives the second.  When $r=2$,
+\[
+  \Gamma_2(q)=\frac{1+\Lambdaq(q)}2,
+\]
+so sufficiency is precisely \cref{cor:phase-region}.
+\end{proof}
+
+The choices $t=0$ and $t=1$ in \eqref{eq:Gamma-r} recover the familiar necessary conditions
+\[
+  p,q\le r,
+  \qquad
+  \frac1p+\frac1q
+  \ge\frac{\logtwo(2+2^r)}r.
+\]
+The diagonal problem $p=q$ is solved for every $r\ge1$ in \cite{BIMP,CKS}.  The endpoint $r=1$ is elementary: the conditions above force $p=q=1$.  For $1<r<\infty$ with $r\ne2$, a complete off-diagonal characterisation is not known beyond the diagonal and partial off-diagonal results in \cite{BIMP,CKS}.  The special feature of $r=2$ is the factorisation \eqref{eq:hilbert-identity}: after $\ell^2$ normalisation, the numerator depends on the two inputs only through the product $uv$.  For a general $r$, the expression
+\[
+  1+(x+y)^r+(xy)^r
+\]
+retains genuinely two-variable dependence, and interior extremisers are not excluded by the present argument.  Nevertheless, \cref{prop:tensorisation,prop:general-edge} reduce the problem completely to an explicit two-variable extremal problem and identify the exact boundary tests that become sufficient in the quadratic case.
+
+For later compactness arguments it is useful to separate the point-mass tails
+from the compact interior.  In anti-aligned point-mass coordinates set
+\begin{equation}\label{eq:point-mass-ratio}
+  \mathcal R_{p,q,r}(x,y)
+  :=
+  \frac{\bigl[x^r+y^r+(1+xy)^r\bigr]^{1/r}}
+  {(1+x^p)^{1/p}(1+y^q)^{1/q}},
+  \qquad 0\le x,y\le1.
+\end{equation}
+
+\begin{lemma}
+\label{lem:tail-exclusion}
+Let $K$ be a compact set of finite exponent triples $(p,q,r)$ satisfying
+\begin{equation}\label{eq:tail-strict-conditions}
+  1\le p<r,\quad 1\le q<r,\quad \frac1p+\frac1q>1
+\end{equation}
+at every point of $K$.  There is $\rho\in(0,1)$ such that, uniformly for
+$(p,q,r)\in K$,
+\[
+  \mathcal R_{p,q,r}(x,y)<1
+\]
+whenever $(x,y)\ne(0,0)$ and $\min\{x,y\}<\rho$.
+
+The three strict conditions are sharp for this type of tail exclusion.  If
+$p\ge r$, then $\mathcal R_{p,q,r}(x,0)\ge1$ for $x>0$, with equality for
+$p=r$ and strict inequality for $p>r$; the analogous assertion holds for
+$q$ and $y$.  If $a:=1/p+1/q\le1$, then along
+$x=s^{1/p}$, $y=s^{1/q}$ one has $\mathcal R_{p,q,r}(x,y)>1$ for every
+$s\in(0,1]$ when $a=1$, and for all sufficiently small $s>0$ when $a<1$.
+\end{lemma}
+
+\begin{proof}
+For $0<t\le1$ put $h_t(c)=c^{-1}\log(1+t^c)$.  Direct differentiation
+shows that $h_t'(c)<0$.  Hence, for example,
+\[
+  \mathcal R_{p,q,r}(0,y)
+  =\frac{(1+y^r)^{1/r}}{(1+y^q)^{1/q}}<1
+\]
+when $0<y\le1$ and $q<r$, and similarly on the other punctured axis.
+
+We prove a uniform corner estimate.  Compactness and strictness give
+\begin{align*}
+  M&:=\max_K\max\{p,q,r\}<\infty,\\
+  d&:=\min_K\min\{r-p,r-q\}>0,\\
+  \sigma&:=\min_K\left(\frac1p+\frac1q-1\right)>0,
+\end{align*}
+and let $m:=\min_K\min\{p,q\}\ge1$ and $C:=M2^{M-1}$.  If
+$0\le x,y\le\delta\le1$, write $X=x^p$, $Y=y^q$, and $T=X+Y$.
+The estimates $\log(1+v)\le v$, $\log(1+v)\ge v/2$ for $0\le v\le1$,
+and $(1+xy)^r-1\le Cxy$ give
+\[
+  \log\mathcal R_{p,q,r}(x,y)
+  \le x^r+y^r+Cxy-\frac{T}{2M}.
+\]
+Here $x^r\le\delta^dX$ and $y^r\le\delta^dY$.  Moreover, if
+$b=1/p+1/q$, then
+\[
+  xy=X^{1/p}Y^{1/q}\le T^b
+  \le T(2\delta^m)^\sigma
+\]
+once $2\delta^m\le1$.  Thus
+\[
+  \log\mathcal R_{p,q,r}(x,y)
+  \le
+  \left[\delta^d+C(2\delta^m)^\sigma-\frac1{2M}\right]T.
+\]
+Choosing $\delta$ so that the bracket is negative proves strict inequality
+on $[0,\delta]^2\setminus\{(0,0)\}$.  On the compact sets
+$K\times\{0\}\times[\delta,1]$ and
+$K\times[\delta,1]\times\{0\}$, the punctured-axis inequalities have a
+uniform strict gap.  Uniform continuity extends them to strips of widths
+$\eta_x,\eta_y>0$.  Taking
+$\rho=\min\{\delta,\eta_x,\eta_y\}$ covers every point in the asserted tail.
+
+For sharpness, the axis formula and the strict decrease of $h_x$ give the
+claims when $p\ge r$ or $q\ge r$.  Finally, on the displayed path with
+$a\le1$ the denominator is $(1+s)^a$, while the numerator is strictly larger
+than $1+s^a$.  This proves the claim for $a=1$; for $a<1$, it follows for
+small $s$ from
+\[
+  \frac{\log(1+s^a)-a\log(1+s)}{s^a}\longrightarrow1.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:tail-role}
+The lemma removes a noncompact tail for compact exponent families satisfying
+\eqref{eq:tail-strict-conditions}.  It does not compare critical points in the
+remaining compact region and therefore does not by itself prove global
+fixed-$q$ sharpness for $r\ne2$.
+\end{remark}
+
+\subsection{Signed hyperbolic coordinates and orientation}
+
+The two relative orientations of two strictly positive non-flat vectors are
+degenerate when $r=2$, and are strictly separated when $r>2$.  Equivalently,
+this assertion concerns two finite nonzero hyperbolic biases.  To make it
+precise, put
+\begin{equation}\label{eq:signed-profiles}
+  f_z=(e^{z/2},e^{-z/2}),
+  \qquad
+  g_w=(e^{-w/2},e^{w/2}).
+\end{equation}
+Homogeneity and a common reflection of the two coordinates show that positive
+two-vectors are covered by $z\in\R$ and $w\ge0$, with zero coordinates obtained
+as limits.  Their convolution is
+\[
+  f_z*g_w
+  =
+  \left(
+    e^{(z-w)/2},
+    2\cosh\frac{z+w}{2},
+    e^{(-z+w)/2}
+  \right).
+\]
+For finite $p,q,r$, define the logarithmic quotient
+\begin{align}\label{eq:Phi-def}
+  \Phi_{p,q,r}(z,w)
+  &:=\frac1r\log\left[
+    2\cosh\frac{r(z-w)}2
+    +\left(2\cosh\frac{z+w}{2}\right)^r
+  \right]\notag\\
+  &\quad
+  -\frac1p\log\left(2\cosh\frac{pz}{2}\right)
+  -\frac1q\log\left(2\cosh\frac{qw}{2}\right).
+\end{align}
+
+\begin{lemma}\label{lem:orientation}
+Let $r\ge2$.  Among the two relative orientations of two nonnegative
+two-vectors with prescribed unordered coordinate magnitudes, the $\ell^r$ norm
+of the convolution is maximised when the larger coordinates are oppositely
+placed.  For $r=2$ the two orientations always give the same norm.  For
+$r>2$, equality holds if and only if at least one vector is flat or a point
+mass; equivalently, the inequality is strict if and only if both vectors have
+two strictly positive, unequal coordinates.
+\end{lemma}
+
+\begin{proof}
+Write the two biases as $z,w\ge0$ and set
+\[
+  J_r(a):=\left(2\cosh\frac a2\right)^r-2\cosh\frac{ra}{2}.
+\]
+The anti-aligned numerator to the power $r$ minus the aligned numerator to the
+power $r$ is
+\[
+  J_r(z+w)-J_r(|z-w|).
+\]
+Moreover,
+\begin{equation}\label{eq:J-derivative}
+  J_r'(a)
+  =r\left[
+    \left(2\cosh\frac a2\right)^{r-1}\sinh\frac a2
+    -\sinh\frac{ra}{2}
+  \right].
+\end{equation}
+It remains to prove
+\begin{equation}\label{eq:hyperbolic-envelope}
+  \frac{\sinh(rs)}{\sinh s}\le(2\cosh s)^{r-1},
+  \qquad s>0,\quad r\ge2.
+\end{equation}
+With $x=e^{-2s}$, this is equivalent to
+\begin{equation}\label{eq:x-envelope}
+  1-x^r\le(1-x)(1+x)^{r-1}.
+\end{equation}
+The logarithm of the right-hand side divided by the left-hand side vanishes at
+$r=2$, and its $r$-derivative is
+\[
+  \log(1+x)+\frac{x^r\log x}{1-x^r}
+  \ge
+  \log(1+x)+\frac{x^2\log x}{1-x^2}.
+\]
+The last expression is nonnegative because
+\[
+  K(x):=(1-x^2)\log(1+x)+x^2\log x
+\]
+vanishes at $0$ and $1$ and is strictly concave on $(0,1)$:
+\[
+  K''(x)=2\left[\log\frac{x}{1+x}+\frac1{1+x}\right]<0.
+\]
+Thus \eqref{eq:x-envelope} holds, strictly for $r>2$.  It follows from
+\eqref{eq:J-derivative} that $J_r$ is nondecreasing, and it is strictly
+increasing on $(0,\infty)$ when $r>2$.  Since $z+w>|z-w|$ exactly when
+$z,w>0$, the stated strictness follows for finite positive biases.  Flat
+vectors and point masses give equality: if the ordered magnitudes are
+$A\ge B\ge0$ and $C\ge D\ge0$, then $A=B$ or $B=0$ makes the two convolution
+triples permutations of one another, and the same is true if $C=D$ or $D=0$.
+These are all the remaining cases, proving the equality statement.  Finally
+$J_2\equiv2$.
+\end{proof}
+
+At the quadratic curved boundary one of the inputs is flat, so the two
+orientations coincide.  The next calculation shows that this edge profile is
+transversely unstable as soon as $r>2$.
+
+\begin{proposition}[Transverse instability]\label{prop:transverse-instability}
+For every finite $p,q$, every $w>0$, and every $r>2$,
+\begin{equation}\label{eq:transverse-derivative}
+  \partial_z\Phi_{p,q,r}(0,w)
+  =
+  \frac{(2\cosh(w/2))^{r-1}\sinh(w/2)-\sinh(rw/2)}
+  {2\cosh(rw/2)+(2\cosh(w/2))^r}>0.
+\end{equation}
+At $r=2$ the derivative vanishes identically.
+
+Consequently, for each fixed $q\in(1,4/3)$ there is $\varepsilon_q>0$ such
+that, whenever $2<r<2+\varepsilon_q$ and
+\[
+  \frac1{p_e(r,q)}=\Gamma_r(q),
+\]
+both conditions in \eqref{eq:general-edge-conditions} hold at $(p_e(r,q),q)$,
+but
+\[
+  \Cpqr_1(p_e(r,q),q;r)>1.
+\]
+Thus the two edge conditions cease to be jointly sufficient immediately to the
+right of $r=2$.
+\end{proposition}
+
+\begin{proof}
+Differentiating \eqref{eq:Phi-def} at $z=0$ gives
+\eqref{eq:transverse-derivative}; its sign is the strict form of
+\eqref{eq:hyperbolic-envelope}.  Fix now $q\in(1,4/3)$.  At $r=2$, the
+maximiser defining $\Gamma_2(q)$ is the unique interior point $t_q$ from
+\cref{lem:Lambda-analysis}.  Its second derivative is negative.  Choose a
+small neighbourhood $U$ of $t_q$, shrinking it if necessary so that it lies
+inside the IFT uniqueness neighbourhood.  The continuous edge objective at $r=2$
+has a strict positive gap between its value at $t_q$ and its maximum on
+$[0,1]\setminus U$.  Since the edge objectives converge uniformly on $[0,1]$
+as $r\to2$, every global maximiser for nearby $r$ lies in $U$.  The implicit
+  analytic implicit function theorem and the nonzero second derivative give a
+  unique real-analytic critical point there.  Every global maximiser lies in
+  $U$ and is therefore that point.  Thus the global edge maximiser, its
+  positive bias $w_e(r,q)$, and $\Gamma_r(q)$ are real analytic for $r$ near
+  $2$.  At the edge
+exponent,
+\[
+  \Phi_{p_e,q,r}(0,w_e)=0,
+\]
+while \eqref{eq:transverse-derivative} supplies a direction with positive
+derivative.  Hence the two-variable supremum is positive.
+
+It remains to check the other edge condition.  Write
+$p_0=1/\Gamma_2(q)$.  The elementary estimates
+\[
+  \sqrt{2(1+t+t^2)}\le\sqrt2(1+t),
+  \qquad
+  (1+t^q)^{1/q}\ge2^{1/q-1}(1+t)
+\]
+give $\Gamma_2(q)\le3/2-1/q<3/4$, hence $p_0>4/3$.
+Since the interior maximiser $t_q$ strictly beats $t=1$,
+\[
+  \Lambdaq(q)+\frac2q>\logtwo3.
+\]
+Using the explicit formula in \cref{lem:Lambda-analysis} at $p_0>4/3$ and
+$2/p_0=1+\Lambdaq(q)$, we obtain
+\[
+  \frac1q-\Gamma_2(p_0)
+  =\frac{\Lambdaq(q)+2/q-\logtwo3}{2}>0.
+\]
+The second edge condition therefore persists by continuity after decreasing
+$\varepsilon_q$.
+\end{proof}
+
+\subsection{The fixed-\texorpdfstring{$q$}{q} global branch}
+
+We next quantify the bifurcation.  It is convenient to write
+$\alpha=1/p$ and to regard \eqref{eq:Phi-def} as $\Phi_{\alpha,q,r}$, so that
+the first norm term is
+\[
+  -\alpha\log\left(2\cosh\frac{z}{2\alpha}\right).
+\]
+
+\begin{lemma}
+\label{lem:quadratic-edge-derivatives}
+Put
+\[
+  N_r(z,w):=2\cosh\frac{r(z-w)}2
+  +\left(2\cosh\frac{z+w}{2}\right)^r.
+\]
+When $r=2$,
+\begin{equation}\label{eq:N2-factor}
+  N_2(z,w)=2\bigl(1+2\cosh z\cosh w\bigr).
+\end{equation}
+At every $(0,w)$ one has
+\begin{align}\label{eq:quadratic-edge-mixed-derivatives}
+  \Phi_z&=0,&
+  \Phi_{zz}&=\frac{\cosh w}{1+2\cosh w}-\frac p4,&
+  \Phi_{zw}&=\Phi_{z\alpha}=\Phi_{w\alpha}=0,&
+  \Phi_\alpha&=-\log2.
+\end{align}
+If $t=e^{-w}$, $P(t)=1+t+t^2$, and
+\[
+  K_q(t):=t^{q-1}(2+t)-(1+2t),
+\]
+then
+\begin{equation}\label{eq:quadratic-edge-w-derivative}
+  \Phi_w(0,w)
+  =\frac{tK_q(t)}{2P(t)(1+t^q)}.
+\end{equation}
+At a zero of $K_q$,
+\begin{equation}\label{eq:quadratic-edge-ww-derivative}
+  \Phi_{ww}(0,w)
+  =-\frac{t^2K_q'(t)}{2P(t)(1+t^q)}.
+\end{equation}
+Finally,
+\begin{equation}\label{eq:quadratic-edge-zr-derivative}
+  \left.\Phi_{zr}(0,w)\right|_{r=2}
+  =\frac{\sinh w\log(2\cosh(w/2))-(w/2)\cosh w}
+  {2+4\cosh w}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The addition formulas for $\cosh$ give \eqref{eq:N2-factor}.  Differentiating
+its logarithm and the two norm terms gives
+\eqref{eq:quadratic-edge-mixed-derivatives}.  At $z=0$, cancellation of the
+$\log t$ terms yields
+\[
+  \Phi(0,w)
+  =\left(\frac12-\alpha\right)\log2
+   +\frac12\log P(t)-\frac1q\log(1+t^q).
+\]
+Since $\dd t/\dd w=-t$, this proves
+\eqref{eq:quadratic-edge-w-derivative}; differentiating once more at a zero of
+$K_q$ proves \eqref{eq:quadratic-edge-ww-derivative}.  The numerator of
+$\Phi_z(0,w)$ vanishes at $r=2$.  Differentiating that numerator in $r$ and
+dividing by its $r=2$ denominator gives
+\eqref{eq:quadratic-edge-zr-derivative}.
+\end{proof}
+
+The following exact quadratic equality set will be a useful base point for any
+future local-to-global continuation.
+
+\begin{proposition}[Quadratic equality set and compact gap]
+\label{prop:quadratic-equality-gap}
+Fix $q\in(1,4/3)$, let $t_0=t_q$, and put
+$p_0=1/\Gamma_2(q)$.  Then $4/3<p_0<2$ and
+\[
+  \mathcal R_{p_0,q,2}(x,y)\le1,
+  \qquad (x,y)\in[0,1]^2.
+\]
+Equality holds exactly at $(0,0)$ and $(1,t_0)$.  Consequently every compact
+subset of $[0,1]^2$ disjoint from these two points has a uniform strict gap
+below one.
+\end{proposition}
+
+\begin{proof}
+The estimates used in the proof of \cref{prop:transverse-instability} give
+\[
+  \frac12<\Gamma_2(q)\le\frac32-\frac1q<\frac34,
+\]
+where the first inequality is strict because the interior maximiser beats
+$t=0$.  Hence $4/3<p_0<2$.  By \cref{lem:Lambda-analysis}, for $s\ge4/3$,
+\begin{equation}\label{eq:Gamma-above-four-thirds}
+  \Gamma_2(s)=\frac12\logtwo6-\frac1s.
+\end{equation}
+The unique interior $q$-edge maximiser strictly beats $t=1$, so
+\[
+  \Gamma_2(q)>\frac12\logtwo6-\frac1q.
+\]
+Using $1/p_0=\Gamma_2(q)$ in
+\eqref{eq:Gamma-above-four-thirds} therefore gives
+$\Gamma_2(p_0)<1/q$.  Thus the edge $x=1$ has equality only at $y=t_0$,
+while the edge $y=1$ is everywhere strict.  The axes are strict away from the
+origin because $p_0,q<2$ and $c\mapsto c^{-1}\log(1+t^c)$ is strictly
+decreasing.  The boundary reduction \cref{prop:edge-reduction} gives the
+inequality on the whole square.  Its proof also shows that the logarithm of
+the reciprocal quotient has no interior local minimum.  Hence there can be no
+additional interior equality point.  The compact-gap assertion follows from
+continuity.
+\end{proof}
+
+\begin{theorem}[Global fixed-$q$ continuation]\label{thm:fixed-q-global}
+Fix $q\in(1,4/3)$.  Let $t_0=t_q$ be the unique solution of
+\begin{equation}\label{eq:t0-local}
+  t_0^{q-1}(2+t_0)=1+2t_0,
+\end{equation}
+and put
+\[
+  w_0=-\log t_0,
+  \qquad
+  \alpha_0=\Gamma_2(q),
+  \qquad
+  p_0=\frac1{\alpha_0}.
+\]
+Define
+\begin{align}
+  b(q)
+  &:= \frac{p_0}{4}-\frac{\cosh w_0}{1+2\cosh w_0},\label{eq:b-def}\\
+  a(q)
+  &:=
+  \frac{\sinh w_0\log(2\cosh(w_0/2))-(w_0/2)\cosh w_0}
+  {2+4\cosh w_0}.
+  \label{eq:a-def}
+\end{align}
+Then $a(q),b(q)>0$.  There are $\varepsilon_q>0$ and unique real-analytic functions
+\[
+  z_{\rm loc}(r,q),\qquad
+  w_{\rm loc}(r,q),\qquad
+  \alpha_{\rm loc}(r,q)
+\]
+for $|r-2|<\varepsilon_q$, in a neighbourhood of
+$(0,w_0,\alpha_0)$, such that
+\begin{equation}\label{eq:local-system}
+  \Phi=\Phi_z=\Phi_w=0.
+\end{equation}
+After possibly decreasing $\varepsilon_q$, for every
+$r\in[2,2+\varepsilon_q)$ one has
+\[
+  z_{\rm loc}(r,q)\ge0,\qquad
+  w_{\rm loc}(r,q)>0,\qquad
+  \alpha_{\rm loc}(r,q)>0,
+\]
+and the Hessian in $(z,w)$ is negative definite along the branch.  Put
+\[
+  p_q(r):=\frac1{\alpha_{\rm loc}(r,q)}.
+\]
+Then
+\begin{equation}\label{eq:fixed-q-global-ratio}
+  \mathcal R_{p_q(r),q,r}(x,y)\le1,
+  \qquad (x,y)\in[0,1]^2,
+\end{equation}
+with equality exactly at
+\begin{equation}\label{eq:fixed-q-equality-set}
+  (x,y)=(0,0)
+  \quad\text{and}\quad
+  (x,y)=
+  \left(e^{-z_{\rm loc}(r,q)},e^{-w_{\rm loc}(r,q)}\right).
+\end{equation}
+Consequently, for arbitrary complex functions supported on $Q_d$,
+\begin{equation}\label{eq:fixed-q-global-d}
+  \|f*g\|_r
+  \le\|f\|_{p_q(r)}\|g\|_q,
+  \qquad d\ge1,
+\end{equation}
+and the sharp constant satisfies
+\[
+  \Cpqr_d(p_q(r),q;r)=1.
+\]
+Besides the double point mass, explicit
+equality cases are the tensor powers of
+\begin{equation}\label{eq:fixed-q-tensor-factors}
+  u_r=\left(1,e^{-z_{\rm loc}(r,q)}\right),
+  \qquad
+  v_r=\left(e^{-w_{\rm loc}(r,q)},1\right).
+\end{equation}
+No complete classification of equality in dimensions $d>1$ is asserted.
+
+As $r\to2$ with $q$ fixed,
+\begin{equation}\label{eq:z-expansion}
+  z_{\rm loc}(r,q)
+  =\frac{a(q)}{b(q)}(r-2)+O_q((r-2)^2),
+\end{equation}
+\begin{equation}\label{eq:w-expansion}
+  w_{\rm loc}(r,q)-w_e(r,q)=O_q((r-2)^2),
+\end{equation}
+where $w_e(r,q)$ is the unique global flat-edge maximiser, and
+\begin{equation}\label{eq:alpha-expansion}
+  \alpha_{\rm loc}(r,q)
+  =\Gamma_r(q)
+  +\frac{a(q)^2}{2b(q)\log2}(r-2)^2
+  +O_q((r-2)^3).
+\end{equation}
+\begin{equation}\label{eq:p-expansion}
+  p_q(r)
+  =\frac1{\Gamma_r(q)}
+  -\frac{a(q)^2}
+  {2b(q)\log2\,\Gamma_r(q)^2}(r-2)^2
+  +O_q((r-2)^3).
+\end{equation}
+Every $O_q$ constant and validity radius here may depend on the fixed $q$.
+In particular, $z_{\rm loc}(r,q)>0$ for $r>2$ sufficiently close to $2$, and
+the globally sharp biased--biased level requires a strictly larger reciprocal
+exponent than the edge test.
+\end{theorem}
+
+\begin{proof}
+At $(z,w,\alpha,r)=(0,w_0,\alpha_0,2)$, the three equations in
+\eqref{eq:local-system} hold.  By
+\cref{lem:quadratic-edge-derivatives},
+\[
+  \Phi_{zw}=\Phi_{z\alpha}=\Phi_{w\alpha}=0,
+  \qquad
+  \Phi_{\alpha}=-\log2,
+\]
+and
+\[
+  \Phi_{zz}=-b(q).
+\]
+To record the other curvature, define
+\[
+  K_q(t):=t^{q-1}(2+t)-(1+2t).
+\]
+The one-variable analysis in \cref{lem:Lambda-analysis} gives
+$K_q'(t_0)>0$, and \eqref{eq:quadratic-edge-ww-derivative} yields
+\begin{equation}\label{eq:c-def}
+  c(q):=-\Phi_{ww}
+  =\frac{t_0^2K_q'(t_0)}
+  {2(1+t_0+t_0^2)(1+t_0^q)}>0.
+\end{equation}
+It remains to verify $b(q)>0$.  Return to the balance variables of
+\cref{sec:boundary-reduction} and set
+\[
+  \tau_0:=\log\cosh w_0.
+\]
+Since $\log\cosh z=z^2/2+O(z^4)$ and $D$ is the logarithm of the reciprocal
+quotient, direct comparison with \eqref{eq:Phi-def} gives
+\[
+  b(q)=D_s(0,\tau_0).
+\]
+The quadratic sharp inequality and $D(0,\tau_0)=0$ imply $b(q)\ge0$.  Suppose
+that equality held.  Edge stationarity would also give
+$D_\tau(0,\tau_0)=0$.  Put $R=e^{-\tau_0}$ and
+$h=H''(\tau_0)=R/(2+R)^2$.  The two critical equations imply
+\[
+  c_{p_0}(0)=c_q(w_0)=\frac2{2+R},
+  \qquad c_{p_0}(0)(1-c_{p_0}(0))
+  =c_q(w_0)(1-c_q(w_0))=2h.
+\]
+Here $p_0,q<2$.  If $\beta=p_0/2$, expansion at the boundary gives
+\[
+  A_{p_0}''(0)=\frac{\beta(1-\beta^2)}3
+  <\beta(1-\beta)=2h,
+\]
+while \eqref{eq:curvature-upper} gives $0<A_q''(\tau_0)<2h$.  Therefore, if
+$X=A_{p_0}''(0)/h$ and $Y=A_q''(\tau_0)/h$, then $X,Y\in(0,2)$ and
+\[
+  \frac{\det\nabla^2D(0,\tau_0)}{h^2}
+  =XY-X-Y=(X-1)(Y-1)-1<0.
+\]
+Thus the Hessian has a negative direction with positive $s$-component.
+Taylor expansion along a sufficiently short feasible step gives $D<0$,
+contradicting the quadratic sharp inequality.  Hence $b(q)>0$.
+
+Thus the Jacobian of $(\Phi,\Phi_z,\Phi_w)$ in $(z,w,\alpha)$ is
+\begin{equation}\label{eq:ift-jacobian}
+  \begin{pmatrix}
+    0&0&-\log2\\
+    -b(q)&0&0\\
+    0&-c(q)&0
+  \end{pmatrix},
+\end{equation}
+which is invertible.  The analytic implicit function theorem proves the branch,
+and negative definiteness persists from the diagonal Hessian
+$\operatorname{diag}(-b,-c)$.
+
+Equation \eqref{eq:quadratic-edge-zr-derivative} gives
+\[
+  \Phi_{zr}(0,w_0,\alpha_0,q,2)=a(q).
+\]
+In terms of $t_0=e^{-w_0}$ its numerator is
+\[
+  (1-t_0^2)\log(1+t_0)+t_0^2\log t_0.
+\]
+The strict concavity calculation in the proof of
+\cref{lem:orientation} shows that this is positive for $0<t_0<1$, so
+$a(q)>0$.  Differentiating
+$\Phi_z=0$ along the branch and using the vanishing mixed derivatives gives
+\[
+  -b(q)\,\partial_r z_{\rm loc}(2,q)+a(q)=0,
+\]
+which proves \eqref{eq:z-expansion}.
+
+For the second expansion, let $w_e(r,q)$ denote the real-analytic edge maximiser and
+set $\alpha_e(r,q)=\Gamma_r(q)$.  Solve $\Phi_w=0$ locally for $w$ and
+substitute it into $\Phi$.  With $\epsilon=r-2$ and with the reciprocal
+exponent fixed at $\alpha_e(r,q)$, the resulting reduced function has the
+Taylor expansion
+\[
+  \widehat\Phi(z,\alpha_e,r)
+  =a(q)\epsilon z-\frac{b(q)}2z^2
+  +O_q\bigl(\epsilon^2|z|+|\epsilon|z^2+|z|^3\bigr).
+\]
+Its local maximiser is
+$z=a(q)\epsilon/b(q)+O_q(\epsilon^2)$, and substitution produces the gain
+\[
+  \frac{a(q)^2}{2b(q)}\epsilon^2+O_q(\epsilon^3).
+\]
+Since $\Phi_\alpha=-\log2$ at the base point, restoring the level
+$\Phi=0$ requires increasing $\alpha$ by this gain divided by $\log2$.  This
+proves \eqref{eq:alpha-expansion}.  Finally,
+$\Phi_{zw}=\Phi_{w\alpha}=0$ at $r=2$, while
+$z_{\rm loc}=O_q(\epsilon)$ and
+$\alpha_{\rm loc}-\alpha_e=O_q(\epsilon^2)$.  The equation $\Phi_w=0$ and
+analyticity therefore give $w_{\rm loc}-w_e=O_q(\epsilon^2)$, so the $w$
+adjustment does not alter the displayed coefficient.  This is
+\eqref{eq:w-expansion}.
+
+To obtain \eqref{eq:p-expansion}, put
+\[
+  \delta(r):=\alpha_{\rm loc}(r,q)-\Gamma_r(q)
+  =\frac{a(q)^2}{2b(q)\log2}\epsilon^2+O_q(\epsilon^3).
+\]
+The edge obstruction $\Gamma_r(q)$ is real analytic and stays bounded away
+from zero.  The exact identity
+\[
+  \frac1{\Gamma+\delta}
+  =\frac1\Gamma-\frac{\delta}{\Gamma^2}
+  +\frac{\delta^2}{\Gamma^2(\Gamma+\delta)}
+\]
+with $\Gamma=\Gamma_r(q)$ gives the claimed expansion.
+
+It remains to prove the global assertion.  For $z,w\ge0$ define
+\[
+  \Psi_r(z,w)
+  :=\log\mathcal R_{p_q(r),q,r}(e^{-z},e^{-w}).
+\]
+Multiplying the numerator inside $\mathcal R^r$ by
+$e^{r(z+w)/2}$, and doing the analogous cancellation in the two norm terms,
+gives the exact identity
+\begin{equation}\label{eq:Psi-Phi-identity}
+  \Psi_r(z,w)
+  =\Phi_{\alpha_{\rm loc}(r,q),q,r}(z,w).
+\end{equation}
+Thus the branch point
+\[
+  a_r:=\bigl(z_{\rm loc}(r,q),w_{\rm loc}(r,q)\bigr)
+\]
+has $\Psi_r(a_r)=0$ and $\nabla\Psi_r(a_r)=0$.  The expansion
+\eqref{eq:z-expansion} and continuity allow $\varepsilon_q$ to be decreased so
+that $z_{\rm loc}\ge0$, $w_{\rm loc}>0$, and $\alpha_{\rm loc}>0$ on the
+one-sided interval.
+
+We divide the noncompact quadrant into three regions.  First, at
+$a_0=(0,w_0)$ the Hessian is
+$\operatorname{diag}(-b(q),-c(q))$.  Hence there are $d_0,\lambda>0$ such that,
+after another decrease of $\varepsilon_q$,
+\[
+  \nabla^2\Psi_r\le-\lambda I
+  \quad\text{throughout }B(a_0,d_0)
+\]
+for all allowed $r$, and $a_r\in B(a_0,d_0/2)$.  Taylor's formula with integral
+remainder then gives
+\begin{equation}\label{eq:branch-chart-concavity}
+  \Psi_r(u)\le-\frac{\lambda}{2}|u-a_r|^2
+\end{equation}
+for $u\in B(a_0,d_0/2)\cap[0,\infty)^2$.  Equality in this branch chart occurs
+only at $a_r$.
+
+Second, \cref{prop:quadratic-equality-gap} gives $4/3<p_0<2$, and
+\[
+  \frac1{p_0}+\frac1q
+  =\Gamma_2(q)+\frac1q>1.
+\]
+Choose the final $\varepsilon_q$ with its closed one-sided interval inside the
+analytic domain.  By continuity, the triples
+\[
+  \bigl(p_q(r),q,r\bigr),\qquad 2\le r\le2+\varepsilon_q,
+\]
+form a compact family satisfying
+\[
+  1<p_q(r)<r,\qquad 1<q<r,\qquad
+  \frac1{p_q(r)}+\frac1q>1.
+\]
+The tail lemma \cref{lem:tail-exclusion} therefore supplies $\rho_0>0$ such
+that
+\begin{equation}\label{eq:fixed-q-tail}
+  \mathcal R_{p_q(r),q,r}(x,y)<1
+\end{equation}
+whenever $(x,y)\ne(0,0)$ and $\min\{x,y\}<\rho_0$.  Decrease $\rho_0$ so that
+$\rho_0<t_0$ and $W_0:=-\log\rho_0>w_0+d_0$.
+
+Third, consider the compact logarithmic core
+\[
+  C:=[0,W_0]^2.
+\]
+At $r=2$, the equality set in
+\cref{prop:quadratic-equality-gap} shows that $\Psi_2$ vanishes in $C$ only at
+$a_0$.  It is therefore bounded above by some $-\eta<0$ on the compact set
+$C\setminus B(a_0,d_0/2)$.  Uniform continuity in $(r,z,w)$, after decreasing
+$\varepsilon_q$ once more, gives
+\begin{equation}\label{eq:fixed-q-compact-middle}
+  \Psi_r\le-\frac{\eta}{2}
+  \quad\text{on }C\setminus B(a_0,d_0/2).
+\end{equation}
+The branch point remains in $C$.  The concave chart
+\eqref{eq:branch-chart-concavity}, the compact-middle bound
+\eqref{eq:fixed-q-compact-middle}, and the tail bound
+\eqref{eq:fixed-q-tail} prove \eqref{eq:fixed-q-global-ratio} and the exact
+equality set \eqref{eq:fixed-q-equality-set}.  Notice in particular that the
+double point mass $(0,0)$ persists as an equality case.
+
+We finally pass from the normalized nonnegative ratio to arbitrary complex
+two-vectors.  The coefficientwise triangle inequality gives
+$|f*g|\le |f|*|g|$.  Sort the magnitudes of the two inputs as
+$A\ge B\ge0$ and $C\ge D\ge0$.  Reflections do not change any norm, and
+\cref{lem:orientation} bounds either relative orientation by
+\[
+  U_{\rm opp}=(AD,AC+BD,BC).
+\]
+For nonzero inputs put $x=B/A$ and $y=D/C$.  Homogeneity gives
+\[
+  \frac{\|U_{\rm opp}\|_r}
+  {\|(A,B)\|_{p_q(r)}\|(C,D)\|_q}
+  =\mathcal R_{p_q(r),q,r}(x,y)\le1.
+\]
+This proves the one-dimensional inequality for arbitrary complex inputs.
+Point masses show that its optimal constant is at least one, hence it is
+exactly one.  Exact tensorisation \cref{prop:tensorisation} now proves
+\eqref{eq:fixed-q-global-d} for every $d$.  Finally, convolution and all norms
+factor for tensor powers; since $(u_r,v_r)$ in
+\eqref{eq:fixed-q-tensor-factors} is the non-point-mass one-dimensional
+equality pair, its tensor powers give the announced equality examples.
+\end{proof}
+
+\begin{corollary}[Exact constant-one threshold]
+\label{cor:fixed-q-threshold}
+In the setting of \cref{thm:fixed-q-global}, for every $d\ge1$, every
+$r\in[2,2+\varepsilon_q)$, and every finite $p\ge1$,
+\begin{equation}\label{eq:fixed-q-threshold}
+  \Cpqr_d(p,q;r)=1
+  \quad\Longleftrightarrow\quad
+  1\le p\le p_q(r).
+\end{equation}
+Thus $p_q(r)$ is the exact constant-one threshold in every dimension.  If
+\[
+  p_e(r,q):=\frac1{\Gamma_r(q)},
+  \qquad
+  \kappa(q):=\frac{a(q)^2}{2b(q)\log2},
+\]
+then, as $r\to2$ with $q$ fixed,
+\begin{equation}\label{eq:fixed-q-edge-gap}
+  p_e(r,q)-p_q(r)
+  =\frac{\kappa(q)}{\Gamma_2(q)^2}(r-2)^2
+   +O_q((r-2)^3).
+\end{equation}
+In particular, $p_q(r)<p_e(r,q)$ for every $r>2$ sufficiently close to $2$.
+\end{corollary}
+
+\begin{proof}
+If $1\le p\le p_q(r)$, monotonicity of counting-measure norms gives
+$\|f\|_p\ge\|f\|_{p_q(r)}$.  Hence \eqref{eq:fixed-q-global-d} holds with
+$p$ in place of $p_q(r)$, and point masses show that the optimal constant is
+one.  If $p>p_q(r)$, the first factor $u_r$ in
+\eqref{eq:fixed-q-tensor-factors} has two nonzero coordinates, so strict norm
+monotonicity gives
+\[
+  \|u_r\|_p<\|u_r\|_{p_q(r)}.
+\]
+Since $(u_r,v_r)$ is an equality pair at $p_q(r)$, its quotient at $p$ is
+strictly larger than one.  Tensoring with point masses in the remaining
+$d-1$ coordinates proves $\Cpqr_d(p,q;r)>1$ for every $d$.
+
+Finally, \eqref{eq:p-expansion} and analyticity give
+$\Gamma_r(q)=\Gamma_2(q)+O_q(r-2)$.  Subtracting \eqref{eq:p-expansion} from
+$p_e(r,q)=1/\Gamma_r(q)$ therefore yields \eqref{eq:fixed-q-edge-gap}; its
+positive leading coefficient gives the strict inequality.
+\end{proof}
+
+\begin{corollary}[Compact-uniform global branch and threshold]
+\label{cor:compact-q-global}
+Let $K\Subset(1,4/3)$ be compact.  There are $\varepsilon_K>0$ and jointly
+real-analytic functions
+\[
+  z_K(q,r),\quad w_K(q,r),\quad \alpha_K(q,r),\quad
+  p_K(q,r):=\frac1{\alpha_K(q,r)}
+\]
+on an open neighbourhood of $K\times[2,2+\varepsilon_K]$, agreeing pointwise
+with the branch in \cref{thm:fixed-q-global}, such that, for every $q\in K$,
+$2\le r\le2+\varepsilon_K$, and $(x,y)\in[0,1]^2$,
+\begin{equation}\label{eq:compact-q-global-ratio}
+  \mathcal R_{p_K(q,r),q,r}(x,y)\le1,
+\end{equation}
+with equality exactly at $(0,0)$ and
+\[
+  (x,y)=\left(e^{-z_K(q,r)},e^{-w_K(q,r)}\right).
+\]
+For every $d\ge1$ and every finite $p\ge1$ one also has, throughout the same
+parameter rectangle,
+\begin{equation}\label{eq:compact-q-threshold}
+  \Cpqr_d(p,q;r)=1
+  \quad\Longleftrightarrow\quad
+  1\le p\le p_K(q,r).
+\end{equation}
+Uniformly for $q\in K$ as $r\to2$,
+\begin{align}
+  z_K(q,r)
+    &=\frac{a(q)}{b(q)}(r-2)+O_K((r-2)^2),\label{eq:compact-z-expansion}\\
+  w_K(q,r)-w_e(r,q)
+    &=O_K((r-2)^2),\label{eq:compact-w-expansion}\\
+  \alpha_K(q,r)
+    &=\Gamma_r(q)+\frac{a(q)^2}{2b(q)\log2}(r-2)^2
+      +O_K((r-2)^3),\label{eq:compact-alpha-expansion}\\
+  p_K(q,r)
+    &=\frac1{\Gamma_r(q)}
+      -\frac{a(q)^2}{2b(q)\log2\,\Gamma_r(q)^2}(r-2)^2
+      +O_K((r-2)^3).\label{eq:compact-p-expansion}
+\end{align}
+The radius and remainder constants may depend on $K$; no uniformity is asserted
+as $K$ approaches either endpoint $1$ or $4/3$.
+\end{corollary}
+
+\begin{proof}
+Enclose $K$ in a compact interval contained in $(1,4/3)$.  The parameter
+implicit-function theorem, compactness, and the uniform edge continuation give
+the jointly analytic branch and the four uniform Taylor remainders.  The same
+three-region decomposition as in \cref{thm:fixed-q-global}---now with common
+concavity, compact-gap, and tail constants---gives
+\eqref{eq:compact-q-global-ratio} and its exact equality set with one
+$\varepsilon_K$.  The triangle and orientation inequalities followed by
+tensorisation give constant one at $p_K(q,r)$ in every dimension.  Finally,
+counting-measure norm monotonicity proves the lower-$p$ half of
+\eqref{eq:compact-q-threshold}, while the positive two-coordinate branch,
+tensored with point masses, gives a quotient strictly larger than one for
+$p>p_K(q,r)$.
+\end{proof}
+
+\begin{corollary}[Complete one-dimensional complex equality cases]
+\label{cor:fixed-q-complex-equality}
+In the setting of \cref{thm:fixed-q-global}, put
+\[
+  x_q(r):=e^{-z_{\rm loc}(r,q)},
+  \qquad
+  y_q(r):=e^{-w_{\rm loc}(r,q)},
+\]
+let $J(a_0,a_1)=(a_1,a_0)$, and write
+$e_0=(1,0)$, $e_1=(0,1)$.  After decreasing $\varepsilon_q$,
+\[
+  0<y_q(r)<x_q(r)\le1,
+\]
+with $x_q(r)=1$ exactly when $r=2$.  For nonzero complex two-vectors $f,g$,
+equality in \eqref{eq:fixed-q-global-d} with $d=1$ holds if and only if one of
+the following occurs.
+\begin{enumerate}[label=\textup{(\alph*)}]
+  \item There are $\lambda,\mu\in\C\setminus\{0\}$ and $k,\ell\in\{0,1\}$
+  such that
+  \[
+    f=\lambda e_k,\qquad g=\mu e_\ell.
+  \]
+  \item There are $\lambda,\mu\in\C\setminus\{0\}$,
+  $\theta\in\R$, and $\sigma\in\{0,1\}$ such that
+  \begin{equation}\label{eq:complex-equality-family}
+    f=\lambda J^\sigma\bigl(1,x_q(r)e^{i\theta}\bigr),
+    \qquad
+    g=\mu J^\sigma\bigl(y_q(r)e^{-i\theta},1\bigr).
+  \end{equation}
+\end{enumerate}
+Thus all four point-mass support pairs persist, and the two positive-profile
+copies differ by simultaneous reflection.  Swapping the
+$p_q(r)$-input with the $q$-input is not an additional equality operation.
+\end{corollary}
+
+\begin{proof}
+Sort the coordinate magnitudes of $f$ as $A\ge B\ge0$ and those of $g$ as
+$C\ge D\ge0$, and put $X=B/A$, $Y=D/C$.  The proof of
+\cref{thm:fixed-q-global} gives the chain
+\[
+  \|f*g\|_r
+  \le\||f|*|g|\|_r
+  \le\|U_{\rm opp}\|_r
+  \le\|f\|_{p_q(r)}\|g\|_q.
+\]
+If equality holds, every comparison is equality.  The exact normalized
+equality set \eqref{eq:fixed-q-equality-set} gives either
+$(X,Y)=(0,0)$ or $(X,Y)=(x_q(r),y_q(r))$.  The first case is precisely
+\textup{(a)}.
+
+In the second case all four coordinate magnitudes are positive.  For $r>2$,
+the strict part of \cref{lem:orientation} forces their larger coordinates to
+be oppositely placed.  At $r=2$ the first profile is flat, and the same
+canonical placement may be chosen.  Hence, after a simultaneous reflection,
+the magnitudes are $A(1,x_q(r))$ and $C(y_q(r),1)$.
+Equality in the remaining complex triangle inequality is equivalent to
+$f_0g_1$ and $f_1g_0$ having the same argument.  Taking
+$\lambda=f_0$ and $\mu=g_1$ gives a real $\theta$ for which this condition is
+exactly \eqref{eq:complex-equality-family}.
+
+Conversely, point-mass pairs give equality directly.  For the family
+\eqref{eq:complex-equality-family} with $\sigma=0$, factoring out
+$\lambda\mu$ leaves convolution
+\[
+  \bigl(y_qe^{-i\theta},\,1+x_qy_q,\,x_qe^{i\theta}\bigr),
+\]
+whose quotient is
+$\mathcal R_{p_q(r),q,r}(x_q(r),y_q(r))=1$.  Simultaneous reflection reverses
+the three convolution coordinates, so $\sigma=1$ also gives equality.  Finally,
+$y_q(r)<x_q(r)$ follows at $r=2$ from $t_0<1$ and persists by continuity;
+$x_q(r)=1$ only at $r=2$ because $z_{\rm loc}(2,q)=0$ and
+$z_{\rm loc}(r,q)>0$ for $r>2$.
+\end{proof}
+
+\begin{proposition}[Endpoint degeneration of the fixed-$q$ branch]
+\label{prop:endpoint-degeneration}
+Let $c(q)$ be defined by \eqref{eq:c-def} and put
+\[
+  \kappa(q):=\frac{a(q)^2}{2b(q)\log2}.
+\]
+If $q=1+\varepsilon\downarrow1$ and
+$\rho_\varepsilon=2^{-1/\varepsilon}$, then
+\begin{align}\label{eq:lower-endpoint-asymptotics}
+  t_0&=\rho_\varepsilon
+       \left(1+O\left(\frac{\rho_\varepsilon}{\varepsilon}\right)\right),&
+  w_0&=\frac{\log2}{\varepsilon}
+       +O\left(\frac{\rho_\varepsilon}{\varepsilon}\right),\notag\\
+  a(q)&\sim\frac{t_0}{4},&
+  b(q)&\sim\frac{t_0}{2},&
+  c(q)&\sim\frac{\varepsilon t_0}{2},\notag\\
+  \frac{a(q)}{b(q)}&\longrightarrow\frac12,&
+  \kappa(q)&\sim\frac{t_0}{16\log2}.
+\end{align}
+If instead $\delta=4/3-q\downarrow0$, define
+\[
+  \alpha_*:=\frac12\logtwo3-\frac14,
+  \qquad p_*:=\frac1{\alpha_*},
+  \qquad b_*:=\frac{p_*}{4}-\frac13>0.
+\]
+Then
+\begin{align}\label{eq:upper-endpoint-asymptotics}
+  w_0^2&=\frac{81}{2}\delta+O(\delta^2),&
+  a(q)&=\frac{\log2-1/2}{6}w_0+O(w_0^3),\notag\\
+  b(q)&=b_*+O(\delta),&
+  c(q)&=\frac\delta2+O(\delta^2).
+\end{align}
+In particular, the determinant of the Jacobian in
+\eqref{eq:ift-jacobian} is $-(\log2)b(q)c(q)$ and tends to zero at both
+endpoints.
+\end{proposition}
+
+\begin{proof}
+The root equation \eqref{eq:t0-local}, with $q=1+\varepsilon$, gives
+\[
+  \varepsilon\log t_0
+  =\log(1+2t_0)-\log(2+t_0)
+  =-\log2+\frac32t_0+O(t_0^2).
+\]
+It follows first that $t_0/\varepsilon\to0$ and then, on substituting back,
+that $t_0$ and $w_0$ have the stated asymptotics.  The exact identity
+\[
+  a(q)=
+  \frac{(1-t_0^2)\log(1+t_0)+t_0^2\log t_0}
+  {4(1+t_0+t_0^2)}
+\]
+gives $a(q)\sim t_0/4$.  Using
+$t_0^\varepsilon=(1+2t_0)/(2+t_0)$ in the level formula gives
+$b(q)\sim t_0/2$, while
+$K_q'(t_0)\sim\varepsilon/t_0$ in \eqref{eq:c-def} gives
+$c(q)\sim\varepsilon t_0/2$.  This proves
+\eqref{eq:lower-endpoint-asymptotics}.
+
+For the upper endpoint, put $q=4/3-\delta$.  The logarithmic root equation is
+\[
+  -\left(\frac13-\delta\right)w_0
+  =R(w_0),\qquad
+  R(w):=\log(1+2e^{-w})-\log(2+e^{-w}).
+\]
+Here $R(w)=-w/3+2w^3/81+O(w^5)$, which gives the first formula in
+\eqref{eq:upper-endpoint-asymptotics}; the formula for $a(q)$ follows by
+Taylor expansion of \eqref{eq:a-def}.  The level identity gives
+$p_0=p_*+O(\delta)$ and hence $b(q)=b_*+O(\delta)$.  Finally, apart from an
+additive constant, the quadratic edge quotient has the expansion
+\[
+  F_q(w)=F_q(0)+\frac\delta8w^2
+  +\left(-\frac1{648}+O(\delta)\right)w^4+O(w^6).
+\]
+Thus $F_q''(w_0)=-\delta/2+O(\delta^2)$, and
+\eqref{eq:quadratic-edge-ww-derivative} gives the claimed asymptotic for
+$c(q)$.  The determinant statement is immediate.
+\end{proof}
+
+\begin{proposition}[Exact lower endpoint]
+\label{prop:lower-endpoint-exact}
+For every $d\ge1$ and every finite $p,r\ge1$,
+\begin{equation}\label{eq:lower-endpoint-threshold}
+  \Cpqr_d(p,1;r)=1
+  \quad\Longleftrightarrow\quad
+  1\le p\le r,
+\end{equation}
+and $\Cpqr_d(p,1;r)>1$ when $p>r$.  At the threshold $p=r$, every
+nonzero $f$ supported in $Q_d$ and every nonzero point mass $g$ supported in
+$Q_d$ give equality.  Thus the endpoint equality family is non-isolated.
+\end{proposition}
+
+\begin{proof}
+Writing convolution as a sum of translates gives
+\[
+  f*g=\sum_y g(y)\tau_yf,
+  \qquad
+  \|f*g\|_r\le\sum_y|g(y)|\,\|\tau_yf\|_r
+  =\|f\|_r\|g\|_1.
+\]
+If $p\le r$, then $\|f\|_r\le\|f\|_p$, and point masses show that the
+resulting constant one is sharp.  If $p>r$, take $g$ to be a point mass and
+$f$ to equal one at two distinct points of $Q_d$.  The quotient is
+$2^{1/r-1/p}>1$.  Finally, when $p=r$ and $g$ is any nonzero point mass,
+convolution is a scalar multiple of a translate of $f$, so equality holds for
+every nonzero $f$.
+\end{proof}
+
+\begin{remark}\label{rem:fixed-q-nonuniform}
+The compact-uniform statement \cref{cor:compact-q-global} supplies a common
+$r$-interval whenever $q$ stays in a fixed compact subset of $(1,4/3)$.
+At the upper endpoint, \cref{thm:upper-global-transition} separately closes a
+fixed neighbourhood of the moving flat transition.  At the lower endpoint,
+\cref{prop:lower-endpoint-exact} gives the exact line $p=r$ at $q=1$, while
+\cref{prop:endpoint-degeneration} shows why the isolated fixed-$q$ branch
+degenerates as $q\downarrow1$.  No uniform bridge from $q>1$ to $q=1$, and no
+single $r$-interval valid over the entire $q$-range, is asserted.
+\end{remark}
+
+\subsection{The flat--flat transition: local normal form and global closure}
+
+The other end of the quadratic curved boundary has a one-dimensional Hessian
+degeneracy.  Here the fourth-order term decides the local geometry, which will
+then be globalised in a fixed upper-end parameter neighbourhood.
+
+\begin{proposition}[Fourth-order expansion at the flat profile]
+\label{prop:flat-taylor}
+Put
+\[
+  u=z+w,\qquad v=z-w,\qquad X_r=2^r,\qquad S_r=2+X_r,
+\]
+and
+\begin{equation}\label{eq:AB-def}
+  A_r=\frac{X_r+2r}{S_r},
+  \qquad
+  B_r=\frac{X_r-2r}{S_r}.
+\end{equation}
+Then, as $(z,w)\to(0,0)$,
+\begin{align}\label{eq:flat-fourth-order-expansion}
+  \Phi_{p,q,r}(z,w)
+  &=\Phi_{p,q,r}(0,0)
+  +\frac{(A_r-p)z^2+2B_rzw+(A_r-q)w^2}{8}\notag\\
+  &\quad+Q_{4,p,q,r}(z,w)
+  +O\bigl((z^2+w^2)^3\bigr),
+\end{align}
+where
+\begin{align}\label{eq:flat-quartic}
+  Q_{4,p,q,r}(z,w)
+  :=\frac1{192}\Bigg\{&
+  p^3z^4+q^3w^4 \notag\\
+  &+\frac{
+  r^3(X_r-4)v^4
+  +X_r(3r-2-X_r)u^4
+  -6X_rr^2u^2v^2}{S_r^2}
+  \Bigg\}.
+\end{align}
+In particular,
+\begin{equation}\label{eq:flat-hessian}
+  4\nabla^2\Phi_{p,q,r}(0,0)
+  =
+  \begin{pmatrix}
+    A_r-p&B_r\\
+    B_r&A_r-q
+  \end{pmatrix}.
+\end{equation}
+Thus a necessary second-order condition for the origin to be a local maximum is
+\begin{equation}\label{eq:flat-stability}
+  p,q\ge A_r,
+  \qquad
+  (p-A_r)(q-A_r)\ge B_r^2.
+\end{equation}
+If all these inequalities are strict, the origin is a strict local maximum.
+\end{proposition}
+
+\begin{proof}
+The scalar expansions for $\cosh$ and $\log\cosh$ give
+\[
+  N_r(z,w)
+  =S_r+n_2+n_4+O\bigl((z^2+w^2)^3\bigr),
+\]
+where
+\[
+  n_2=\frac{r^2}{4}v^2+\frac{X_rr}{8}u^2,
+  \qquad
+  n_4=\frac{r^4}{192}v^4+\frac{X_rr(3r-2)}{384}u^4.
+\]
+Consequently,
+\[
+  \frac1r\log N_r
+  =\frac1r\log S_r+\frac{n_2+n_4}{rS_r}
+  -\frac{n_2^2}{2rS_r^2}
+  +O\bigl((z^2+w^2)^3\bigr).
+\]
+The two norm terms expand as
+\[
+  -\frac1p\log\left(2\cosh\frac{pz}{2}\right)
+  =-\frac{\log2}{p}-\frac p8z^2+\frac{p^3}{192}z^4+O(z^6),
+\]
+and analogously with $q,w$.  Collecting the quadratic coefficients gives
+\eqref{eq:flat-fourth-order-expansion} through degree two.  In degree four,
+the coefficients of $v^4,u^4,u^2v^2$ in the numerator logarithm are,
+respectively,
+\[
+  \frac{r^3(X_r-4)}{192S_r^2},\qquad
+  \frac{X_r(3r-2-X_r)}{192S_r^2},\qquad
+  -\frac{6X_rr^2}{192S_r^2}.
+\]
+This proves \eqref{eq:flat-quartic} and the sixth-order remainder.  The Hessian
+and its definite and semidefinite criteria give the final assertions.
+\end{proof}
+
+On the full-cube line
+\begin{equation}\label{eq:full-cube-line-r}
+  \frac1p+\frac1q=L_r,
+  \qquad
+  L_r:=\frac1r\logtwo(2+2^r),
+\end{equation}
+the flat profile has level zero.  The next theorem treats the simultaneous
+full-cube and Hessian-degeneracy branch.
+
+\begin{proposition}[Quadratic upper-end equality and compact gap]
+\label{prop:quadratic-upper-gap}
+Put
+\[
+  q_*:=\frac43,\qquad
+  L_2:=\frac12\logtwo6,\qquad
+  p_*:=\left(L_2-\frac34\right)^{-1}.
+\]
+Then $4/3<p_*<2$ and
+\begin{equation}\label{eq:quadratic-upper-sharp}
+  \mathcal R_{p_*,q_*,2}(x,y)\le1,
+  \qquad (x,y)\in[0,1]^2,
+\end{equation}
+with equality exactly at $(0,0)$ and $(1,1)$.  Consequently, on every compact
+subset of the square disjoint from those two points there is a uniform strict
+gap below one.
+\end{proposition}
+
+\begin{proof}
+The elementary inequalities $6<8$ and $36>32$ give
+$4/3<p_*<2$.  For every $s\ge4/3$, the proof of
+\eqref{eq:Gamma-above-four-thirds} shows that the quadratic edge objective is
+strictly increasing on $[0,1]$ and has its unique maximum at $t=1$, with
+\[
+  \Gamma_2(s)=L_2-\frac1s.
+\]
+Thus both finite edges for $(p_*,q_*)$ are sharp only at their common endpoint
+$(1,1)$, while both axes are strict away from $(0,0)$ because
+$p_*,q_*<2$.  The boundary reduction \cref{prop:edge-reduction} proves
+\eqref{eq:quadratic-upper-sharp}; its no-interior-minimum curvature argument
+excludes any additional interior equality point.  The compact-gap assertion is
+then immediate from continuity.
+\end{proof}
+
+\begin{theorem}[Analytic flat critical branch]
+\label{thm:flat-critical-branch}
+Let
+\[
+  q_*:=\frac43,\qquad
+  p_*:=\left(L_2-\frac34\right)^{-1}.
+\]
+There are $\varepsilon>0$ and unique real-analytic functions $p_c(r),q_c(r)$,
+defined for $|r-2|<\varepsilon$ and near $(p_*,q_*)$, such that
+\begin{equation}\label{eq:flat-critical-branch}
+  p_c(2)=p_*,
+  \quad q_c(2)=q_*,
+  \quad \frac1{p_c(r)}+\frac1{q_c(r)}=L_r,
+  \quad
+  (p_c(r)-A_r)(q_c(r)-A_r)=B_r^2.
+\end{equation}
+After decreasing $\varepsilon$, for every $r\in[2,2+\varepsilon)$ the origin
+is a strict local maximum of $\Phi_{p_c(r),q_c(r),r}$ at level zero.  Its
+Hessian is negative semidefinite of rank one.  More precisely, if
+\[
+  \delta_r:=p_c(r)-A_r,
+  \qquad
+  k_r:=\left(\frac{B_r}{\delta_r},1\right),
+\]
+then $\delta_r>0$, $k_r$ spans the Hessian kernel, and
+\begin{equation}\label{eq:flat-kernel-quartic}
+  \kappa_r:=Q_{4,p_c(r),q_c(r),r}(k_r)<0.
+\end{equation}
+At $r=2$,
+\[
+  k_2=(0,1),
+  \qquad
+  \kappa_2=Q_{4,p_*,4/3,2}(0,1)=-\frac1{648}.
+\]
+\end{theorem}
+
+\begin{proof}
+At $r=2$ one has $A_2=4/3$, $B_2=0$, and
+$L_2=\frac12\logtwo6$.  Moreover
+$p_*>4/3$, so $d_*:=p_*-4/3>0$.  Define
+\[
+  F_1(p,q,r)=\frac1p+\frac1q-L_r,
+  \qquad
+  F_2(p,q,r)=(p-A_r)(q-A_r)-B_r^2.
+\]
+At $(p_*,4/3,2)$ their Jacobian in $(p,q)$ is
+\[
+  \begin{pmatrix}
+    -p_*^{-2}&-(4/3)^{-2}\\
+    0&d_*
+  \end{pmatrix},
+\]
+whose determinant is nonzero.  The analytic implicit function theorem gives
+the unique branch in \eqref{eq:flat-critical-branch}.
+
+Shrink the interval so that $\delta_r>0$.  For $r>2$ close to $2$ one has
+$B_r>0$, since $(2^r-2r)'|_{r=2}=4\log2-2>0$.  If
+$\eta_r=q_c(r)-A_r$, then
+$\eta_r=B_r^2/\delta_r\ge0$, and \eqref{eq:flat-hessian} becomes
+\[
+  \nabla^2\Phi(0,0)
+  =\frac14
+  \begin{pmatrix}
+    -\delta_r&B_r\\
+    B_r&-\eta_r
+  \end{pmatrix}.
+\]
+It has determinant zero, negative trace, and kernel generated by $k_r$.  The
+first equation in \eqref{eq:flat-critical-branch} gives
+$\Phi(0,0)=0$, while central symmetry makes the origin critical.
+
+At the base point, substitution into \eqref{eq:flat-quartic} gives
+\[
+  Q_{4,p_*,4/3,2}(0,1)
+  =\frac1{192}\left[\left(\frac43\right)^3-\frac83\right]
+  =-\frac1{648}.
+\]
+Continuity gives \eqref{eq:flat-kernel-quartic} throughout a smaller
+one-sided interval.  To turn this quartic sign into strict local maximality,
+take $e=(1,0)$ and set
+\[
+  G(s,t):=\Phi(sk_r+te).
+\]
+At the origin, $G_{st}=0$ and $G_{tt}=-\delta_r/4<0$.  The analytic implicit
+function theorem solves $G_t=0$ uniquely as $t=\psi(s)$.  Central symmetry
+and differentiation give $\psi(s)=O(s^3)$.  Hence
+\eqref{eq:flat-fourth-order-expansion} gives
+\[
+  G(s,\psi(s))=G(0,0)+\kappa_rs^4+O(s^6).
+\]
+This is strictly smaller than $G(0,0)$ for small nonzero $s$.  Since
+$G_{tt}<0$ in a small rectangle, $t=\psi(s)$ is the unique transverse maximum
+there.  The origin is therefore a strict local maximum.
+\end{proof}
+
+\begin{corollary}[First-order motion of the flat critical branch]
+\label{cor:flat-branch-motion}
+Put $h=\logtwo6$, $\eta=r-2$, and $d_*=p_*-4/3$.  Then
+\begin{align}
+  q_c(r)
+  &=\frac43+\frac{3-2\log2}{9}\eta+O(\eta^2),
+  \label{eq:qc-motion}\\
+  p_c(r)
+  &=p_*+p_1\eta+O(\eta^2),
+  \qquad
+  p_1=-p_*^2\left[
+    \frac13-\frac h4+\frac{3-2\log2}{16}
+  \right],
+  \label{eq:pc-motion}\\
+  \frac{B_r}{p_c(r)-A_r}
+  &=\frac{2\log2-1}{3d_*}\eta+O(\eta^2).
+  \label{eq:kernel-motion}
+\end{align}
+In particular, $q_c(r)>4/3$ for every $r>2$ sufficiently close to $2$.
+\end{corollary}
+
+\begin{proof}
+Direct differentiation at $r=2$ gives
+\[
+  A_2'=\frac{3-2\log2}{9},
+  \qquad
+  B_2'=\frac{2\log2-1}{3},
+  \qquad
+  L_2'=\frac13-\frac h4.
+\]
+Differentiating the determinant identity in
+\eqref{eq:flat-critical-branch}, using $q_c(2)-A_2=B_2=0$ and
+$p_c(2)-A_2=d_*>0$, gives $q_c'(2)=A_2'$.  Differentiating the full-cube
+identity then gives
+\[
+  -\frac{p_c'(2)}{p_*^2}
+  -\frac{q_c'(2)}{(4/3)^2}
+  =L_2',
+\]
+which is \eqref{eq:pc-motion}.  The quotient expansion in
+\eqref{eq:kernel-motion} follows from $B_2=0$ and $d_*>0$.  Finally
+$3-2\log2>0$.
+\end{proof}
+
+\begin{theorem}[Supercritical local pitchfork on the full-cube line]
+\label{thm:flat-local-pitchfork}
+After decreasing the interval in \cref{thm:flat-critical-branch}, fix
+$r\ge2$ in that interval and define, for $q$ near $q_c(r)$,
+\[
+  P_r(q):=\left(L_r-\frac1q\right)^{-1},
+  \qquad
+  \mu:=q_c(r)-q.
+\]
+There are a neighbourhood $U_r$ of $(0,0)$ and $\nu_r>0$ such that, whenever
+$|q-q_c(r)|<\nu_r$ and $p=P_r(q)$, the origin has level zero and is critical,
+and the following alternatives hold.
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item If $q>q_c(r)$, the origin is a nondegenerate strict local maximum and
+  is the only critical point in $U_r$.
+  \item If $q=q_c(r)$, the origin is a degenerate strict local maximum and is
+  the only critical point in $U_r$.
+  \item If $q<q_c(r)$, the origin is a saddle and exactly two other critical
+  points lie in $U_r$.  They are negatives of one another and are
+  nondegenerate strict local maxima with positive $\Phi$ value.
+\end{enumerate}
+More precisely, put
+\begin{align*}
+  d_r&:=p_c(r)-A_r,
+  &
+  D(r,q)&:=(P_r(q)-A_r)(q-A_r)-B_r^2,\\
+  \sigma_r&:=\frac{\partial_qD(r,q_c(r))}{4d_r},
+  &
+  \kappa_r&:=Q_{4,p_c(r),q_c(r),r}(k_r).
+\end{align*}
+Then $\sigma_r>0$, $\kappa_r<0$, and in coordinates
+$(z,w)=sk_r+t(1,0)$ the two nonzero points for $\mu>0$ satisfy
+\begin{align}
+  s^2
+  &=-\frac{\sigma_r}{4\kappa_r}\mu+O_r(\mu^2),
+  \label{eq:pitchfork-amplitude}\\
+  \Phi
+  &=-\frac{\sigma_r^2}{16\kappa_r}\mu^2+O_r(\mu^3).
+  \label{eq:pitchfork-gain}
+\end{align}
+At $r=2$, $\sigma_2=1/4$ and $\kappa_2=-1/648$, so
+\[
+  s^2=\frac{81}{2}\left(\frac43-q\right)
+  +O\left(\left(\frac43-q\right)^2\right),
+  \qquad
+  \Phi=\frac{81}{32}\left(\frac43-q\right)^2
+  +O\left(\left(\frac43-q\right)^3\right).
+\]
+\end{theorem}
+
+\begin{proof}
+The definition of $P_r$ gives full-cube equality, hence $\Phi(0,0)=0$; central
+symmetry makes the origin critical.  Write
+\[
+  d(r,q)=P_r(q)-A_r,\qquad e(r,q)=q-A_r.
+\]
+Then \eqref{eq:flat-hessian} gives
+\[
+  H(r,q)=\frac14
+  \begin{pmatrix}
+    -d(r,q)&B_r\\
+    B_r&-e(r,q)
+  \end{pmatrix},
+  \qquad
+  \det(4H)=D(r,q).
+\]
+Since $P_r'(q)=-P_r(q)^2/q^2$,
+\[
+  \partial_qD=P_r'(q)e+d.
+\]
+At $(r,q)=(2,4/3)$ this equals $p_*-4/3>0$, and it remains positive along a
+smaller transition interval.  Hence $\sigma_r>0$.
+
+Set $e_1=(1,0)$ and
+\[
+  G_r(s,t,\mu)
+  :=\Phi_{P_r(q_c(r)-\mu),\,q_c(r)-\mu,\,r}(sk_r+te_1).
+\]
+At the transition, $\partial_{tt}G_r=-d_r/4<0$, so the analytic implicit
+function theorem solves $\partial_tG_r=0$ uniquely as
+$t=\psi_r(s,\mu)$.  Symmetry makes $\psi_r$ odd in $s$ and the reduced
+function
+\[
+  g_r(s,\mu):=G_r(s,\psi_r(s,\mu),\mu)
+\]
+even in $s$.  At $\mu=0$, the proof of
+\cref{thm:flat-critical-branch} gives
+\[
+  g_r(s,0)=\kappa_rs^4+O_r(s^6).
+\]
+The reduced second derivative is the Schur complement of the transverse
+entry.  Since the coordinate matrix with columns $k_r,e_1$ has determinant
+$-1$,
+\[
+  \partial_{ss}g_r(0,\mu)
+  =-\frac{D(r,q_c(r)-\mu)}
+  {4d(r,q_c(r)-\mu)}
+  =\sigma_r\mu+O_r(\mu^2).
+\]
+Analyticity and evenness therefore give
+\begin{equation}\label{eq:pitchfork-normal-form}
+  g_r(s,\mu)
+  =\frac{\sigma_r}{2}\mu s^2+\kappa_rs^4
+  +O_r\bigl(\mu^2s^2+|\mu|s^4+s^6\bigr).
+\end{equation}
+Factoring $\partial_sg_r=sR_r(s^2,\mu)$ and applying the implicit function
+theorem in $u=s^2$ gives the unique nonzero squared amplitude
+\[
+  u_r(\mu)=-\frac{\sigma_r}{4\kappa_r}\mu+O_r(\mu^2).
+\]
+It is positive exactly when $\mu>0$.  At the two square roots the reduced
+second derivative is negative, and the transverse second derivative remains
+negative, so their full Hessians are negative definite.  Substitution into
+\eqref{eq:pitchfork-normal-form} proves \eqref{eq:pitchfork-gain}.  At the
+origin, the determinant changes sign with $q-q_c(r)$, giving the stated
+maximum and saddle alternatives; the transition case is
+\cref{thm:flat-critical-branch}.  The implicit-function uniqueness statements
+give the exact local critical-point counts after shrinking $U_r,\nu_r$.
+Finally, substituting $\sigma_2=1/4$ and $\kappa_2=-1/648$ gives the displayed
+quadratic endpoint constants.
+\end{proof}
+
+\begin{corollary}[Uniform local zero-level surface near the flat transition]
+\label{cor:flat-zero-level-surface}
+There are $\varepsilon_0,\delta_0>0$ and jointly real-analytic functions
+$u_*(r,\mu),\lambda_*(r,\mu)$ for
+$|r-2|<\varepsilon_0$, $|\mu|<\delta_0$, with
+$u_*(r,0)=\lambda_*(r,0)=0$, as follows.  Put
+\[
+  q=q_c(r)-\mu,
+  \qquad
+  \alpha_{\rm flat}(r,q):=L_r-\frac1q,
+\]
+and use $\sigma_r,\kappa_r$ from
+\cref{thm:flat-local-pitchfork}.  Uniformly for $r$ near $2$,
+\begin{align}
+  u_*(r,\mu)
+  &=-\frac{\sigma_r}{4\kappa_r}\mu+O(\mu^2),
+  \label{eq:zero-level-amplitude}\\
+  \lambda_*(r,\mu)
+  &=-\frac{\sigma_r^2}{16\kappa_r\log2}\mu^2+O(\mu^3).
+  \label{eq:zero-level-alpha-correction}
+\end{align}
+Both are positive for small $\mu>0$.  At $r=2$ their leading coefficients are
+$81/2$ and $81/(32\log2)$, respectively.
+
+Moreover, there is one fixed neighbourhood $U$ of the flat profile such that,
+after decreasing $\varepsilon_0,\delta_0$, the following alternatives hold for
+$2\le r<2+\varepsilon_0$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item If $-\delta_0<\mu\le0$ and $\alpha=\alpha_{\rm flat}(r,q)$, then
+  $\Phi_{\alpha,q,r}\le0$ on $U$, with equality only at $(0,0)$.
+  \item If $0<\mu<\delta_0$ and
+  $\alpha=\alpha_{\rm flat}(r,q)+\lambda_*(r,\mu)$, then
+  $\Phi_{\alpha,q,r}\le0$ on $U$, with equality exactly at two nonzero points.
+  They are negatives of one another, have squared kernel amplitude
+  $u_*(r,\mu)$, and have negative-definite $(z,w)$ Hessian.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Let $e_1=(1,0)$ and set
+\[
+  G(s,t,r,\mu,\lambda)
+  :=\Phi_{\alpha_{\rm flat}(r,q)+\lambda,q,r}(sk_r+te_1),
+  \qquad q=q_c(r)-\mu.
+\]
+The transverse second derivative is strictly negative, uniformly for $r$ near
+$2$.  The parameter implicit function theorem therefore solves $G_t=0$ by a
+jointly analytic graph $t=\psi(s,r,\mu,\lambda)$, odd in $s$.  The reduced
+function is even and has the form
+\[
+  G(s,\psi(s,r,\mu,\lambda),r,\mu,\lambda)
+  =F(u,r,\mu,\lambda),\qquad u=s^2,
+\]
+where
+\[
+  F(0,r,\mu,\lambda)=-\lambda\log2
+\]
+and, at $\lambda=0$,
+\[
+  F(u,r,\mu,0)
+  =\frac{\sigma_r}{2}\mu u+\kappa_ru^2
+   +O(\mu^2u+|\mu|u^2+u^3),
+\]
+uniformly for $r$ near $2$.  The Jacobian of $F_u=F=0$ in $(u,\lambda)$ at
+$(u,\mu,\lambda)=(0,0,0)$ is
+\[
+  \begin{pmatrix}
+    2\kappa_r&F_{u\lambda}(0,r,0,0)\\
+    0&-\log2
+  \end{pmatrix},
+\]
+which is uniformly invertible.  The joint analytic implicit function theorem
+gives $u_*,\lambda_*$.  Differentiation and substitution give
+\eqref{eq:zero-level-amplitude}--\eqref{eq:zero-level-alpha-correction}; their
+signs and the endpoint coefficients follow from
+$\sigma_r>0>\kappa_r$, $\sigma_2=1/4$, and $\kappa_2=-1/648$.
+
+Shrink a common coordinate box so that $G_{tt}<0$ and $F_{uu}<0$ throughout.
+For $\mu\le0$ and $\lambda=0$, the Schur-complement identity from
+\cref{thm:flat-local-pitchfork} gives
+\[
+  2F_u(0,r,\mu,0)
+  =-\frac{D(r,q_c(r)-\mu)}
+  {4\bigl(P_r(q_c(r)-\mu)-A_r\bigr)}\le0.
+\]
+Strict concavity in $u\ge0$ and $F(0,r,\mu,0)=0$ give alternative
+\textup{(i)}.  For $\mu>0$, the defining equations give
+$F(u_*,r,\mu,\lambda_*)=F_u(u_*,r,\mu,\lambda_*)=0$; strict concavity makes
+$u_*$ the unique reduced maximiser.  The two square roots of $u_*$ and strict
+transverse concavity give exactly the two equality points and their
+negative-definite Hessians, proving \textup{(ii)}.
+\end{proof}
+
+\begin{theorem}[Global upper-end flat-to-biased transition]
+\label{thm:upper-global-transition}
+There are $\varepsilon,\delta>0$ such that the following holds whenever
+\[
+  2\le r<2+\varepsilon,\qquad |\mu|<\delta,\qquad
+  q=q_c(r)-\mu.
+\]
+Put
+\[
+  \alpha_{\rm flat}(r,q):=L_r-\frac1q,
+\]
+and define the sharp reciprocal first exponent by
+\begin{equation}\label{eq:alpha-sh-piecewise}
+  \alpha_{\rm sh}(r,\mu):=
+  \begin{cases}
+    \alpha_{\rm flat}(r,q),&\mu\le0,\\
+    \alpha_{\rm flat}(r,q)+\lambda_*(r,\mu),&\mu>0,
+  \end{cases}
+  \qquad
+  p_{\rm sh}(r,\mu):=\frac1{\alpha_{\rm sh}(r,\mu)}.
+\end{equation}
+The function $\alpha_{\rm sh}$ is continuous and is real analytic on each side
+of $\mu=0$.  For every $(x,y)\in[0,1]^2$,
+\begin{equation}\label{eq:upper-global-ratio}
+  \mathcal R_{p_{\rm sh}(r,\mu),q,r}(x,y)\le1.
+\end{equation}
+The exact normalized equality set is as follows.
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item If $\mu\le0$, equality holds exactly at $(0,0)$ and $(1,1)$.
+  In particular, the transition value $\mu=0$ belongs to the flat phase.
+  \item If $\mu>0$, equality holds exactly at $(0,0)$ and one finite point
+  \begin{equation}\label{eq:upper-biased-point}
+    (x,y)=\left(e^{-z_+(r,\mu)},e^{-w_+(r,\mu)}\right),
+    \qquad
+    w_+(r,\mu):=\sqrt{u_*(r,\mu)}>0.
+  \end{equation}
+  Here $z_+(r,\mu)\ge0$,
+  $z_+(2,\mu)=0$, and $z_+(r,\mu)>0$ when $r>2$.
+\end{enumerate}
+Thus the finite equality profile is flat--flat for $\mu\le0$, flat--biased
+when $r=2$ and $\mu>0$, and biased--biased when $r>2$ and $\mu>0$.
+\end{theorem}
+
+\begin{proof}
+The identity \eqref{eq:Psi-Phi-identity}, with the parameters changed, gives
+\begin{equation}\label{eq:upper-Phi-ratio}
+  \log\mathcal R_{1/\alpha,q,r}(e^{-z},e^{-w})
+  =\Phi_{\alpha,q,r}(z,w).
+\end{equation}
+Since $\lambda_*(r,0)=0$, the piecewise function
+\eqref{eq:alpha-sh-piecewise} is continuous.  At $(r,\mu)=(2,0)$ it gives
+$(p,q)=(p_*,4/3)$ from \cref{prop:quadratic-upper-gap}.  After shrinking the
+parameter rectangle, all triples
+$(p_{\rm sh}(r,\mu),q,r)$ lie in a compact set satisfying
+\[
+  1<p_{\rm sh}<r,\qquad 1<q<r,\qquad
+  \frac1{p_{\rm sh}}+\frac1q>1.
+\]
+The tail lemma \cref{lem:tail-exclusion} therefore gives $\rho>0$ such that
+the ratio is strictly below one at every nonorigin point with
+$\min\{x,y\}<\rho$; the corner $(0,0)$ itself always has equality.
+
+It remains to control the compact logarithmic core
+$C=[0,-\log\rho]^2$.  At the base parameter,
+\cref{prop:quadratic-upper-gap} says that the only equality point in $C$ is
+$(z,w)=(0,0)$.  Let $U$ be the fixed local neighbourhood in
+\cref{cor:flat-zero-level-surface}, and choose a smaller symmetric
+neighbourhood $V$ with $\overline V\subset U$.  The base logarithmic quotient
+has a strict negative maximum on $C\setminus V$.  Uniform continuity in
+$(r,\mu,z,w)$, using continuity of $\alpha_{\rm sh}$, preserves half of this
+gap after another shrink.  Inside $V$, the two alternatives in
+\cref{cor:flat-zero-level-surface} give the required inequality and its local
+equality set.  Together with the tail estimate, these bounds prove
+\eqref{eq:upper-global-ratio} globally.
+
+For $\mu\le0$, the sole finite logarithmic equality is the origin, hence the
+finite normalized equality is $(1,1)$.  Suppose $\mu>0$.  In the coordinates
+$(z,w)=sk_r+t(1,0)$ used above, the positive soft root
+$s=\sqrt{u_*(r,\mu)}$ has $w=s>0$; denote its first coordinate by $z_+$.  If
+$r=2$, then $k_2=(0,1)$ and
+\cref{lem:quadratic-edge-derivatives} gives $\Phi_z(0,w)=0$ for every $w$.
+Uniqueness of the transverse critical graph forces $z_+(2,\mu)=0$.  If $r>2$,
+then \cref{prop:transverse-instability} excludes $z_+=0$.  Nor can $z_+<0$:
+the strict orientation inequality \cref{lem:orientation} would make
+$\Phi(-z_+,w_+)>\Phi(z_+,w_+)=0$, contradicting the local bound in the symmetric
+neighbourhood $U$.  Hence $z_+>0$.  The other local equality point is
+$(-z_+,-w_+)$ and lies outside the quadrant.  This proves the exact equality
+classification.
+\end{proof}
+
+\begin{corollary}[All-dimensional upper-transition threshold]
+\label{cor:upper-global-threshold}
+In the parameter neighbourhood of \cref{thm:upper-global-transition}, for every
+$d\ge1$ and every finite $p\ge1$,
+\begin{equation}\label{eq:upper-global-threshold}
+  \Cpqr_d(p,q;r)=1
+  \quad\Longleftrightarrow\quad
+  \frac1p\ge\alpha_{\rm sh}(r,\mu)
+  \quad\Longleftrightarrow\quad
+  p\le p_{\rm sh}(r,\mu),
+\end{equation}
+and the constant is strictly larger than one when
+$1/p<\alpha_{\rm sh}(r,\mu)$.  At the threshold, tensor powers of
+\[
+  u_{\rm fl}=v_{\rm fl}=(1,1)
+\]
+are equality cases when $\mu\le0$.  When $\mu>0$, tensor powers of
+\begin{equation}\label{eq:upper-tensor-factors}
+  u_+=\left(1,e^{-z_+(r,\mu)}\right),
+  \qquad
+  v_+=\left(e^{-w_+(r,\mu)},1\right)
+\end{equation}
+are equality cases.  No complete classification of equality in dimensions
+$d>1$ is asserted.
+\end{corollary}
+
+\begin{proof}
+At $p=p_{\rm sh}$, the triangle inequality and
+\cref{lem:orientation,thm:upper-global-transition} give the inequality for
+arbitrary complex two-vectors.  Point masses give sharpness, and exact
+tensorisation \cref{prop:tensorisation} gives constant one in every dimension.
+For $p<p_{\rm sh}$, counting-measure norm monotonicity preserves the inequality.
+For $p>p_{\rm sh}$, the relevant finite threshold equality factor---$u_{\rm fl}$
+or $u_+$---has two nonzero coordinates, so strict norm monotonicity makes its
+quotient strictly larger than one.  Tensoring with point masses proves the same
+in every dimension.  Finally, convolution and all norms factor on tensor
+powers, giving the displayed equality examples.
+\end{proof}
+
+\begin{remark}\label{rem:flat-local-not-global}
+The words \emph{local} and \emph{in $U_r$} in
+\cref{thm:flat-critical-branch,thm:flat-local-pitchfork} are essential.  These
+results and \cref{cor:flat-zero-level-surface} determine the local normal form;
+\cref{thm:upper-global-transition,cor:upper-global-threshold} combine it with
+compact-gap and tail arguments to close the upper-end neighbourhood globally.
+This does not produce one $r$-radius uniform over the entire $q$-range.  The
+endpoint $q=1$ is exact by \cref{prop:lower-endpoint-exact}, but a uniform bridge
+from $q>1$ down to that endpoint remains open.
+\end{remark}
+
+
+\section{Concluding perspective}
+The three alphabet regimes display a common hierarchy.  In the binary model, product structure and the Hilbertian output reduce the sharp problem to boundary geometry.  In the ternary model, an interior but still one-parameter symmetric branch becomes extremal, and the binary estimate survives as one half of a two-envelope argument.  For larger alphabets, no finite list of balance parameters is expected to control the global problem.  The exact replacement is multiscale: local parity gains, nonnegative defects, and pathwise products.
+
+Two principal problems remain.  First, the refinement-rigidity conjecture must be proved in order to derive the sharp Gaussian first-order asymptotic for growing alphabets.  Second, away from $r=2$, the complete off-diagonal binary phase diagram remains open beyond the local regimes closed in the transverse epilogue.  The exact small models suggest that both questions should be approached through the geometry of equality and near equality rather than through a direct global optimization in all coordinates.
+\appendix
+\section{Certified numerical enclosures}\label{app:intervals}
+
+Only a finite list of numerical comparisons is needed in the exact ternary
+arguments.  The decimal endpoints below are terminating decimals and may
+be verified by rational interval arithmetic using the standard expansion
+\[
+  \log y
+  =2\sum_{j=0}^{M-1}\frac{z^{2j+1}}{2j+1}+R_M,
+  \qquad
+  z=\frac{y-1}{y+1},
+\]
+with
+\[
+  0<R_M<\frac{2z^{2M+1}}{(2M+1)(1-z^2)}
+\]
+after reduction of the logarithm argument by a power of two.
+
+For the critical root function,
+\begin{align*}
+  \Psi(3)&\in[0.00213685582205790,0.00213685582205791],\\
+  \Psi(3.1)&\in[-0.00099534379472778,-0.00099534379472776],\\
+  \Psi'([3,3.1])&\subset[-0.050,-0.012].
+\end{align*}
+Consequently,
+\begin{align*}
+  x_*&\in[3.06689294695624189,3.06689294695624190],\\
+  p_*&\in[1.470203929717889497,1.470203929717889506],\\
+  t_*&\in[2.720710997397171373,2.720710997397171389].
+\end{align*}
+The overlap comparisons use
+\begin{align*}
+  \alpha_{1.477}(1/3)
+  &\in[4.52720013215865,4.52720013215867],\\
+  2^{4/1.477}-2
+  &\in[4.53502285532090,4.53502285532092],\\
+  \alpha_{1.467}(1)+\beta_{1.467}(1)-1
+  &\in[4.57067,4.57069].
+\end{align*}
+The final interval in the original two-envelope proof is
+\[
+  \frac{59}{243}
+  \left(\frac2{1+3^{-1.467}}\right)^{4/1.467}
+  \in[0.97856411604898,0.97856411604899].
+\]
+These intervals have substantial margins relative to all strict comparisons
+used above.
+
+
+\section*{Statement on the use of AI}
+AI systems were used during exploratory work and preparation, including parametrization, symbolic and numerical checks, literature and file searches, proof stress testing, exposition, reorganization of the component manuscripts, and LaTeX preparation.  The author retains responsibility for the final mathematical and expository decisions and for verifying the manuscript before submission.
+
+\small
+\begin{thebibliography}{99}
+
+\bibitem{Beckner1975}
+W.~Beckner,
+\newblock Inequalities in Fourier analysis,
+\newblock \emph{Ann. of Math. (2)} \textbf{102} (1975), no.~1, 159--182.
+
+\bibitem{BeckerIKM2024}
+L.~Becker, P.~Ivanisvili, D.~Krachun, and J.~Madrid,
+\newblock Discrete Brunn--Minkowski inequality for subsets of the cube,
+\newblock \emph{Combinatorica} \textbf{45} (2025), no.~5, Paper No.~48.
+
+\bibitem{BekerCK2024}
+A.~Beker, T.~Crmari\'c, and V.~Kova\v{c},
+\newblock Sharp estimates for Gowers norms on discrete cubes,
+\newblock \emph{Proc. Roy. Soc. Edinburgh Sect. A}, published online 2025,
+\newblock \href{https://doi.org/10.1017/prm.2025.10015}{doi:10.1017/prm.2025.10015}.
+
+\bibitem{BIMP}
+D.~Beltran, P.~Ivanisvili, J.~Madrid, and L.~Patil,
+\newblock Optimal Young's convolutions inequality and its reverse form on the hypercube,
+\newblock preprint, 2025, \href{https://arxiv.org/abs/2507.06115}{arXiv:2507.06115}.
+
+\bibitem{BourgainEtAl2011}
+J.~Bourgain, S.~J.~Dilworth, K.~Ford, S.~Konyagin, and D.~Kutzarova,
+\newblock Explicit constructions of RIP matrices and related problems,
+\newblock \emph{Duke Math. J.} \textbf{159} (2011), no.~1, 145--185.
+
+\bibitem{BrascampLieb1976}
+H.~J.~Brascamp and E.~H.~Lieb,
+\newblock Best constants in Young's inequality, its converse, and its generalization to more than three functions,
+\newblock \emph{Adv. Math.} \textbf{20} (1976), no.~2, 151--173.
+
+\bibitem{CKS}
+T.~Crmari\'c, V.~Kova\v{c}, and S.~Shiraki,
+\newblock Inequalities in Fourier analysis on binary cubes,
+\newblock preprint, 2025, \href{https://arxiv.org/abs/2507.01359}{arXiv:2507.01359}.
+
+\bibitem{DGIM}
+J.~de Dios Pont, R.~Greenfeld, P.~Ivanisvili, and J.~Madrid,
+\newblock Additive energies on discrete cubes,
+\newblock \emph{Discrete Anal.} (2023), Paper No.~13, 16 pp.,
+\newblock \href{https://doi.org/10.19086/da.84737}{doi:10.19086/da.84737}.
+
+\bibitem{HajelaSeymour1985}
+D.~Hajela and P.~Seymour,
+\newblock Counting points in hypercubes and convolution measure algebras,
+\newblock \emph{Combinatorica} \textbf{5} (1985), no.~3, 205--214.
+
+\bibitem{KaneTao2017}
+D.~M.~Kane and T.~Tao,
+\newblock A bound on partitioning clusters,
+\newblock \emph{Electron. J. Combin.} \textbf{24} (2017), no.~2, Paper No.~2.31, 13 pp.,
+\newblock \href{https://doi.org/10.37236/6797}{doi:10.37236/6797}.
+
+\bibitem{Leindler1972}
+L.~Leindler,
+\newblock On a certain converse of H\"older's inequality,
+\newblock in \emph{Linear operators and approximation (Proc. Conf., Math. Res. Inst., Oberwolfach, 1971)},
+\newblock Internat. Ser. Numer. Math., vol.~20, Birkh\"auser, Basel--Stuttgart, 1972, pp.~182--184.
+
+\bibitem{LiebLoss}
+E.~H.~Lieb and M.~Loss,
+\newblock \emph{Analysis}, second ed.,
+\newblock Graduate Studies in Mathematics, vol.~14, American Mathematical Society, Providence, RI, 2001.
+
+\bibitem{SchoenShkredov2013}
+T.~Schoen and I.~D.~Shkredov,
+\newblock Higher moments of convolutions,
+\newblock \emph{J. Number Theory} \textbf{133} (2013), no.~5, 1693--1737.
+
+\bibitem{Shao2026}
+X.~Shao,
+\newblock Additive energies of subsets of discrete cubes,
+\newblock \emph{Proc. Roy. Soc. Edinburgh Sect. A} \textbf{156} (2026), 944--965,
+\newblock \href{https://doi.org/10.1017/prm.2024.126}{doi:10.1017/prm.2024.126}.
+
+\bibitem{Shkredov2014}
+I.~D.~Shkredov,
+\newblock Energies and structure of additive sets,
+\newblock \emph{Electron. J. Combin.} \textbf{21} (2014), no.~3, Paper No.~3.44, 53 pp.,
+\newblock \href{https://doi.org/10.37236/4369}{doi:10.37236/4369}.
+
+\bibitem{Woodall1977}
+D.~R.~Woodall,
+\newblock A theorem on cubes,
+\newblock \emph{Mathematika} \textbf{24} (1977), no.~1, 60--62.
+
+\end{thebibliography}
+
+\end{document}
